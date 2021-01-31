@@ -1,0 +1,58 @@
+[2021-01-31 16:00:33.946] [main      ] [INFO ] [c.z.gambling.GamblingApplication    :55  ] : Starting GamblingApplication using Java 1.8.0_265 on zhouyitengdeMacBook-Pro.local with PID 14116 (/Users/zhouyiteng/Documents/GitHub/gaming/target/classes started by zhouyiteng in /Users/zhouyiteng/Documents/GitHub/gaming)
+[2021-01-31 16:00:33.951] [main      ] [INFO ] [c.z.gambling.GamblingApplication    :660 ] : No active profile set, falling back to default profiles: default
+[2021-01-31 16:00:35.168] [main      ] [INFO ] [o.s.b.w.e.tomcat.TomcatWebServer    :108 ] : Tomcat initialized with port(s): 20022 (http)
+[2021-01-31 16:00:35.180] [main      ] [INFO ] [o.a.coyote.http11.Http11NioProtocol :173 ] : Initializing ProtocolHandler ["http-nio-20022"]
+[2021-01-31 16:00:35.181] [main      ] [INFO ] [o.a.catalina.core.StandardService   :173 ] : Starting service [Tomcat]
+[2021-01-31 16:00:35.182] [main      ] [INFO ] [o.a.catalina.core.StandardEngine    :173 ] : Starting Servlet engine: [Apache Tomcat/9.0.41]
+[2021-01-31 16:00:35.249] [main      ] [INFO ] [o.a.c.c.C.[Tomcat].[localhost].[/]  :173 ] : Initializing Spring embedded WebApplicationContext
+[2021-01-31 16:00:35.250] [main      ] [INFO ] [c.ServletWebServerApplicationContext:289 ] : Root WebApplicationContext: initialization completed in 1221 ms
+[2021-01-31 16:00:35.493] [main      ] [INFO ] [o.s.s.c.ThreadPoolTaskExecutor      :181 ] : Initializing ExecutorService 'applicationTaskExecutor'
+[2021-01-31 16:00:35.722] [main      ] [INFO ] [o.a.coyote.http11.Http11NioProtocol :173 ] : Starting ProtocolHandler ["http-nio-20022"]
+[2021-01-31 16:00:35.755] [main      ] [INFO ] [o.s.b.w.e.tomcat.TomcatWebServer    :220 ] : Tomcat started on port(s): 20022 (http) with context path ''
+[2021-01-31 16:00:35.768] [main      ] [INFO ] [c.z.gambling.GamblingApplication    :61  ] : Started GamblingApplication in 2.868 seconds (JVM running for 6.606)
+[2021-01-31 16:03:15.651] [utdownHook] [INFO ] [o.s.s.c.ThreadPoolTaskExecutor      :218 ] : Shutting down ExecutorService 'applicationTaskExecutor'
+[2021-01-31 16:07:36.744] [main      ] [INFO ] [c.z.gambling.GamblingApplication    :55  ] : Starting GamblingApplication using Java 1.8.0_265 on zhouyitengdeMacBook-Pro.local with PID 14369 (/Users/zhouyiteng/Documents/GitHub/gaming/target/classes started by zhouyiteng in /Users/zhouyiteng/Documents/GitHub/gaming)
+[2021-01-31 16:07:36.754] [main      ] [INFO ] [c.z.gambling.GamblingApplication    :660 ] : No active profile set, falling back to default profiles: default
+[2021-01-31 16:07:38.219] [main      ] [INFO ] [o.s.b.w.e.tomcat.TomcatWebServer    :108 ] : Tomcat initialized with port(s): 8011 (http)
+[2021-01-31 16:07:38.233] [main      ] [INFO ] [o.a.coyote.http11.Http11NioProtocol :173 ] : Initializing ProtocolHandler ["http-nio-8011"]
+[2021-01-31 16:07:38.235] [main      ] [INFO ] [o.a.catalina.core.StandardService   :173 ] : Starting service [Tomcat]
+[2021-01-31 16:07:38.235] [main      ] [INFO ] [o.a.catalina.core.StandardEngine    :173 ] : Starting Servlet engine: [Apache Tomcat/9.0.41]
+[2021-01-31 16:07:38.347] [main      ] [INFO ] [o.a.c.c.C.[Tomcat].[localhost].[/]  :173 ] : Initializing Spring embedded WebApplicationContext
+[2021-01-31 16:07:38.349] [main      ] [INFO ] [c.ServletWebServerApplicationContext:289 ] : Root WebApplicationContext: initialization completed in 1394 ms
+[2021-01-31 16:07:38.686] [main      ] [INFO ] [o.s.s.c.ThreadPoolTaskExecutor      :181 ] : Initializing ExecutorService 'applicationTaskExecutor'
+[2021-01-31 16:07:38.953] [main      ] [INFO ] [o.a.coyote.http11.Http11NioProtocol :173 ] : Starting ProtocolHandler ["http-nio-8011"]
+[2021-01-31 16:07:38.989] [main      ] [INFO ] [o.s.b.w.e.tomcat.TomcatWebServer    :220 ] : Tomcat started on port(s): 8011 (http) with context path ''
+[2021-01-31 16:07:39.008] [main      ] [INFO ] [c.z.gambling.GamblingApplication    :61  ] : Started GamblingApplication in 2.858 seconds (JVM running for 6.315)
+[2021-01-31 16:07:56.128] [011-exec-1] [INFO ] [o.a.c.c.C.[Tomcat].[localhost].[/]  :173 ] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2021-01-31 16:07:56.129] [011-exec-1] [INFO ] [o.s.web.servlet.DispatcherServlet   :525 ] : Initializing Servlet 'dispatcherServlet'
+[2021-01-31 16:07:56.130] [011-exec-1] [INFO ] [o.s.web.servlet.DispatcherServlet   :547 ] : Completed initialization in 0 ms
+[2021-01-31 16:08:15.423] [utdownHook] [INFO ] [o.s.s.c.ThreadPoolTaskExecutor      :218 ] : Shutting down ExecutorService 'applicationTaskExecutor'
+[2021-01-31 16:08:44.233] [main      ] [INFO ] [c.z.gambling.GamblingApplication    :55  ] : Starting GamblingApplication using Java 1.8.0_265 on zhouyitengdeMacBook-Pro.local with PID 14404 (/Users/zhouyiteng/Documents/GitHub/gaming/target/classes started by zhouyiteng in /Users/zhouyiteng/Documents/GitHub/gaming)
+[2021-01-31 16:08:44.252] [main      ] [INFO ] [c.z.gambling.GamblingApplication    :660 ] : No active profile set, falling back to default profiles: default
+[2021-01-31 16:08:45.437] [main      ] [INFO ] [o.s.b.w.e.tomcat.TomcatWebServer    :108 ] : Tomcat initialized with port(s): 20022 (http)
+[2021-01-31 16:08:45.450] [main      ] [INFO ] [o.a.coyote.http11.Http11NioProtocol :173 ] : Initializing ProtocolHandler ["http-nio-20022"]
+[2021-01-31 16:08:45.451] [main      ] [INFO ] [o.a.catalina.core.StandardService   :173 ] : Starting service [Tomcat]
+[2021-01-31 16:08:45.452] [main      ] [INFO ] [o.a.catalina.core.StandardEngine    :173 ] : Starting Servlet engine: [Apache Tomcat/9.0.41]
+[2021-01-31 16:08:45.520] [main      ] [INFO ] [o.a.c.c.C.[Tomcat].[localhost].[/]  :173 ] : Initializing Spring embedded WebApplicationContext
+[2021-01-31 16:08:45.520] [main      ] [INFO ] [c.ServletWebServerApplicationContext:289 ] : Root WebApplicationContext: initialization completed in 1192 ms
+[2021-01-31 16:08:45.799] [main      ] [INFO ] [o.s.s.c.ThreadPoolTaskExecutor      :181 ] : Initializing ExecutorService 'applicationTaskExecutor'
+[2021-01-31 16:08:46.029] [main      ] [INFO ] [o.a.coyote.http11.Http11NioProtocol :173 ] : Starting ProtocolHandler ["http-nio-20022"]
+[2021-01-31 16:08:46.063] [main      ] [INFO ] [o.s.b.w.e.tomcat.TomcatWebServer    :220 ] : Tomcat started on port(s): 20022 (http) with context path ''
+[2021-01-31 16:08:46.078] [main      ] [INFO ] [c.z.gambling.GamblingApplication    :61  ] : Started GamblingApplication in 2.68 seconds (JVM running for 4.533)
+[2021-01-31 16:08:59.151] [022-exec-1] [INFO ] [o.a.c.c.C.[Tomcat].[localhost].[/]  :173 ] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2021-01-31 16:08:59.152] [022-exec-1] [INFO ] [o.s.web.servlet.DispatcherServlet   :525 ] : Initializing Servlet 'dispatcherServlet'
+[2021-01-31 16:08:59.153] [022-exec-1] [INFO ] [o.s.web.servlet.DispatcherServlet   :547 ] : Completed initialization in 1 ms
+[2021-01-31 16:09:07.870] [utdownHook] [INFO ] [o.s.s.c.ThreadPoolTaskExecutor      :218 ] : Shutting down ExecutorService 'applicationTaskExecutor'
+[2021-01-31 16:09:13.804] [main      ] [INFO ] [c.z.gambling.GamblingApplication    :55  ] : Starting GamblingApplication using Java 1.8.0_265 on zhouyitengdeMacBook-Pro.local with PID 14419 (/Users/zhouyiteng/Documents/GitHub/gaming/target/classes started by zhouyiteng in /Users/zhouyiteng/Documents/GitHub/gaming)
+[2021-01-31 16:09:13.809] [main      ] [INFO ] [c.z.gambling.GamblingApplication    :660 ] : No active profile set, falling back to default profiles: default
+[2021-01-31 16:09:15.457] [main      ] [INFO ] [o.s.b.w.e.tomcat.TomcatWebServer    :108 ] : Tomcat initialized with port(s): 8080 (http)
+[2021-01-31 16:09:15.470] [main      ] [INFO ] [o.a.coyote.http11.Http11NioProtocol :173 ] : Initializing ProtocolHandler ["http-nio-8080"]
+[2021-01-31 16:09:15.471] [main      ] [INFO ] [o.a.catalina.core.StandardService   :173 ] : Starting service [Tomcat]
+[2021-01-31 16:09:15.471] [main      ] [INFO ] [o.a.catalina.core.StandardEngine    :173 ] : Starting Servlet engine: [Apache Tomcat/9.0.41]
+[2021-01-31 16:09:15.554] [main      ] [INFO ] [o.a.c.c.C.[Tomcat].[localhost].[/]  :173 ] : Initializing Spring embedded WebApplicationContext
+[2021-01-31 16:09:15.554] [main      ] [INFO ] [c.ServletWebServerApplicationContext:289 ] : Root WebApplicationContext: initialization completed in 1651 ms
+[2021-01-31 16:09:15.838] [main      ] [INFO ] [o.s.s.c.ThreadPoolTaskExecutor      :181 ] : Initializing ExecutorService 'applicationTaskExecutor'
+[2021-01-31 16:09:16.031] [main      ] [INFO ] [o.a.coyote.http11.Http11NioProtocol :173 ] : Starting ProtocolHandler ["http-nio-8080"]
+[2021-01-31 16:09:16.075] [main      ] [INFO ] [o.s.b.w.e.tomcat.TomcatWebServer    :220 ] : Tomcat started on port(s): 8080 (http) with context path ''
+[2021-01-31 16:09:16.089] [main      ] [INFO ] [c.z.gambling.GamblingApplication    :61  ] : Started GamblingApplication in 3.186 seconds (JVM running for 4.9)
+[2021-01-31 16:14:33.192] [utdownHook] [INFO ] [o.s.s.c.ThreadPoolTaskExecutor      :218 ] : Shutting down ExecutorService 'applicationTaskExecutor'
