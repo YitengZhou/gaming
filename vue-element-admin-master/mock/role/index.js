@@ -1,6 +1,6 @@
 const Mock = require('mockjs')
-const { deepClone } = require('../utils')
-const { asyncRoutes, constantRoutes } = require('./routes.js')
+const {deepClone} = require('../utils')
+const {asyncRoutes, constantRoutes} = require('./routes.js')
 
 const routes = deepClone([...constantRoutes, ...asyncRoutes])
 
@@ -28,7 +28,7 @@ const roles = [
         {
           path: 'dashboard',
           name: 'Dashboard',
-          meta: { title: 'dashboard', icon: 'dashboard' }
+          meta: {title: 'dashboard', icon: 'dashboard'}
         }
       ]
     }]
