@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--日志级别以及优先级排序: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE >ALL -->
 <configuration>
-    <property name="LOG_HOME" value="D://log//EM.Trade.Dispatch.AdminService"/>
+    <property name="LOG_HOME" value="D://log//YT.Gambling"/>
     <property name="ACTION_LOG_PATTERN" value="%msg%n" />
     <property name="OTHERS_LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-10.10thread] [%-5level] [%-36.36logger{36}:%-4.4line] : %msg%n" />
     <!-- 彩色日志 -->
