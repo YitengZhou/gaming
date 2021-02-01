@@ -1,4 +1,4 @@
-package com.zhouyiteng.gambling.dao.source;
+package com.zhouyiteng.gambling.dao;
 
 import org.apache.ibatis.annotations.Param;
 

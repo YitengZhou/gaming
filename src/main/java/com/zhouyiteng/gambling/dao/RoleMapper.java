@@ -1,4 +1,4 @@
-package com.zhouyiteng.gambling.dao.source;
+package com.zhouyiteng.gambling.dao;
 
 import com.zhouyiteng.gambling.model.auth.RoleModel;
 import com.zhouyiteng.gambling.model.auth.RolePermissionModel;

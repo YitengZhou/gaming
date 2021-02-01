@@ -37,13 +37,13 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
      * @param handlerMethod
      * @return
      */
-    private List<com.eastmoney.trade.dispatch.admin.service.authorize.RequireLogin> getRequireLoginList(HandlerMethod handlerMethod){
-        List<com.eastmoney.trade.dispatch.admin.service.authorize.RequireLogin> requireLoginList = new ArrayList<>();
-        com.eastmoney.trade.dispatch.admin.service.authorize.RequireLogin methodRequireLogin = handlerMethod.getMethodAnnotation(com.eastmoney.trade.dispatch.admin.service.authorize.RequireLogin.class);
+    private List<com.zhouyiteng.gambling.authorize.RequireLogin> getRequireLoginList(HandlerMethod handlerMethod){
+        List<com.zhouyiteng.gambling.authorize.RequireLogin> requireLoginList = new ArrayList<>();
+        com.zhouyiteng.gambling.authorize.RequireLogin methodRequireLogin = handlerMethod.getMethodAnnotation(com.zhouyiteng.gambling.authorize.RequireLogin.class);
         if(methodRequireLogin != null){
             requireLoginList.add(methodRequireLogin);
         }
-        com.eastmoney.trade.dispatch.admin.service.authorize.RequireLogin controllerRequireLogin = AnnotationUtils.findAnnotation(handlerMethod.getBeanType(), com.eastmoney.trade.dispatch.admin.service.authorize.RequireLogin.class);
+        com.zhouyiteng.gambling.authorize.RequireLogin controllerRequireLogin = AnnotationUtils.findAnnotation(handlerMethod.getBeanType(), com.zhouyiteng.gambling.authorize.RequireLogin.class);
         if(controllerRequireLogin!=null){
             requireLoginList.add(controllerRequireLogin);
         }
@@ -72,12 +72,12 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if(handler.getClass().isAssignableFrom(HandlerMethod.class)){
             HandlerMethod handlerMethod = (HandlerMethod)handler;
-            List<com.eastmoney.trade.dispatch.admin.service.authorize.RequireLogin> requireLoginList = getRequireLoginList(handlerMethod);
+            List<com.zhouyiteng.gambling.authorize.RequireLogin> requireLoginList = getRequireLoginList(handlerMethod);
             List<RequirePermission> requirePermissionList = getRequirePermissionsList(handlerMethod);
 
             if(!CollectionUtils.isEmpty(requireLoginList) || !CollectionUtils.isEmpty(requirePermissionList)){
-                String user = com.eastmoney.trade.dispatch.admin.service.authorize.AuthorizeUtil.getCookieValue(request, ServiceConfig.LOGIN_USER_KEY);
-                String token = com.eastmoney.trade.dispatch.admin.service.authorize.AuthorizeUtil.getCookieValue(request, ServiceConfig.LOGIN_TOKEN_KEY);
+                String user = com.zhouyiteng.gambling.authorize.AuthorizeUtil.getCookieValue(request, ServiceConfig.LOGIN_USER_KEY);
+                String token = com.zhouyiteng.gambling.authorize.AuthorizeUtil.getCookieValue(request, ServiceConfig.LOGIN_TOKEN_KEY);
                 if(userService.isLogin(user, token)){
                     if(!CollectionUtils.isEmpty(requirePermissionList)){
                         String permissionValue = requirePermissionList.get(0).value();
@@ -89,10 +89,10 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
                                 }
                             }
                         }
-                        throw new com.eastmoney.trade.dispatch.admin.service.authorize.ForbiddenException("没有权限");
+                        throw new com.zhouyiteng.gambling.authorize.ForbiddenException("没有权限");
                     }
                 }else{
-                    throw new com.eastmoney.trade.dispatch.admin.service.authorize.UnAuthException("未登录");
+                    throw new com.zhouyiteng.gambling.authorize.UnAuthException("未登录");
                 }
             }
         }
