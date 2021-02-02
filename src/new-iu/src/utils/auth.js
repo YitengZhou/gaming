@@ -1,15 +1,28 @@
 import Cookies from 'js-cookie'
 
-const TokenKey = 'Admin-Token'
+const TokenKey = 'YT_GAMBLING_USER_ADMIN_TOKEN'
+const UserIdKey = 'YT_GAMBLING_USER_ADMIN_USER_ID'
 
 export function getToken() {
   return Cookies.get(TokenKey)
 }
 
-export function setToken(token) {
-  return Cookies.set(TokenKey, token)
-}
-
 export function removeToken() {
   return Cookies.remove(TokenKey)
+}
+
+export function setToken(token) {
+  return Cookies.set(TokenKey, token, { expires: 3 })
+}
+
+export function getUserId() {
+  return Cookies.get(UserIdKey)
+}
+
+export function removeUserId() {
+  return Cookies.remove(UserIdKey)
+}
+
+export function setUserId(userId) {
+  return Cookies.set(UserIdKey, userId, { expires: 3 })
 }
