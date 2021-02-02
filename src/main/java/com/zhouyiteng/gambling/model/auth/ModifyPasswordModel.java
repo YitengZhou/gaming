@@ -1,5 +1,7 @@
 package com.zhouyiteng.gambling.model.auth;
 
+import lombok.Data;
+
 /**
  * 修改密码模型
  *
@@ -7,7 +9,8 @@ package com.zhouyiteng.gambling.model.auth;
  *
  * Created by zhouyiteng on 2021/2/1.
  */
-public class ModifyPasswordModel {
+@Data
+public class ModifyPasswordModel extends UserModel{
 
     public String oldPassword;
 

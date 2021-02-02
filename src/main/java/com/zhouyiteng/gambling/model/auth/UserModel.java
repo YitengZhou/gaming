@@ -1,5 +1,7 @@
 package com.zhouyiteng.gambling.model.auth;
 
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
 /**
@@ -9,6 +11,7 @@ import java.time.LocalDateTime;
  *
  * Created by zhouyiteng on 2021/2/1.
  */
+@Data
 public class UserModel {
 
     /**

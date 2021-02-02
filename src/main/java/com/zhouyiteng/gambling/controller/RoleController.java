@@ -2,9 +2,9 @@ package com.zhouyiteng.gambling.controller;
 
 import com.zhouyiteng.gambling.authorize.RequireLogin;
 import com.zhouyiteng.gambling.authorize.RequirePermission;
-import com.zhouyiteng.gambling.model.PageModel;
 import com.zhouyiteng.gambling.model.auth.RoleModel;
 import com.zhouyiteng.gambling.model.auth.RolePermissionModel;
+import com.zhouyiteng.gambling.model.web.PageDataModel;
 import com.zhouyiteng.gambling.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/service/role")
+@RequestMapping("/system/role")
 @RequirePermission("system:role")
 public class RoleController extends BaseController {
 
@@ -92,10 +92,10 @@ public class RoleController extends BaseController {
      */
     @GetMapping("page-list")
     @RequirePermission("system:role")
-    public PageModel<RolePermissionModel> getPageRolePermission(@RequestParam(required = false) String roleId,
-                                                                @RequestParam(required = false) String roleName,
-                                                                @RequestParam(required = false) Long pageNo,
-                                                                @RequestParam(required = false) Long pageSize){
+    public PageDataModel<RolePermissionModel> getPageRolePermission(@RequestParam(required = false) String roleId,
+                                                                    @RequestParam(required = false) String roleName,
+                                                                    @RequestParam(required = false) Long pageNo,
+                                                                    @RequestParam(required = false) Long pageSize){
         return roleService.getPageRolePermission(roleId, roleName, pageNo, pageSize);
     }
 

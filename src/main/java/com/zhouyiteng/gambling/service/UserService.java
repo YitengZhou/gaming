@@ -2,8 +2,6 @@ package com.zhouyiteng.gambling.service;
 
 import com.zhouyiteng.gambling.authorize.AuthorizeUtil;
 import com.zhouyiteng.gambling.dao.UserMapper;
-import com.zhouyiteng.gambling.model.PageModel;
-import com.zhouyiteng.gambling.model.Pagination;
 import com.zhouyiteng.gambling.model.auth.ModifyPasswordModel;
 import com.zhouyiteng.gambling.model.auth.UserModel;
 import com.zhouyiteng.gambling.model.auth.UserRoleModel;

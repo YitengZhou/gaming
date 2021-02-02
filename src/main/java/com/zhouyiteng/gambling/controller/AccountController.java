@@ -31,7 +31,7 @@ import java.util.Set;
  */
 @Slf4j
 @RestController
-@RequestMapping("/service/account")
+@RequestMapping("/system/account")
 public class AccountController extends BaseController {
 
     @Autowired
