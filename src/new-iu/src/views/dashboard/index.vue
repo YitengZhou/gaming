@@ -3,9 +3,9 @@
     <el-card class="body-card">
       <div class="home">
         <div class="hero">
-          <img :src="logoPath" alt="hero"> 
-          <h1>养生休闲平台</h1> 
-          <p class="description">欢迎您: {{ name }}</p> 
+          <img :src="logoPath" alt="hero">
+          <h1>养生休闲平台</h1>
+          <p class="description">欢迎您: {{ name }}</p>
           <p class="action">
             <router-link to="/system/profile/index" class="nav-link action-button">
               个人中心 →
@@ -14,7 +14,7 @@
         </div>
         <div class="features">
           <div class="feature">
-            <h2>系统管理平台</h2> 
+            <h2>系统管理平台</h2>
             <p>Typical templates for enterprise applications and various components</p>
             <p class="action">
               <router-link to="/gateway/index" class="nav-link action-button">
@@ -23,7 +23,7 @@
             </p>
           </div>
           <div class="feature">
-            <h2>养生休闲平台</h2> 
+            <h2>养生休闲平台</h2>
             <p>Typical templates for enterprise applications and various components</p>
             <p class="action">
               <router-link to="/choice/index" class="nav-link action-button">
@@ -32,7 +32,7 @@
             </p>
           </div>
           <div class="feature">
-            <h2>更多功能</h2> 
+            <h2>更多功能</h2>
             <p>Typical templates for enterprise applications and various components</p>
             <p class="action">
               <span class="nav-link action-button disable">
@@ -121,21 +121,21 @@
 </style>
 
 <script>
-    import { mapGetters } from 'vuex'
-    import logoPath from '@/assets/logo.png'
+import { mapGetters } from 'vuex'
+import logoPath from '@/assets/logo.jpg'
 
-    export default {
-      name: 'Dashboard',
-      data() {
-        return {
-          logoPath: logoPath
-        }
-      },
-      computed: {
-        ...mapGetters([
-          'userId',
-          'name'
-        ])
-      }
+export default {
+  name: 'Dashboard',
+  data() {
+    return {
+      logoPath: logoPath
     }
+  },
+  computed: {
+    ...mapGetters([
+      'userId',
+      'name'
+    ])
+  }
+}
 </script>

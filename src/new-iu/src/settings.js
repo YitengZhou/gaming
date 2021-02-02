@@ -1,5 +1,5 @@
 module.exports = {
-  title: '养生平台',
+  title: '养生休闲平台',
 
   /**
    * @type {boolean} true | false

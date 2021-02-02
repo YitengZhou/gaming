@@ -44,7 +44,7 @@ public class RedisService {
      * @return
      */
     private String getSystemRedisKey(String value){
-        return "EM-TRADE-ADMIN:" + value;
+        return "YT-GAMBLING-ADMIN:" + value;
     }
 
     /**

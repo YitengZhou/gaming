@@ -1,11 +1,13 @@
 <template>
   <div class="login-container">
+    <div class="bg" />
+    <div class="bg-mask" />
     <div class="top">
       <div class="header">
         <a href="/">
-          <img src="~@/assets/logo.png" class="logo" alt="logo">
+          <img src="~@/assets/logo.jpg" class="logo" alt="logo">
           <el-badge :value="env" class="item" type="primary">
-            <span class="title">养生平台</span>
+            <span class="title">养生休闲平台</span>
           </el-badge>
         </a>
       </div>
@@ -75,140 +77,157 @@
 </template>
 
 <script>
-    import { environment } from '@/api/system/common'
+import { environment } from '@/api/system/common'
 
-    export default {
-        name: 'Login',
-        data() {
-            return {
-                env: '',
-                passwordType: 'password',
-                loading: false,
-                showDialog: false,
-                capsTooltip: false,
-                redirect: undefined,
-                otherQuery: {},
-                loginForm: {
-                    userId: '',
-                    password: '',
-                    ticket: '',
-                    imageCode: ''
-                },
-                loginRules: {
-                    userId: [{ required: true, trigger: 'blur', validator: (rule, value, callback) => {
-                        if (value.length <= 0) {
-                            callback(new Error('请输入帐号'))
-                        } else {
-                            callback()
-                        }
-                    } }],
-                    password: [{ required: true, trigger: 'blur', validator: (rule, value, callback) => {
-                        if (value.length <= 0) {
-                            callback(new Error('请输入密码'))
-                        } else if (value.length < 6) {
-                            callback(new Error('密码长度不能小于6位字符'))
-                        } else {
-                            callback()
-                        }
-                    } }],
-                    imageCode: [{ required: true, trigger: 'blur', validator: (rule, value, callback) => {
-                        if (value.length <= 0) {
-                            callback(new Error('请输入图形验证码'))
-                        } else {
-                            callback()
-                        }
-                    } }]
-                }
-            }
-        },
-        computed: {
-            imageCodeUrl: function(){
-                return `${process.env.VUE_APP_BASE_API}/system/info/image-code?ticket=${this.loginForm.ticket}`
-            }
-        },
-        watch: {
-            $route: {
-                immediate: true,
-                handler: function(route) {
-                    const query = route.query
-                    if (query) {
-                        this.redirect = query.redirect
-                        this.otherQuery = this.getOtherQuery(query)
-                    }
-                }
-            }
-        },
-        mounted() {
-            this.environment()
-            this.refreshTicket()
-            if (this.loginForm.userId === '') {
-                this.$refs.userId.focus()
-            } else if (this.loginForm.password === '') {
-                this.$refs.password.focus()
-            }
-        },
-        methods: {
-            uuid(){
-                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
-                    const r = Math.random()*16|0
-                    const v = c === 'x' ? r : (r&0x3|0x8)
-                    return v.toString(16)
-                })
-            },
-            refreshTicket(){
-                this.loginForm.ticket = this.uuid()
-            },
-            environment() {
-                environment().then(response => {
-                    this.env = response
-                })
-            },
-            checkCapslock(e) {
-                const { key } = e
-                this.capsTooltip = key && key.length === 1 && (key >= 'A' && key <= 'Z')
-            },
-            showPwd() {
-                this.passwordType = this.passwordType === 'password' ? '' : 'password'
-                this.$nextTick(() => {
-                    this.$refs.password.focus()
-                })
-            },
-            getOtherQuery(query) {
-                return Object.keys(query).reduce((acc, cur) => {
-                    if (cur !== 'redirect') {
-                        acc[cur] = query[cur]
-                    }
-                    return acc
-                }, {})
-            },
-            handleLogin() {
-                this.$refs.loginForm.validate(valid => {
-                    if (valid) {
-                        this.loading = true
-                        this.$store.dispatch('user/login', this.loginForm)
-                            .then(() => {
-                                this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
-                            })
-                            .catch(() => {
-                                this.refreshTicket()
-                            }).finally(() => { this.loading = false })
-                    } else {
-                        return false
-                    }
-                })
-            }
-        }
+export default {
+  name: 'Login',
+  data() {
+    return {
+      env: '',
+      passwordType: 'password',
+      loading: false,
+      showDialog: false,
+      capsTooltip: false,
+      redirect: undefined,
+      otherQuery: {},
+      loginForm: {
+        userId: '',
+        password: '',
+        ticket: '',
+        imageCode: ''
+      },
+      loginRules: {
+        userId: [{ required: true, trigger: 'blur', validator: (rule, value, callback) => {
+          if (value.length <= 0) {
+            callback(new Error('请输入帐号'))
+          } else {
+            callback()
+          }
+        } }],
+        password: [{ required: true, trigger: 'blur', validator: (rule, value, callback) => {
+          if (value.length <= 0) {
+            callback(new Error('请输入密码'))
+          } else if (value.length < 6) {
+            callback(new Error('密码长度不能小于6位字符'))
+          } else {
+            callback()
+          }
+        } }],
+        imageCode: [{ required: true, trigger: 'blur', validator: (rule, value, callback) => {
+          if (value.length <= 0) {
+            callback(new Error('请输入图形验证码'))
+          } else {
+            callback()
+          }
+        } }]
+      }
     }
+  },
+  computed: {
+    imageCodeUrl: function() {
+      return `${process.env.VUE_APP_BASE_API}/system/info/image-code?ticket=${this.loginForm.ticket}`
+    }
+  },
+  watch: {
+    $route: {
+      immediate: true,
+      handler: function(route) {
+        const query = route.query
+        if (query) {
+          this.redirect = query.redirect
+          this.otherQuery = this.getOtherQuery(query)
+        }
+      }
+    }
+  },
+  mounted() {
+    this.environment()
+    this.refreshTicket()
+    if (this.loginForm.userId === '') {
+      this.$refs.userId.focus()
+    } else if (this.loginForm.password === '') {
+      this.$refs.password.focus()
+    }
+  },
+  methods: {
+    uuid() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+        const r = Math.random() * 16 | 0
+        const v = c === 'x' ? r : (r & 0x3 | 0x8)
+        return v.toString(16)
+      })
+    },
+    refreshTicket() {
+      this.loginForm.ticket = this.uuid()
+    },
+    environment() {
+      environment().then(response => {
+        this.env = response
+      })
+    },
+    checkCapslock(e) {
+      const { key } = e
+      this.capsTooltip = key && key.length === 1 && (key >= 'A' && key <= 'Z')
+    },
+    showPwd() {
+      this.passwordType = this.passwordType === 'password' ? '' : 'password'
+      this.$nextTick(() => {
+        this.$refs.password.focus()
+      })
+    },
+    getOtherQuery(query) {
+      return Object.keys(query).reduce((acc, cur) => {
+        if (cur !== 'redirect') {
+          acc[cur] = query[cur]
+        }
+        return acc
+      }, {})
+    },
+    handleLogin() {
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          this.loading = true
+          this.$store.dispatch('user/login', this.loginForm)
+            .then(() => {
+              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+            })
+            .catch(() => {
+              this.refreshTicket()
+            }).finally(() => { this.loading = false })
+        } else {
+          return false
+        }
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
     .login-container {
         padding: 80px 0px 50px 0px;
-        background: #f0f2f5 url(~@/assets/background.svg) no-repeat 50%;
-        background-size: 100%;
+        .bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f0f2f5 url(~@/assets/background.jpg) no-repeat 50%;
+            background-size: 100%;
+            filter: blur(1px);
+        }
+        .bg-mask{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.6);
+        }
         .top {
             text-align: center;
             .desc {
+                position: relative;
                 font-size: 14px;
                 color: rgba(0, 0, 0, 0.45);
                 margin-top: 12px;
@@ -227,6 +246,7 @@
                     opacity: 0.8;
                 }
                 .logo {
+                    position: relative;
                     height: 44px;
                     vertical-align: top;
                     margin-right: 16px;
@@ -310,7 +330,7 @@
         }
     }
     .login-button{
-        width:100%; 
+        width:100%;
         margin-top:10px;
         line-height: 20px;
     }
