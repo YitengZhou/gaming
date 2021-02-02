@@ -4,10 +4,11 @@ CREATE DATABASE gambling;
 -- `gambling`.auth_role definition
 
 CREATE TABLE `auth_role` (
-     `role_id` varchar(100) NOT NULL COMMENT '角色id',
-     `role_name` varchar(100) NOT NULL COMMENT '角色名称',
+     `eid` int NOT NULL auto_increment COMMENT '创建时间',
      `create_time` datetime NOT NULL COMMENT '创建时间',
      `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+     `role_id` varchar(100) NOT NULL COMMENT '角色id',
+     `role_name` varchar(100) NOT NULL COMMENT '角色名称',
      `remark` varchar(300) DEFAULT NULL COMMENT '备注信息',
      PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
