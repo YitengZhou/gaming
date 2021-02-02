@@ -5,11 +5,15 @@ const getters = {
   visitedViews: state => state.tagsView.visitedViews,
   cachedViews: state => state.tagsView.cachedViews,
   token: state => state.user.token,
+  userId: state => state.user.userId,
   avatar: state => state.user.avatar,
   name: state => state.user.name,
   introduction: state => state.user.introduction,
-  roles: state => state.user.roles,
-  permission_routes: state => state.permission.routes,
+  menu: status => status.user.menu,
+  permissions: state => state.user.permissions,
+  allRoutes: state => state.permission.allRoutes,
+  routesDic: state => state.permission.routesDic,
+  currentRoutes: state => state.permission.currentRoutes,
   errorLogs: state => state.errorLog.logs
 }
 export default getters
