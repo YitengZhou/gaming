@@ -1,16 +1,20 @@
 package com.zhouyiteng.gambling.authorize;
 
-import com.zhouyiteng.gambling.config.ServiceConfig;
-import com.zhouyiteng.gambling.model.system.RolePermissionModel;
-import org.apache.commons.collections4.CollectionUtils;
+import com.zhouyiteng.gambling.helper.RequestHelper;
+import com.zhouyiteng.gambling.service.RedisService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.web.bind.support.WebDataBinderFactory;
+import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.method.support.ModelAndViewContainer;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 权限验证拦截器
@@ -19,15 +23,49 @@ import java.util.List;
  *
  * Created by zhouyiteng on 2021/2/1.
  */
-public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
+@Slf4j
+public class AuthorizeInterceptor implements HandlerInterceptor, HandlerMethodArgumentResolver {
 
-    private UserService userService;
+    private static final String LOGIN_TOKEN_KEY="YT_GAMBLING_ADMIN_TOKEN";
 
-    private RoleService roleService;
+    private static final String LOGIN_USER_ID_KEY="YT_GAMBLING_ADMIN_USER_ID";
 
-    public AuthorizeInterceptor(UserService userService, RoleService roleService){
-        this.userService = userService;
-        this.roleService = roleService;
+    private RedisService redisService;
+
+    public AuthorizeInterceptor(RedisService redisService){
+        this.redisService = redisService;
+    }
+
+    @Override
+    public boolean supportsParameter(MethodParameter methodParameter) {
+        if(methodParameter.hasParameterAnnotation(RequestIp.class) &&
+                methodParameter.getParameterType().isAssignableFrom(String.class)){
+            return true;
+        }
+        if(methodParameter.hasParameterAnnotation(LoginToken.class) &&
+                methodParameter.getParameterType().isAssignableFrom(String.class)){
+            return true;
+        }
+        if(methodParameter.hasParameterAnnotation(LoginUserId.class) &&
+                methodParameter.getParameterType().isAssignableFrom(String.class)){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer,
+                                  NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) {
+        if(methodParameter.hasParameterAnnotation(RequestIp.class)){
+            return RequestHelper.getRequestIp(nativeWebRequest.getNativeRequest(HttpServletRequest.class));
+        }
+        if(methodParameter.hasParameterAnnotation(LoginToken.class)){
+            return nativeWebRequest.getAttribute(LOGIN_TOKEN_KEY, RequestAttributes.SCOPE_REQUEST);
+        }
+        if(methodParameter.hasParameterAnnotation(LoginUserId.class)){
+            return nativeWebRequest.getAttribute(LOGIN_USER_ID_KEY, RequestAttributes.SCOPE_REQUEST);
+        }
+        return null;
     }
 
     /**
@@ -35,17 +73,12 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
      * @param handlerMethod
      * @return
      */
-    private List<com.zhouyiteng.gambling.authorize.RequireLogin> getRequireLoginList(HandlerMethod handlerMethod){
-        List<com.zhouyiteng.gambling.authorize.RequireLogin> requireLoginList = new ArrayList<>();
-        com.zhouyiteng.gambling.authorize.RequireLogin methodRequireLogin = handlerMethod.getMethodAnnotation(com.zhouyiteng.gambling.authorize.RequireLogin.class);
+    private RequireLogin getRequireLoginList(HandlerMethod handlerMethod){
+        RequireLogin methodRequireLogin = handlerMethod.getMethodAnnotation(RequireLogin.class);
         if(methodRequireLogin != null){
-            requireLoginList.add(methodRequireLogin);
+            return methodRequireLogin;
         }
-        com.zhouyiteng.gambling.authorize.RequireLogin controllerRequireLogin = AnnotationUtils.findAnnotation(handlerMethod.getBeanType(), com.zhouyiteng.gambling.authorize.RequireLogin.class);
-        if(controllerRequireLogin!=null){
-            requireLoginList.add(controllerRequireLogin);
-        }
-        return requireLoginList;
+        return AnnotationUtils.findAnnotation(handlerMethod.getBeanType(), RequireLogin.class);
     }
 
     /**
@@ -53,45 +86,31 @@ public class AuthorizeInterceptor extends HandlerInterceptorAdapter {
      * @param handlerMethod
      * @return
      */
-    private List<RequirePermission> getRequirePermissionsList(HandlerMethod handlerMethod){
-        List<RequirePermission> requirePermissionList = new ArrayList<>();
+    private RequirePermission getRequirePermissionsList(HandlerMethod handlerMethod){
         RequirePermission methodRequirePermission =handlerMethod.getMethodAnnotation(RequirePermission.class);
         if(methodRequirePermission != null){
-            requirePermissionList.add(methodRequirePermission);
+            return methodRequirePermission;
         }
-        RequirePermission controllerRequirePermission = AnnotationUtils.findAnnotation(handlerMethod.getBeanType(), RequirePermission.class);
-        if(controllerRequirePermission != null){
-            requirePermissionList.add(controllerRequirePermission);
-        }
-        return requirePermissionList;
+        return AnnotationUtils.findAnnotation(handlerMethod.getBeanType(), RequirePermission.class);
     }
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         if(handler.getClass().isAssignableFrom(HandlerMethod.class)){
             HandlerMethod handlerMethod = (HandlerMethod)handler;
-            List<com.zhouyiteng.gambling.authorize.RequireLogin> requireLoginList = getRequireLoginList(handlerMethod);
-            List<RequirePermission> requirePermissionList = getRequirePermissionsList(handlerMethod);
-
-            if(!CollectionUtils.isEmpty(requireLoginList) || !CollectionUtils.isEmpty(requirePermissionList)){
-                String user = com.zhouyiteng.gambling.authorize.AuthorizeUtil.getCookieValue(request, ServiceConfig.LOGIN_USER_KEY);
-                String token = com.zhouyiteng.gambling.authorize.AuthorizeUtil.getCookieValue(request, ServiceConfig.LOGIN_TOKEN_KEY);
-                if(userService.isLogin(user, token)){
-                    if(!CollectionUtils.isEmpty(requirePermissionList)){
-                        String permissionValue = requirePermissionList.get(0).value();
-                        List<RolePermissionModel> rolePermissionList = roleService.getRolePermissionByUser(user);
-                        if(CollectionUtils.isNotEmpty(rolePermissionList)){
-                            for (RolePermissionModel item : rolePermissionList){
-                                if(item.permissionList!=null && item.permissionList.contains(permissionValue)){
-                                    return true;
-                                }
-                            }
-                        }
-                        throw new com.zhouyiteng.gambling.authorize.ForbiddenException("没有权限");
-                    }
+            RequireLogin requireLogin = getRequireLoginList(handlerMethod);
+            RequirePermission requirePermission = getRequirePermissionsList(handlerMethod);
+            if(null!=requireLogin || null!=requirePermission){
+                String token = AuthorizeUtil.getCookieValue(request, LOGIN_TOKEN_KEY);
+                String userId = AuthorizeUtil.getCookieValue(request, LOGIN_USER_ID_KEY);
+                if(null != requirePermission){
+                    String permissionValue = requirePermission.value();
+                    redisService.checkPermission(userId, token, permissionValue);
                 }else{
-                    throw new com.zhouyiteng.gambling.authorize.UnAuthException("未登录");
+                    redisService.checkLogin(userId, token);
                 }
+                request.setAttribute(LOGIN_TOKEN_KEY, token);
+                request.setAttribute(LOGIN_USER_ID_KEY, userId);
             }
         }
         return true;

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhouyiteng.gambling.dao.system.RoleMapper">
+
+    <resultMap id="authRolePermModel" type="com.zhouyiteng.gambling.model.system.RolePermModel">
+        <result column="eid" property="eid" jdbcType="VARCHAR" />
+        <collection property="permList" ofType="com.zhouyiteng.gambling.model.system.PermModel"
+                    column="eid" select="com.zhouyiteng.gambling.mapper.system.RolePermMapper.getPermissionsByRoleEid">
+        </collection>
+    </resultMap>
+
+    <select id="getTotalRoleList" resultType="com.zhouyiteng.gambling.model.system.RoleModel">
+        select eid, eitime, eutime, role_name, service, description
+        from TRADEADMIN.auth_role
+    </select>
+
+    <select id="getRoleByRoleEid" resultType="com.zhouyiteng.gambling.model.system.RoleModel">
+        select eid, eitime, eutime, role_name, service, description
+        from TRADEADMIN.auth_role
+        where eid = #{eid}
+    </select>
+
+    <select id="getRoleByRoleNameAndService" resultType="com.zhouyiteng.gambling.model.system.RoleModel">
+        select eid, eitime, eutime, role_name, service, description
+        from TRADEADMIN.auth_role
+        where role_name = #{roleName} and service = #{service}
+    </select>
+
+    <insert id="addRole" parameterType="com.zhouyiteng.gambling.model.system.RoleModel">
+        insert into TRADEADMIN.auth_role(eid, eitime, eutime, role_name, service, description)
+        values(TRADEADMIN.seq_eid.nextval, sysdate, sysdate, #{role.roleName,jdbcType=VARCHAR},#{role.service,jdbcType=VARCHAR}, #{role.description,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateRole" parameterType="com.zhouyiteng.gambling.model.system.RoleModel">
+        update TRADEADMIN.auth_role set eutime = sysdate, description = #{role.description}, service = #{role.service}
+        where eid = #{role.eid}
+    </update>
+
+    <delete id="deleteRoleByRoleEid">
+        delete from TRADEADMIN.auth_role where eid = #{eid}
+    </delete>
+
+    <select id="getRoleListByUserId" resultType="com.zhouyiteng.gambling.model.system.RoleModel">
+        select t1.eid, t1.eiTime, t1.euTime, t1.role_name, t1.service, t1.description
+        from TRADEADMIN.auth_role t1
+        left join TRADEADMIN.auth_user_role t2
+            on t1.eid = t2.role_eid
+        left join TRADEADMIN.auth_user t3
+            on t2.user_id = t3.user_id
+        where t3.user_id = #{userId}
+    </select>
+
+    <select id="getTotalCount" resultType="java.lang.Long">
+        select count(1) from TRADEADMIN.auth_role where 1=1
+        <if test="name !=null and name != ''">
+            and role_name like '%'|| #{name} ||'%'
+        </if>
+        <if test="description !=null and description != ''">
+            and description like '%'|| #{description} ||'%'
+        </if>
+    </select>
+
+    <select id="getPageList" resultMap="authRolePermModel">
+        select * from (
+            select eid, eitime, eutime, role_name, service, description, ROWNUM rn
+            from TRADEADMIN.auth_role where 1=1
+            <if test="name !=null and name != ''">
+                and role_name like '%'|| #{name} ||'%'
+            </if>
+            <if test="description !=null and description != ''">
+                 and description like '%'|| #{description} ||'%'
+            </if>
+            <if test="service !=null and service != ''">
+                and service like '%'|| #{service} ||'%'
+            </if>
+        )
+        where rn between #{pageStart} and #{pageEnd}
+    </select>
+
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhouyiteng.gambling.dao.system.UserRoleMapper">
+
+    <delete id="deleteRolesForUser">
+        delete from TRADEADMIN.auth_user_role where user_id = #{userId}
+    </delete>
+
+    <insert id="insertRolesForUser">
+        insert into TRADEADMIN.auth_user_role
+        (eid, eitime, eutime, user_id, role_eid)
+        select TRADEADMIN.seq_eid.nextval, sysdate, sysdate, t1.* from (
+        <foreach collection="roles" item="role" separator="UNION ALL">
+            select #{userId}, #{role.eid} from dual
+        </foreach>) t1
+    </insert>
+
+</mapper>

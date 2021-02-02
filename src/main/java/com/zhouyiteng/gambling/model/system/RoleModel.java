@@ -1,5 +1,6 @@
 package com.zhouyiteng.gambling.model.system;
 
+import com.zhouyiteng.gambling.model.BaseEntity;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
  * Created by zhouyiteng on 2021/2/1.
  */
 @Data
-public class RoleModel {
+public class RoleModel extends BaseEntity {
 
     /**
      * 角色id
@@ -25,14 +26,14 @@ public class RoleModel {
     public String roleName;
 
     /**
-     * 创建时间
+     * 所属服务
      */
-    public LocalDateTime createTime;
+    private String service;
 
     /**
-     * 更新时间
+     * 角色描述
      */
-    public LocalDateTime updateTime;
+    private String description;
 
     /**
      * 备注信息

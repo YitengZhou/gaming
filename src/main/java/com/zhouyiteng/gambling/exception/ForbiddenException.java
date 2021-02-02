@@ -1,4 +1,4 @@
-package com.zhouyiteng.gambling.authorize;
+package com.zhouyiteng.gambling.exception;
 
 /**
  * 权限验证拦截器

@@ -206,20 +206,10 @@ public class UserService {
      * @param pageIndex
      * @return
      */
-    public PageDataModel<UserRoleModel> getUserList(String userId, String username, Long pageSize, Long pageIndex){
+    public PageDataModel<UserRoleModel> getUserList(String userId, String username, Long pageSize, Long pageIndex) {
         PageDataModel<UserRoleModel> ret = new PageDataModel<>(pageSize, pageIndex);
         ret.setTotalCount(UserMapper.getTotalCount(userId, username));
         ret.setDataList(UserMapper.getPageList(userId, username, ret.getPageStart(), ret.getPageEnd()));
         return ret;
     }
-
-    /**
-     * 用户搜索建议
-     * @param value
-     * @return
-     */
-    public List<UserModel> getUserSuggest(String value){
-        return UserMapper.getUserSuggest(value, 15);
-    }
-
 }

@@ -1,7 +1,7 @@
 package com.zhouyiteng.gambling.controller;
 
-import com.zhouyiteng.gambling.authorize.UnAuthException;
 import com.zhouyiteng.gambling.exception.ErrorTipsException;
+import com.zhouyiteng.gambling.exception.UnAuthException;
 import com.zhouyiteng.gambling.exception.UnLoginException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

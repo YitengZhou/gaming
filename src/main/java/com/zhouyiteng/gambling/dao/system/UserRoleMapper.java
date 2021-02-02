@@ -1,6 +1,7 @@
 package com.zhouyiteng.gambling.dao.system;
 
 import com.zhouyiteng.gambling.model.system.RoleModel;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,7 @@ import java.util.List;
  *
  * Created by zhouyiteng on 2021/2/2.
  */
+@Mapper
 @Repository
 public interface UserRoleMapper {
 

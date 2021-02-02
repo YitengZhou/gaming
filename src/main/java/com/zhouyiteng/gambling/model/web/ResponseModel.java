@@ -1,4 +1,4 @@
-package com.zhouyiteng.gambling.model;
+package com.zhouyiteng.gambling.model.web;
 
 public class ResponseModel<T> {
 

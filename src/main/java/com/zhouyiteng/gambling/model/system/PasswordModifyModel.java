@@ -1,6 +1,8 @@
 package com.zhouyiteng.gambling.model.system;
 
+import com.zhouyiteng.gambling.authorize.AuthorizeUtil;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 修改密码模型
@@ -17,5 +19,12 @@ public class PasswordModifyModel extends UserModel{
     public String newPassword;
 
     public String newPasswordConfirm;
+
+    public String getNewPassword(){
+        if(StringUtils.isNotEmpty(newPassword)){
+            return AuthorizeUtil.passwordSalt(newPassword, getUserId());
+        }
+        return newPassword;
+    }
 
 }
