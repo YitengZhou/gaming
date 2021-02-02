@@ -1,9 +1,8 @@
 package com.zhouyiteng.gambling.controller;
 
-import com.zhouyiteng.gambling.authorize.ForbiddenException;
 import com.zhouyiteng.gambling.authorize.UnAuthException;
-import com.zhouyiteng.gambling.exception.ShowErrorTipsException;
-import com.zhouyiteng.gambling.model.ResponseModel;
+import com.zhouyiteng.gambling.exception.ErrorTipsException;
+import com.zhouyiteng.gambling.exception.UnLoginException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by zhouyiteng on 2021/2/1.
  */
 @Slf4j
-public class BaseController {
+public abstract class BaseController {
 
     /**
      * 异常捕捉
@@ -28,21 +27,27 @@ public class BaseController {
      * @return
      */
     @ExceptionHandler
-    protected ResponseEntity<ResponseModel> exceptionHandler(Throwable ex, HttpServletRequest request) {
+    protected ResponseEntity<String> exceptionHandler(Throwable ex, HttpServletRequest request) {
         try{
-            if(!(ex instanceof IllegalArgumentException) && !(ex instanceof ShowErrorTipsException)){
+            if(!(ex instanceof IllegalArgumentException) && !(ex instanceof ErrorTipsException) &&
+                    !(ex instanceof UnLoginException) && !(ex instanceof UnAuthException)){
+                /**
+                 * 非以上异常则记录错误日志
+                 */
                 log.error(ex.getMessage(), ex);
             }
         }catch (Throwable e1){ }
 
-        if(ex instanceof UnAuthException){
-            return new ResponseEntity<>(ResponseModel.getFailedEntity(ex.getMessage()), HttpStatus.UNAUTHORIZED);
-        }else if(ex instanceof ForbiddenException){
-            return new ResponseEntity<>(ResponseModel.getFailedEntity(ex.getMessage()), HttpStatus.FORBIDDEN);
+        if(ex instanceof UnLoginException){
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
+        }else if(ex instanceof UnAuthException){
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.FORBIDDEN);
+        }else if(ex instanceof ErrorTipsException){
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }else if(ex instanceof IllegalArgumentException){
-            return new ResponseEntity<>(ResponseModel.getFailedEntity(ex.getMessage()), HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }else{
-            return new ResponseEntity<>(ResponseModel.getFailedEntity(ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

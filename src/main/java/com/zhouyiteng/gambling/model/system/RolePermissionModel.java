@@ -1,4 +1,6 @@
-package com.zhouyiteng.gambling.model.auth;
+package com.zhouyiteng.gambling.model.system;
+
+import lombok.Data;
 
 import java.util.List;
 
@@ -9,6 +11,7 @@ import java.util.List;
  *
  * Created by zhouyiteng on 2021/2/1.
  */
+@Data
 public class RolePermissionModel extends RoleModel {
 
     public List<String> permissionList;

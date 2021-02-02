@@ -1,6 +1,6 @@
 package com.zhouyiteng.gambling.model.web;
 
-import com.zhouyiteng.gambling.model.auth.UserModel;
+import com.zhouyiteng.gambling.model.system.UserModel;
 import lombok.Data;
 
 /**

@@ -1,4 +1,4 @@
-package com.zhouyiteng.gambling.model.auth;
+package com.zhouyiteng.gambling.model.system;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import lombok.Data;
  * Created by zhouyiteng on 2021/2/1.
  */
 @Data
-public class ModifyPasswordModel extends UserModel{
+public class PasswordModifyModel extends UserModel{
 
     public String oldPassword;
 

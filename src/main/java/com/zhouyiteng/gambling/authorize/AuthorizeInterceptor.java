@@ -1,9 +1,7 @@
 package com.zhouyiteng.gambling.authorize;
 
 import com.zhouyiteng.gambling.config.ServiceConfig;
-import com.zhouyiteng.gambling.model.auth.RolePermissionModel;
-import com.zhouyiteng.gambling.service.RoleService;
-import com.zhouyiteng.gambling.service.UserService;
+import com.zhouyiteng.gambling.model.system.RolePermissionModel;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.method.HandlerMethod;

@@ -8,13 +8,13 @@ package com.zhouyiteng.gambling.exception;
  *
  * Created by zhouyiteng on 2021/2/1.
  */
-public class ShowErrorTipsException extends RuntimeException {
+public class ErrorTipsException extends RuntimeException {
 
-    public ShowErrorTipsException(String message){
+    public ErrorTipsException(String message){
         super(message);
     }
 
-    public ShowErrorTipsException(String message, Throwable cause){
+    public ErrorTipsException(String message, Throwable cause){
         super(message, cause);
     }
 

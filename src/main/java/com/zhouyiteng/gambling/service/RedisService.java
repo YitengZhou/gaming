@@ -21,9 +21,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * Redis相关操作方法
  *
- * @author bake@eastmoney.com
+ * @author zhouyiteng@gambling.com
  *
- * Created by liubake on 2020/12/02.
+ * Created by zhouyiteng on 2021/2/2.
  */
 @Slf4j
 @Service

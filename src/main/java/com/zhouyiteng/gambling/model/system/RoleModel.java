@@ -1,38 +1,28 @@
-package com.zhouyiteng.gambling.model.auth;
+package com.zhouyiteng.gambling.model.system;
 
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 /**
- * 用户模型
+ * 角色模型
  *
  * @author zhouyiteng@gambling.com
  *
  * Created by zhouyiteng on 2021/2/1.
  */
 @Data
-public class UserModel {
+public class RoleModel {
 
     /**
-     * 帐号id
+     * 角色id
      */
-    public String userId;
+    public String roleId;
 
     /**
-     * 帐号名称
+     * 角色名称
      */
-    public String userName;
-
-    /**
-     * 帐号密码
-     */
-    public String password;
-
-    /**
-     * 帐号状态
-     */
-    public Boolean status;
+    public String roleName;
 
     /**
      * 创建时间

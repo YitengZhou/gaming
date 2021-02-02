@@ -1,13 +1,14 @@
-package com.zhouyiteng.gambling.controller;
+package com.zhouyiteng.gambling.controller.system;
 
 import com.zhouyiteng.gambling.authorize.LoginToken;
 import com.zhouyiteng.gambling.authorize.LoginUserId;
 import com.zhouyiteng.gambling.authorize.RequireLogin;
 import com.zhouyiteng.gambling.authorize.RequirePermission;
-import com.zhouyiteng.gambling.model.auth.ModifyPasswordModel;
-import com.zhouyiteng.gambling.model.auth.RoleModel;
-import com.zhouyiteng.gambling.model.auth.UserModel;
-import com.zhouyiteng.gambling.model.auth.UserRoleModel;
+import com.zhouyiteng.gambling.controller.BaseController;
+import com.zhouyiteng.gambling.model.system.PasswordModifyModel;
+import com.zhouyiteng.gambling.model.system.RoleModel;
+import com.zhouyiteng.gambling.model.system.UserModel;
+import com.zhouyiteng.gambling.model.system.UserRoleModel;
 import com.zhouyiteng.gambling.model.web.PageDataModel;
 import com.zhouyiteng.gambling.model.web.UserInfoModel;
 import com.zhouyiteng.gambling.model.web.UserLoginModel;
@@ -85,7 +86,7 @@ public class UserController extends BaseController {
     @RequireLogin
     @PostMapping("modify-password")
     public long modifyPassword(@LoginUserId String userId,
-                               @RequestBody ModifyPasswordModel model){
+                               @RequestBody PasswordModifyModel model){
         if(StringUtils.isEmpty(model.getPassword())){
             throw new IllegalArgumentException("请输入原密码");
         }
@@ -126,7 +127,7 @@ public class UserController extends BaseController {
         if(StringUtils.isEmpty(model.getPassword())){
             throw new IllegalArgumentException("请输入初始密码");
         }
-        return userService.add(model);
+        return userService.addUser(model);
     }
 
     /**
@@ -143,7 +144,7 @@ public class UserController extends BaseController {
         if(StringUtils.isEmpty(model.getUserName())){
             throw new IllegalArgumentException("请输入用户名称");
         }
-        return userService.update(model);
+        return userService.updateUser(model);
     }
 
     /**
@@ -157,7 +158,7 @@ public class UserController extends BaseController {
         if(StringUtils.isEmpty(model.getUserId())){
             throw new IllegalArgumentException("用户编号不能为空");
         }
-        return userService.delete(model);
+        return userService.deleteUser(model);
     }
 
     /**
@@ -171,7 +172,7 @@ public class UserController extends BaseController {
         if(StringUtils.isEmpty(model.getUserId())){
             throw new IllegalArgumentException("请选择要修改的用户");
         }
-        return userService.enable(model);
+        return userService.enableUser(model);
     }
 
     /**
@@ -185,7 +186,7 @@ public class UserController extends BaseController {
         if(StringUtils.isEmpty(model.getUserId())){
             throw new IllegalArgumentException("请选择要修改的用户");
         }
-        return userService.disable(model);
+        return userService.disableUser(model);
     }
 
     /**
