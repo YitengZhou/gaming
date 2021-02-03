@@ -22,11 +22,11 @@ public abstract class BaseEntity {
     /**
      * 入库时间
      */
-    protected LocalDateTime eiTime;
+    protected LocalDateTime createTime;
 
     /**
      * 最后修改时间
      */
-    protected LocalDateTime euTime;
+    protected LocalDateTime updateTime;
 
 }

@@ -1,23 +1,19 @@
 -- init auth_role data
 
-INSERT INTO `gambling`.auth_role (role_id,role_name,create_time,update_time,remark) VALUES
-('admin','系统管理员','2020-09-09 16:12:01','2020-09-09 16:12:01',NULL);
-
+INSERT INTO `gambling`.auth_role VALUES (1, '2020-09-09 16:12:01', '2020-09-09 16:12:01', 'admin', '系统管理员', 'system', NULL, NULL);
 
 -- init auth_role_permission data
 
-INSERT INTO `gambling`.auth_role_permission (role_id,permission_value,create_time,update_time,remark) VALUES
-('admin','system','2020-09-16 20:33:12','2020-09-16 20:33:12',''),
-('admin','system:user','2020-09-16 20:33:12','2020-09-16 20:33:12',''),
-('admin','system:role','2020-09-16 20:33:12','2020-09-16 20:33:12','');
+INSERT INTO `gambling`.auth_role_perm VALUES (1, '2020-09-16 20:33:12', '2020-09-16 20:33:12', 'admin', 'system:manage-user', '');
+INSERT INTO `gambling`.auth_role_perm VALUES (2, '2020-09-16 20:33:12', '2020-09-16 20:33:12', 'admin', 'system:manage-role', '');
+INSERT INTO `gambling`.auth_role_perm VALUES (3, '2020-09-16 20:33:12', '2020-09-16 20:33:12', 'admin', 'system:search-user', '');
+INSERT INTO `gambling`.auth_role_perm VALUES (4, '2020-09-16 20:33:12', '2020-09-16 20:33:12', 'admin', 'system:search-role', '');
 
 -- init auth_user data
 
-INSERT INTO `gambling`.auth_user (user_id,user_name,password,status,create_time,update_time,remark) VALUES
-('admin','系统管理员','3f4bffa77257d243875d0a5a80635934',1,'2021-01-08 14:52:54','2021-01-08 14:52:54',NULL);
+INSERT INTO `gambling`.auth_user VALUES (1, '2021-01-08 14:52:54', '2021-01-08 14:52:54', 'admin', '测试账号', '613980346794feadaf37d1ebf512d5fb', 1, 0, NULL);
 
 
 -- init auth_user_role data
 
-INSERT INTO `gambling`.auth_user_role (user_id,role_id,create_time,update_time,remark) VALUES
-('admin','admin','2021-01-08 14:53:07','2021-01-08 14:53:07','');
+INSERT INTO `gambling`.auth_user_role VALUES (1, '2021-01-08 14:53:07', '2021-01-08 14:53:07', 'admin', 'admin', '');
