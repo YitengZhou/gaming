@@ -241,7 +241,7 @@ public class UserController extends BaseController {
     /**
      * 用户列表查询
      * @param userId
-     * @param username
+     * @param userName
      * @param pageSize
      * @param pageIndex
      * @return
@@ -249,9 +249,9 @@ public class UserController extends BaseController {
     @GetMapping("get-user-list")
     @RequirePermission("system:search-user")
     public PageDataModel<UserRoleModel> getUserList(@RequestParam(required = false) String userId,
-                                                    @RequestParam(required = false) String username,
+                                                    @RequestParam(required = false) String userName,
                                                     @RequestParam(required = false) Long pageSize,
                                                     @RequestParam(required = false) Long pageIndex){
-        return userService.getUserList(userId, username, pageSize, pageIndex);
+        return userService.getUserList(userId, userName, pageSize, pageIndex);
     }
 }

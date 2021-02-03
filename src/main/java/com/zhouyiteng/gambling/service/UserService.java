@@ -37,13 +37,13 @@ public class UserService {
     private InfoService infoService;
 
     @Autowired
-    private UserMapper UserMapper;
+    private UserMapper userMapper;
 
     @Autowired
-    private RoleMapper RoleMapper;
+    private RoleMapper roleMapper;
 
     @Autowired
-    private UserRoleMapper UserRoleMapper;
+    private UserRoleMapper userRoleMapper;
 
     /**
      * 添加用户
@@ -51,7 +51,7 @@ public class UserService {
      * @return
      */
     public long addUser(UserModel model){
-        return UserMapper.addUser(model);
+        return userMapper.addUser(model);
     }
 
     /**
@@ -60,7 +60,7 @@ public class UserService {
      * @return
      */
     public long updateUser(UserModel model){
-        return UserMapper.updateUser(model);
+        return userMapper.updateUser(model);
     }
 
     /**
@@ -69,8 +69,8 @@ public class UserService {
      * @return
      */
     public boolean deleteUser(UserModel model) {
-        UserMapper.deleteUser(model);
-        UserRoleMapper.deleteRolesForUser(model.getUserId());
+        userMapper.deleteUser(model);
+        userRoleMapper.deleteRolesForUser(model.getUserId());
         return true;
     }
 
@@ -80,7 +80,7 @@ public class UserService {
      * @return
      */
     public long enableUser(UserModel model){
-        return UserMapper.enableUser(model);
+        return userMapper.enableUser(model);
     }
 
     /**
@@ -89,7 +89,7 @@ public class UserService {
      * @return
      */
     public long disableUser(UserModel model){
-        return UserMapper.disableUser(model);
+        return userMapper.disableUser(model);
     }
 
     /**
@@ -98,7 +98,7 @@ public class UserService {
      * @return
      */
     public long resetPassword(UserModel model){
-        return UserMapper.resetPassword(model);
+        return userMapper.resetPassword(model);
     }
 
     /**
@@ -107,10 +107,10 @@ public class UserService {
      * @return
      */
     public long modifyPassword(PasswordModifyModel model){
-        if(UserMapper.checkPassword(model)<=0){
+        if(userMapper.checkPassword(model)<=0){
             throw new ErrorTipsException("原密码不正确");
         }
-        return UserMapper.modifyPassword(model);
+        return userMapper.modifyPassword(model);
     }
 
     /**
@@ -126,11 +126,11 @@ public class UserService {
         if(!infoService.checkImageCode(ticket, imageCode)){
             throw new ErrorTipsException("验证码错误");
         }
-        if(UserMapper.checkPassword(model)<=0){
+        if(userMapper.checkPassword(model)<=0){
             throw new ErrorTipsException("用户名或密码错误");
         }else{
             Set<String> permissionSet = getPermSetByUserId(model.getUserId());
-            UserModel UserModel = UserMapper.getUserByUserId(model.getUserId());
+            UserModel UserModel = userMapper.getUserByUserId(model.getUserId());
             return redisService.savePermission(model.getUserId(), UserModel.getUserName(), permissionSet, expirySeconds);
         }
     }
@@ -163,9 +163,9 @@ public class UserService {
      * @return
      */
     public List<RoleModel> getRoleListByUserId(String userId) {
-        long exist = UserMapper.exist(userId);
+        long exist = userMapper.exist(userId);
         if (exist<=0) throw new IllegalArgumentException("数据库中没有该用户");
-        return RoleMapper.getRoleListByUserId(userId);
+        return roleMapper.getRoleListByUserId(userId);
     }
 
     /**
@@ -182,18 +182,18 @@ public class UserService {
         }
         if (CollectionUtils.isNotEmpty(UserRole.getRoleList())){
             for (RoleModel role:UserRole.getRoleList()){
-                if (RoleMapper.getRoleByRoleId(role.getRoleId())==null){
+                if (roleMapper.getRoleByRoleId(role.getRoleId())==null){
                     throw new IllegalArgumentException("数据库中没有该角色");
                 }
             }
         }
         String userId = UserRole.getUserId();
-        if (UserMapper.exist(userId) <= 0) {
+        if (userMapper.exist(userId) <= 0) {
             throw new IllegalArgumentException("数据库中没有该用户");
         } else{
             // 全删后逐一添加,本处的UserRole中role只有eid属性
-            UserRoleMapper.deleteRolesForUser(userId);
-            UserRoleMapper.insertRolesForUser(userId,UserRole.getRoleList());
+            userRoleMapper.deleteRolesForUser(userId);
+            userRoleMapper.insertRolesForUser(userId,UserRole.getRoleList());
         }
         return true;
     }
@@ -201,15 +201,15 @@ public class UserService {
     /**
      * 用户列表分页查询
      * @param userId
-     * @param username
+     * @param userName
      * @param pageSize
      * @param pageIndex
      * @return
      */
-    public PageDataModel<UserRoleModel> getUserList(String userId, String username, Long pageSize, Long pageIndex) {
+    public PageDataModel<UserRoleModel> getUserList(String userId, String userName, Long pageSize, Long pageIndex) {
         PageDataModel<UserRoleModel> ret = new PageDataModel<>(pageSize, pageIndex);
-        ret.setTotalCount(UserMapper.getTotalCount(userId, username));
-        ret.setDataList(UserMapper.getPageList(userId, username, ret.getPageStart(), ret.getPageEnd()));
+        ret.setTotalCount(userMapper.getTotalCount(userId, userName));
+        ret.setDataList(userMapper.getPageList(userId, userName, ret.getPageStart(), ret.getPageEnd()));
         return ret;
     }
 }

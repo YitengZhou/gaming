@@ -6,7 +6,7 @@
           <el-col :md="8" :sm="24">
             <el-form-item>
               <div class="serach-item">
-                <span class="item-lable">用户编号:</span>
+                <span class="item-lable">用户ID:</span>
                 <el-input v-model="options.userId" :clearable="true" size="small" placeholder="请输入用户编号" />
               </div>
             </el-form-item>
@@ -14,8 +14,8 @@
           <el-col :md="8" :sm="24">
             <el-form-item>
               <div class="serach-item">
-                <span class="item-lable">用户名称:</span>
-                <el-input v-model="options.username" :clearable="true" size="small" placeholder="请输入用户名称" />
+                <span class="item-lable">用户名:</span>
+                <el-input v-model="options.userName" :clearable="true" size="small" placeholder="请输入用户名称" />
               </div>
             </el-form-item>
           </el-col>
@@ -58,8 +58,8 @@
           <el-divider class="expand-divider" />
         </template>
       </el-table-column>
-      <el-table-column prop="userId" label="用户编号" width="180" />
-      <el-table-column prop="username" label="用户名称" width="200" />
+      <el-table-column prop="userId" label="用户ID" width="180" />
+      <el-table-column prop="userName" label="用户名" width="200" />
       <el-table-column prop="status" label="帐号状态" width="120">
         <template slot-scope="{row}">
           <el-tag :type="row.status | getStatusTagType" size="small" effect="dark">
@@ -198,7 +198,7 @@
                 visible: false,
                 options: {
                     userId: '',
-                    username: ''
+                    userName: ''
                 },
                 tableData: {
                     pageSize: 10,
@@ -219,7 +219,7 @@
             },
             resetSearch(){
                 this.options.userId=''
-                this.options.username=''
+                this.options.userName=''
                 this.search()
             },
             ableConfirmClose(index) {
@@ -245,7 +245,7 @@
                 this.tableLoading = true
                 getUserList({
                     userId: this.options.userId,
-                    username: this.options.username,
+                    userName: this.options.userName,
                     pageSize: this.tableData.pageSize,
                     pageIndex: this.tableData.pageIndex
                 }).then(res => {

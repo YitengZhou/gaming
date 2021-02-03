@@ -33,7 +33,7 @@ public class UserModel extends BaseEntity {
     /**
      * 帐号状态
      */
-    public Boolean status;
+    public String status;
 
     /**
      * 连续登录失败次数

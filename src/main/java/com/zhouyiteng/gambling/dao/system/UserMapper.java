@@ -92,11 +92,11 @@ public interface UserMapper {
     /**
      * 满足条件数量
      * @param userId
-     * @param username
+     * @param userName
      * @return
      */
     long getTotalCount(@Param("userId") String userId,
-                  @Param("username") String username);
+                  @Param("userName") String userName);
 
     /**
      * 根据用户ID获得用户
@@ -108,13 +108,13 @@ public interface UserMapper {
     /**
      * 满足条件记录
      * @param userId
-     * @param username
+     * @param userName
      * @param pageStart
      * @param pageEnd
      * @return
      */
     List<UserRoleModel> getPageList(@Param("userId") String userId,
-                                        @Param("username") String username,
+                                        @Param("userName") String userName,
                                         @Param("pageStart") Long pageStart,
                                         @Param("pageEnd") Long pageEnd);
 

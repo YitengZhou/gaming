@@ -8,7 +8,7 @@
     <resultMap id="authUserRoleModel" type="com.zhouyiteng.gambling.model.system.UserRoleModel">
         <result column="user_id" property="userId" jdbcType="VARCHAR" />
         <collection property="roleList" ofType="com.zhouyiteng.gambling.model.system.RoleModel"
-                    column="user_id" select="com.zhouyiteng.gambling.dao.mapper.system.RoleMapper.getRoleListByUserId">
+                    column="user_id" select="com.zhouyiteng.gambling.dao.system.RoleMapper.getRoleListByUserId">
         </collection>
     </resultMap>
 
@@ -101,17 +101,14 @@
     </select>
 
     <select id="getPageList" resultMap="authUserRoleModel">
-        select eid, create_time, update_time, user_id, user_name, status, login_fail from (
-            select A.*, rownum AS rn from (
-                select * from gambling.auth_user where 1=1
-                <if test="userId != null and userId!=''">
-                    AND user_id like '%'||#{userId}||'%'
-                </if>
-                <if test="userName != null and userName!=''">
-                    AND user_name like '%'||#{userName}||'%'
-                </if>
-            ) A
-        ) where rn between #{pageStart} and #{pageEnd}
+        select * from gambling.auth_user where 1=1
+        <if test="userId != null and userId!=''">
+            AND user_id like '%'||#{userId}||'%'
+        </if>
+        <if test="userName != null and userName!=''">
+            AND user_name like '%'||#{userName}||'%'
+        </if>
+        order by create_time limit #{pageStart},#{pageEnd}
     </select>
 
     <select id="getUserSuggest" resultType="com.zhouyiteng.gambling.model.system.UserModel">

@@ -52,7 +52,7 @@ public class PageDataModel<T> {
     public PageDataModel(Long pageSize, Long pageIndex){
         this.pageSize = (null==pageSize||pageSize<=0) ? 10L : pageSize;
         this.pageIndex = (null==pageIndex||pageIndex<=0) ? 1L : pageIndex;
-        this.pageStart = this.pageSize * (this.pageIndex-1) + 1;
+        this.pageStart = this.pageSize * (this.pageIndex-1);
         this.pageEnd = this.pageSize * this.pageIndex;
     }
 
