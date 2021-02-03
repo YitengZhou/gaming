@@ -27,10 +27,10 @@ public interface RoleMapper {
 
     /**
      * 根据角色名获得角色
-     * @param eid
+     * @param roleId
      * @return
      */
-    RoleModel getRoleByRoleEid(@Param("eid") String eid);
+    RoleModel getRoleByRoleId(@Param("roleId") String roleId);
 
     /**
      * 根据服务和角色名获得角色

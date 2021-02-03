@@ -5,13 +5,13 @@
 <mapper namespace="com.zhouyiteng.gambling.dao.system.UserRoleMapper">
 
     <delete id="deleteRolesForUser">
-        delete from TRADEADMIN.auth_user_role where user_id = #{userId}
+        delete from gambling.auth_user_role where user_id = #{userId}
     </delete>
 
     <insert id="insertRolesForUser">
-        insert into TRADEADMIN.auth_user_role
-        (eid, eitime, eutime, user_id, role_eid)
-        select TRADEADMIN.seq_eid.nextval, sysdate, sysdate, t1.* from (
+        insert into gambling.auth_user_role
+        (eid, create_time, update_time, user_id, role_eid)
+        select gambling.seq_eid.nextval, sysdate, sysdate, t1.* from (
         <foreach collection="roles" item="role" separator="UNION ALL">
             select #{userId}, #{role.eid} from dual
         </foreach>) t1

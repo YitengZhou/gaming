@@ -5,22 +5,22 @@
 <mapper namespace="com.zhouyiteng.gambling.dao.system.RolePermMapper">
 
     <delete id="deletePermissionsForRole">
-        delete from TRADEADMIN.auth_role_perm where role_eid = #{roleEid}
+        delete from gambling.auth_role_perm where role_eid = #{roleEid}
     </delete>
 
     <insert id="insertPermissionsForRole">
-        insert into TRADEADMIN.auth_role_perm
-        (eid, eitime, eutime, role_eid, permission_name)
-        select TRADEADMIN.seq_eid.nextval, sysdate, sysdate, t1.* from (
+        insert into gambling.auth_role_perm
+        (eid, create_time, update_time, role_eid, permission_name)
+        select gambling.seq_eid.nextval, sysdate, sysdate, t1.* from (
         <foreach collection="permissions" item="permission" separator="UNION ALL">
             select #{roleEid}, #{permission.permissionName} from dual
         </foreach>) t1
     </insert>
 
-    <select id="getPermissionsByRoleEid" resultType="com.zhouyiteng.gambling.model.system.PermModel">
+    <select id="getPermissionsByRoleId" resultType="com.zhouyiteng.gambling.model.system.PermModel">
         select permission_name
-        from TRADEADMIN.auth_role_perm
-        where role_eid = #{eid}
+        from gambling.auth_role_perm
+        where role_id = #{roleId}
     </select>
 
 </mapper>

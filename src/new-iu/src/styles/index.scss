@@ -5,6 +5,12 @@
 @import './sidebar.scss';
 @import './btn.scss';
 
+html {
+  height: 100%;
+  min-width: 360px;
+  box-sizing: border-box;
+}
+
 body {
   height: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -15,11 +21,6 @@ body {
 
 label {
   font-weight: 700;
-}
-
-html {
-  height: 100%;
-  box-sizing: border-box;
 }
 
 #app {
@@ -188,4 +189,49 @@ aside {
 
 .multiselect--active {
   z-index: 1000 !important;
+}
+
+.value-modified{
+  color: red !important;
+}
+
+.min-350-height-table{
+  width: 100%;
+  // > .el-table__body-wrapper{
+  //   min-height: 350px;
+  // }
+}
+
+.full-width{
+    width: 100%;
+}
+
+.body-card {
+    padding: 10px;
+    min-height: 350px;
+    margin-bottom: 60px;
+}
+
+.table-search-wrapper{
+    .el-form-item {
+        margin-bottom: 12px;
+    }
+    .serach-item {
+        display: flex;
+        .item-lable {
+            width: 90px;
+            margin-right: 10px;
+        }
+    }
+    .table-search-buttons{
+        margin-top: 3px;
+        margin-bottom: 12px;
+    }
+    .table-operator{
+        margin-bottom: 22px;
+    }
+}
+
+.el-dialog{
+    margin-top: 10vh !important;
 }

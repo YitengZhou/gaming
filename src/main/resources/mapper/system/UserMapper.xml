@@ -13,102 +13,102 @@
     </resultMap>
 
     <select id="exist" resultType="java.lang.Long">
-        select count(1) from TRADEADMIN.auth_user where user_id=#{userId}
+        select count(1) from gambling.auth_user where user_id=#{userId}
     </select>
 
     <insert id="testInsert" parameterType="com.zhouyiteng.gambling.model.system.UserModel">
-        insert into TRADEADMIN.auth_user
-        (eid, user_id, username, password, status, login_fail, eitime, eutime)
+        insert into gambling.auth_user
+        (eid, user_id, user_name, password, status, login_fail, create_time, update_time)
         values
-        (TRADEADMIN.seq_eid.nextval, #{model.userId,jdbcType=NVARCHAR},
-         #{model.username,jdbcType=NVARCHAR}, #{model.password,jdbcType=NVARCHAR},
+        (gambling.seq_eid.nextval, #{model.userId,jdbcType=NVARCHAR},
+         #{model.userName,jdbcType=NVARCHAR}, #{model.password,jdbcType=NVARCHAR},
          #{model.status,jdbcType=NVARCHAR}, #{model.loginFail,jdbcType=INTEGER}, sysdate, sysdate)
     </insert>
 
     <insert id="addUser" parameterType="com.zhouyiteng.gambling.model.system.UserModel">
-        insert into TRADEADMIN.auth_user
-        (eid, user_id, username, password, status, login_fail, eitime, eutime)
+        insert into gambling.auth_user
+        (eid, user_id, user_name, password, status, login_fail, create_time, update_time)
         values
-        (TRADEADMIN.seq_eid.nextval, #{model.userId,jdbcType=NVARCHAR},
-         #{model.username,jdbcType=NVARCHAR}, #{model.password,jdbcType=NVARCHAR},
+        (gambling.seq_eid.nextval, #{model.userId,jdbcType=NVARCHAR},
+         #{model.userName,jdbcType=NVARCHAR}, #{model.password,jdbcType=NVARCHAR},
          '1', '0', sysdate, sysdate)
     </insert>
 
     <update id="updateUser" parameterType="com.zhouyiteng.gambling.model.system.UserModel">
-        update TRADEADMIN.auth_user
+        update gambling.auth_user
         set
-            username=#{model.username,jdbcType=NVARCHAR},
-            eutime=sysdate
+            user_name=#{model.userName,jdbcType=NVARCHAR},
+            update_time=sysdate
         where user_id=#{model.userId,jdbcType=NVARCHAR}
     </update>
 
     <delete id="deleteUser" parameterType="com.zhouyiteng.gambling.model.system.UserModel">
-        delete from TRADEADMIN.auth_user
+        delete from gambling.auth_user
         where user_id=#{model.userId,jdbcType=NVARCHAR}
     </delete>
 
     <update id="enableUser" parameterType="com.zhouyiteng.gambling.model.system.UserModel">
-        update TRADEADMIN.auth_user
+        update gambling.auth_user
         set
             status='1',
-            eutime=sysdate
+            update_time=sysdate
         where user_id=#{model.userId,jdbcType=NVARCHAR}
     </update>
 
     <update id="disableUser" parameterType="com.zhouyiteng.gambling.model.system.UserModel">
-        update TRADEADMIN.auth_user
+        update gambling.auth_user
         set
             status='0',
-            eutime=sysdate
+            update_time=sysdate
         where user_id=#{model.userId,jdbcType=NVARCHAR}
     </update>
 
     <update id="resetPassword" parameterType="com.zhouyiteng.gambling.model.system.UserModel">
-        update TRADEADMIN.auth_user
+        update gambling.auth_user
         set
             password=#{model.password,jdbcType=NVARCHAR},
-            eutime=sysdate
+            update_time=sysdate
         where user_id=#{model.userId,jdbcType=NVARCHAR}
     </update>
 
     <update id="modifyPassword" parameterType="com.zhouyiteng.gambling.model.system.PasswordModifyModel">
-        update TRADEADMIN.auth_user
+        update gambling.auth_user
         set
             password=#{model.newPassword,jdbcType=NVARCHAR},
-            eutime=sysdate
+            update_time=sysdate
         where user_id=#{model.userId,jdbcType=NVARCHAR}
     </update>
 
     <select id="checkPassword" resultType="java.lang.Long">
-        select count(1) from TRADEADMIN.auth_user
+        select count(1) from gambling.auth_user
         where user_id=#{model.userId} and password=#{model.password}
     </select>
 
     <select id="getTotalCount" resultType="java.lang.Long">
-        select count(1) from TRADEADMIN.auth_user where 1=1
+        select count(1) from gambling.auth_user where 1=1
         <if test="userId != null and userId!=''">
             AND user_id like '%'||#{userId}||'%'
         </if>
-        <if test="username != null and username!=''">
-            AND username like '%'||#{username}||'%'
+        <if test="userName != null and userName!=''">
+            AND user_name like '%'||#{userName}||'%'
         </if>
     </select>
 
     <select id="getUserByUserId" resultType="com.zhouyiteng.gambling.model.system.UserModel">
-        select eid, eitime, eutime, user_id, username, password, status, login_fail
-        from TRADEADMIN.auth_user
+        select eid, create_time, update_time, user_id, user_name, password, status, login_fail
+        from gambling.auth_user
         where user_id = #{userId}
     </select>
 
     <select id="getPageList" resultMap="authUserRoleModel">
-        select eid, eitime, eutime, user_id, username, status, login_fail from (
+        select eid, create_time, update_time, user_id, user_name, status, login_fail from (
             select A.*, rownum AS rn from (
-                select * from TRADEADMIN.auth_user where 1=1
+                select * from gambling.auth_user where 1=1
                 <if test="userId != null and userId!=''">
                     AND user_id like '%'||#{userId}||'%'
                 </if>
-                <if test="username != null and username!=''">
-                    AND username like '%'||#{username}||'%'
+                <if test="userName != null and userName!=''">
+                    AND user_name like '%'||#{userName}||'%'
                 </if>
             ) A
         ) where rn between #{pageStart} and #{pageEnd}
@@ -117,10 +117,10 @@
     <select id="getUserSuggest" resultType="com.zhouyiteng.gambling.model.system.UserModel">
         select * from (
             select A.*, rownum AS rn from (
-                select eid, eitime, eutime, user_id, username, status, login_fail
-                from TRADEADMIN.auth_user where 1=1
+                select eid, create_time, update_time, user_id, user_name, status, login_fail
+                from gambling.auth_user where 1=1
                 <if test="value != null and value!=''">
-                    AND (USER_ID like '%'||#{ value }||'%' or USERNAME like '%'||#{ value }||'%')
+                    AND (USER_ID like '%'||#{ value }||'%' or USER_NAME like '%'||#{ value }||'%')
                 </if>
             ) A
         ) where rn&lt;=#{count}

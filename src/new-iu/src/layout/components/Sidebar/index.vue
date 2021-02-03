@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'has-logo':showLogo}">
+  <div class="side-bar" :class="{'has-logo':showLogo}">
     <logo v-if="showLogo" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
@@ -12,11 +12,19 @@
         :collapse-transition="false"
         mode="vertical"
       >
-        <sidebar-item v-for="route in permission_routes" :key="route.path" :item="route" :base-path="route.path" />
+        <sidebar-item v-for="route in (currentRoutes.routeArray||[])" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
     </el-scrollbar>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.side-bar {
+  ::v-deep .el-scrollbar__view {
+    padding-bottom: 60px;
+  }
+}
+</style>
 
 <script>
 import { mapGetters } from 'vuex'
@@ -28,18 +36,9 @@ export default {
   components: { SidebarItem, Logo },
   computed: {
     ...mapGetters([
-      'permission_routes',
-      'sidebar'
+      'sidebar',
+      'currentRoutes'
     ]),
-    activeMenu() {
-      const route = this.$route
-      const { meta, path } = route
-      // if set path, the sidebar will highlight the path you set
-      if (meta.activeMenu) {
-        return meta.activeMenu
-      }
-      return path
-    },
     showLogo() {
       return this.$store.state.settings.sidebarLogo
     },
@@ -48,6 +47,12 @@ export default {
     },
     isCollapse() {
       return !this.sidebar.opened
+    },
+    activeMenu() {
+      const route = this.$route
+      const { meta, path } = route
+      // if set path, the sidebar will highlight the path you set
+      return meta.activeMenu ? meta.activeMenu : path
     }
   }
 }

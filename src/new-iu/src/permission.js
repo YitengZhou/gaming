@@ -1,10 +1,11 @@
-import router from './router'
 import store from './store'
-import { Message } from 'element-ui'
+import router from './router'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
+import { Message } from 'element-ui'
 import { getToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
+import permission from '@/directive/permission/index.js' // 权限判断指令
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -29,19 +30,26 @@ router.beforeEach(async(to, from, next) => {
       // determine whether the user has obtained his permission roles through getInfo
       const hasPermissions = store.getters.permissions && store.getters.permissions.length > 0
       if (hasPermissions) {
+        // update menu 方法二:应对刷新和新开浏览器
+        // const list = ['system', 'business', 'activity']
+        // if (list.indexOf(to.path.split('/')[1]) !==-1) {
+        //   store.commit('user/SET_MENU', to.path.split('/')[1])
+        // }
+        // if (store.getters.menu) {
+        //   await store.dispatch('permission/updateRoutes', store.getters.menu)
+        // }
         next()
       } else {
         try {
           // get user info
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
-          const { permissions } = await store.dispatch('user/getInfo')
-
+          const { permissions } = await store.dispatch('user/userInfo')
           // generate accessible routes map based on roles
           const accessRoutes = await store.dispatch('permission/generateRoutes', permissions)
+          // 404 page must be placed at the end !!!
           accessRoutes.push({ hidden: true, path: '*', redirect: '/404' })
           // dynamically add accessible routes
           router.addRoutes(accessRoutes)
-
           // hack method to ensure that addRoutes is complete
           // set the replace: true, so the navigation will not leave a history record
           next({ ...to, replace: true })
@@ -56,7 +64,6 @@ router.beforeEach(async(to, from, next) => {
     }
   } else {
     /* has no token*/
-
     if (whiteList.indexOf(to.path) !== -1) {
       // in the free login whitelist, go directly
       next()

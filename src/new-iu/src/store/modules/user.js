@@ -41,10 +41,10 @@ const actions = {
   login({ commit }, userInfo) {
     const { userId, password, ticket, imageCode } = userInfo
     return new Promise((resolve, reject) => {
-      login({ userId: userId.trim(),
-        password: password,
-        ticket: ticket,
-        imageCode: imageCode }).then(response => {
+      login({ userId: userId.trim(), 
+              password: password,
+              ticket: ticket,
+              imageCode: imageCode }).then(response => {
         commit('SET_TOKEN', response)
         commit('SET_USERID', userId.trim())
         setToken(response)
@@ -63,7 +63,6 @@ const actions = {
         if (!response) {
           reject('登录失败，请重试')
         }
-        // eslint-disable-next-line
         let { name, avatar, introduction, permissions } = response
         // roles must be a non-empty array
         if (!permissions || permissions.length <= 0) {

@@ -145,7 +145,7 @@ public class UserService {
         List<RoleModel> RoleModelList = getRoleListByUserId(userId);
         if (CollectionUtils.isNotEmpty(RoleModelList)){
             for (RoleModel role: RoleModelList){
-                RolePermModel RolePermModel = roleService.getRolePermByRoleEid(role.getEid());
+                RolePermModel RolePermModel = roleService.getRolePermByRoleId(role.getRoleId());
                 List<PermModel> PermModelList = RolePermModel.getPermList();
                 if (CollectionUtils.isNotEmpty(PermModelList)){
                     for (PermModel permission: PermModelList){
@@ -182,7 +182,7 @@ public class UserService {
         }
         if (CollectionUtils.isNotEmpty(UserRole.getRoleList())){
             for (RoleModel role:UserRole.getRoleList()){
-                if (RoleMapper.getRoleByRoleEid(role.getEid())==null){
+                if (RoleMapper.getRoleByRoleId(role.getRoleId())==null){
                     throw new IllegalArgumentException("数据库中没有该角色");
                 }
             }

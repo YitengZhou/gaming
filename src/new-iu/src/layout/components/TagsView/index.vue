@@ -45,7 +45,7 @@ export default {
       return this.$store.state.tagsView.visitedViews
     },
     routes() {
-      return this.$store.state.permission.routes
+      return this.$store.state.permission.allRoutes
     }
   },
   watch: {
@@ -225,9 +225,9 @@ export default {
         margin-right: 15px;
       }
       &.active {
-        background-color: #42b983;
+        background-color: #394046;
         color: #fff;
-        border-color: #42b983;
+        border-color: #394046;
         &::before {
           content: '';
           background: #fff;

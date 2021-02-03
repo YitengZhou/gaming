@@ -4,6 +4,7 @@
     <sidebar class="sidebar-container" />
     <div :class="{hasTagsView:needTagsView}" class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
+        <!-- <new-menu /> -->
         <navbar />
         <tags-view v-if="needTagsView" />
       </div>
@@ -16,10 +17,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import ResizeMixin from './mixin/ResizeHandler'
 import RightPanel from '@/components/RightPanel'
 import { AppMain, Navbar, Settings, Sidebar, TagsView } from './components'
-import ResizeMixin from './mixin/ResizeHandler'
-import { mapState } from 'vuex'
 
 export default {
   name: 'Layout',
@@ -63,16 +64,15 @@ export default {
 
   .app-wrapper {
     @include clearfix;
-    position: relative;
-    height: 100%;
+    //height: 100%;
     width: 100%;
-
+    position: relative;
+    background: #f0f2f5;
     &.mobile.openSidebar {
-      position: fixed;
       top: 0;
+      position: fixed;
     }
   }
-
   .drawer-bg {
     background: #000;
     opacity: 0.3;
@@ -82,7 +82,12 @@ export default {
     position: absolute;
     z-index: 999;
   }
-
+  .mobile .fixed-header {
+    width: 100%;
+  }
+  .hideSidebar .fixed-header {
+    width: calc(100% - 54px)
+  }
   .fixed-header {
     position: fixed;
     top: 0;
@@ -90,13 +95,5 @@ export default {
     z-index: 9;
     width: calc(100% - #{$sideBarWidth});
     transition: width 0.28s;
-  }
-
-  .hideSidebar .fixed-header {
-    width: calc(100% - 54px)
-  }
-
-  .mobile .fixed-header {
-    width: 100%;
   }
 </style>

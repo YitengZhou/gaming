@@ -20,13 +20,13 @@ function hasPermission(permissions, route) {
  * @param {*} routes
  * @param {*} serviceType
  */
-function setServiceType(routes, serviceType) {
+function setServiceType(routes, serviceType){
   routes.forEach(route => {
-    if (!route.meta) {
+    if(!route.meta){
       route.meta = {}
     }
     route.meta.serviceType = serviceType
-    if (route.children && route.children.length > 0) {
+    if(route.children && route.children.length>0){
       setServiceType(route.children, serviceType)
     }
   })
@@ -38,9 +38,9 @@ function setServiceType(routes, serviceType) {
  * @param {*} permissions
  * @param {*} routeConfig
  */
-function setAllRoutesAndDic(routesObject, permissions, routeConfig) {
+function setAllRoutesAndDic(routesObject, permissions, routeConfig){
   const tempRoutes = routeConfig.constRoutes.concat(
-    filterAsyncRoutes(routeConfig.asyncRoutes, permissions))
+  filterAsyncRoutes(routeConfig.asyncRoutes, permissions))
   setServiceType(tempRoutes, routeConfig.serviceType)
   routesObject.routesDic[routeConfig.serviceType] = {
     serviceType: routeConfig.serviceType,
@@ -63,7 +63,7 @@ export function filterAsyncRoutes(routes, permissions) {
     if (tmp.children) {
       tmp.children = filterAsyncRoutes(tmp.children, permissions)
     }
-    if (hasPermission(permissions, tmp) || (tmp.children && tmp.children.length > 0)) {
+    if (hasPermission(permissions, tmp) || (tmp.children && tmp.children.length>0)) {
       res.push(tmp)
     }
   })
@@ -82,8 +82,8 @@ const mutations = {
     state.routesDic = merge.routesDic
   },
   SET_CURRENTROUTES: (state, serviceType) => {
-    if (serviceType) {
-      if (!state.currentRoutes.serviceType || state.currentRoutes.serviceType !== serviceType) {
+    if(serviceType){
+      if(!state.currentRoutes.serviceType || state.currentRoutes.serviceType!==serviceType){
         const routesConfig = state.routesDic[serviceType] || {}
         state.currentRoutes = {
           serviceType: serviceType,
@@ -101,7 +101,7 @@ const actions = {
   },
   generateRoutes({ commit }, permissions) {
     return new Promise(resolve => {
-      const routesObject = { allRoutes: [], routesDic: {}}
+      const routesObject = { allRoutes: [], routesDic: {} }
       setAllRoutesAndDic(routesObject, permissions, adminConfig)
       // setAllRoutesAndDic(routesObject, permissions, gatewayConfig)
       // setAllRoutesAndDic(routesObject, permissions, service1Config)

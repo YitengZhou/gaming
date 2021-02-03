@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 
-const TokenKey = 'YT_GAMBLING_USER_ADMIN_TOKEN'
-const UserIdKey = 'YT_GAMBLING_USER_ADMIN_USER_ID'
+const TokenKey = 'YT_GAMBLING_ADMIN_TOKEN'
+const UserIdKey = 'YT_GAMBLING_ADMIN_USER_ID'
 
 export function getToken() {
   return Cookies.get(TokenKey)

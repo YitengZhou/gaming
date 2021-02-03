@@ -24,10 +24,10 @@ import java.util.List;
 public class RoleService {
 
     @Autowired
-    private RoleMapper RoleMapper;
+    private RoleMapper roleMapper;
 
     @Autowired
-    private RolePermMapper RolePermMapper;
+    private RolePermMapper rolePermMapper;
 
     /**
      * 检查角色对象是否符合要求
@@ -53,7 +53,7 @@ public class RoleService {
      * @return
      */
     public List<RoleModel> getTotalRoleList() {
-        return RoleMapper.getTotalRoleList();
+        return roleMapper.getTotalRoleList();
     }
 
     /**
@@ -61,8 +61,8 @@ public class RoleService {
      * @param roleEid
      * @return
      */
-    public RoleModel getRoleByRoleEid(String roleEid) {
-        return RoleMapper.getRoleByRoleEid(roleEid);
+    public RoleModel getRoleByRoleId(String roleEid) {
+        return roleMapper.getRoleByRoleId(roleEid);
     }
 
     /**
@@ -71,23 +71,23 @@ public class RoleService {
      * @param service
      * @return
      */
-    public RoleModel getRoleByRoleNameAndService(String roleName, String service) {return RoleMapper.getRoleByRoleNameAndService(roleName,service);}
+    public RoleModel getRoleByRoleNameAndService(String roleName, String service) {return roleMapper.getRoleByRoleNameAndService(roleName,service);}
 
     /**
      * 根据角色名获得角色权限
-     * @param roleEid
+     * @param roleId
      * @return
      */
-    public RolePermModel getRolePermByRoleEid(String roleEid) {
+    public RolePermModel getRolePermByRoleId(String roleId) {
         RolePermModel roleWithPerm = new RolePermModel();
-        RoleModel role = RoleMapper.getRoleByRoleEid(roleEid);
+        RoleModel role = roleMapper.getRoleByRoleId(roleId);
         if (role == null) {
             throw new IllegalArgumentException("数据库中没有该角色名");
         }
         roleWithPerm.setRoleName(role.getRoleName());
 //        roleWithPerm.setService(role.getService());
 //        roleWithPerm.setDescription(role.getDescription());
-        roleWithPerm.setPermList(RolePermMapper.getPermissionsByRoleEid(role.getEid()));
+        roleWithPerm.setPermList(rolePermMapper.getPermissionsByRoleId(role.getRoleId()));
         return roleWithPerm;
     }
 
@@ -100,11 +100,11 @@ public class RoleService {
         // 查看Role对象传入是否正确
         checkRoleInstance(RoleModel);
         // 查看表中是否已经存在服务，由于新建角色eid为主键，本处用服务和角色名检查数据库中是否已经存在该角色
-        RoleModel exist = RoleMapper.getRoleByRoleNameAndService(RoleModel.getRoleName(), RoleModel.getService());
+        RoleModel exist = roleMapper.getRoleByRoleNameAndService(RoleModel.getRoleName(), RoleModel.getService());
         if (exist!=null) {
             throw new IllegalArgumentException("不能添加相同的角色名");
         } else {
-            RoleMapper.addRole(RoleModel);
+            roleMapper.addRole(RoleModel);
         }
         return true;
     }
@@ -116,11 +116,11 @@ public class RoleService {
      */
     public boolean updateRole(RoleModel RoleModel) {
         checkRoleInstance(RoleModel);
-        RoleModel exist = RoleMapper.getRoleByRoleEid(RoleModel.getEid());
+        RoleModel exist = roleMapper.getRoleByRoleId(RoleModel.getRoleId());
         if (exist==null) {
             throw new IllegalArgumentException("数据库中没有该角色名");
         } else {
-            RoleMapper.updateRole(RoleModel);
+            roleMapper.updateRole(RoleModel);
         }
         return true;
     }
@@ -134,13 +134,13 @@ public class RoleService {
         if (RoleModel.getEid()==null) {
             throw new IllegalArgumentException("角色eid不能为空");
         }
-        RoleModel exist = RoleMapper.getRoleByRoleEid(RoleModel.getEid());
+        RoleModel exist = roleMapper.getRoleByRoleId(RoleModel.getRoleId());
         if (exist==null) {
-            throw new IllegalArgumentException("数据库中没有该角色名EID");
+            throw new IllegalArgumentException("数据库中没有该角色id");
         } else {
             // 删除角色同时删除权限
-            RoleMapper.deleteRoleByRoleEid(RoleModel.getEid());
-            RolePermMapper.deletePermissionsForRole(RoleModel.getEid());
+            roleMapper.deleteRoleByRoleEid(RoleModel.getEid());
+            rolePermMapper.deletePermissionsForRole(RoleModel.getEid());
         }
         return true;
     }
@@ -161,13 +161,13 @@ public class RoleService {
                 }
             }
         }
-        RoleModel exist = RoleMapper.getRoleByRoleEid(roleWithPerm.getEid());
+        RoleModel exist = roleMapper.getRoleByRoleId(roleWithPerm.getRoleId());
         if (exist==null) {
             throw new IllegalArgumentException("数据库中没有该角色EID");
         } else {
             // 全删，逐一添加,需要改
-            RolePermMapper.deletePermissionsForRole(roleWithPerm.getEid());
-            RolePermMapper.insertPermissionsForRole(roleWithPerm.getEid(),roleWithPerm.getPermList());
+            rolePermMapper.deletePermissionsForRole(roleWithPerm.getEid());
+            rolePermMapper.insertPermissionsForRole(roleWithPerm.getEid(),roleWithPerm.getPermList());
         }
         return true;
     }
@@ -182,8 +182,8 @@ public class RoleService {
      */
     public PageDataModel<RolePermModel> getRoleList(String name, String description,String service, Long pageIndex, Long pageSize) {
         PageDataModel<RolePermModel> ret = new PageDataModel<>(pageSize, pageIndex);
-        ret.setTotalCount(RoleMapper.getTotalCount(name,description));
-        ret.setDataList(RoleMapper.getPageList(name, description, service, ret.getPageStart(), ret.getPageEnd()));
+        ret.setTotalCount(roleMapper.getTotalCount(name,description));
+        ret.setDataList(roleMapper.getPageList(name, description, service, ret.getPageStart(), ret.getPageEnd()));
         return ret;
     }
 }

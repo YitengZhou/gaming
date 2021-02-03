@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import logoPath from '@/assets/logo.jpg'
+
 export default {
   name: 'SidebarLogo',
   props: {
@@ -24,59 +26,58 @@ export default {
   },
   data() {
     return {
-      title: 'Vue Element Admin',
-      logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
+      logo: logoPath,
+      title: '统一管理后台'
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.sidebarLogoFade-enter-active {
-  transition: opacity 1.5s;
-}
+  .sidebarLogoFade-enter-active {
+    transition: opacity 1.5s;
+  }
 
-.sidebarLogoFade-enter,
-.sidebarLogoFade-leave-to {
-  opacity: 0;
-}
+  .sidebarLogoFade-enter,
+  .sidebarLogoFade-leave-to {
+    opacity: 0;
+  }
 
-.sidebar-logo-container {
-  position: relative;
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  background: #2b2f3a;
-  text-align: center;
-  overflow: hidden;
-
-  & .sidebar-logo-link {
-    height: 100%;
+  .sidebar-logo-container {
+    position: relative;
     width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background: #394046;
+    overflow: hidden;
 
-    & .sidebar-logo {
-      width: 32px;
-      height: 32px;
-      vertical-align: middle;
-      margin-right: 12px;
+    &.collapse {
+      .sidebar-logo {
+        margin-right: 0px;
+      }
     }
 
-    & .sidebar-title {
-      display: inline-block;
-      margin: 0;
-      color: #fff;
-      font-weight: 600;
-      line-height: 50px;
-      font-size: 14px;
-      font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
-      vertical-align: middle;
+    & .sidebar-logo-link {
+      height: 100%;
+      width: 100%;
+
+      & .sidebar-logo {
+        width: 32px;
+        height: 32px;
+        margin-left: 12px;
+        vertical-align: middle;
+      }
+
+      & .sidebar-title {
+        display: inline-block;
+        margin: 0;
+        color: #fff;
+        font-weight: 600;
+        line-height: 60px;
+        font-size: 18px;
+        font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+        vertical-align: middle;
+      }
     }
   }
-
-  &.collapse {
-    .sidebar-logo {
-      margin-right: 0px;
-    }
-  }
-}
 </style>

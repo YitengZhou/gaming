@@ -33,9 +33,9 @@ public interface RolePermMapper {
 
     /**
      * 根据角色名获得权限
-     * @param eid
+     * @param roleId
      * @return
      */
-    List<PermModel> getPermissionsByRoleEid(@Param("eid") String eid);
+    List<PermModel> getPermissionsByRoleId(@Param("roleId") String roleId);
 
 }
