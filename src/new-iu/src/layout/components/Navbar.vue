@@ -28,7 +28,7 @@
       <!-- 下拉菜单 -->
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <img src="avatar2.jpg?imageView2/1/w/60/h/60" class="user-avatar">
+          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
           <div class="name-avatar">{{ `${name} [ ${userId} ]` }}</div>
           <i class="el-icon-caret-bottom" />
         </div>

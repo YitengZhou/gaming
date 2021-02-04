@@ -54,23 +54,23 @@
     <select id="getTotalCount" resultType="java.lang.Long">
         select count(1) from gambling.auth_role where 1=1
         <if test="name !=null and name != ''">
-            and role_name like '%'|| #{name} ||'%'
+            and role_name like concat('%', #{name}, '%')
         </if>
         <if test="description !=null and description != ''">
-            and description like '%'|| #{description} ||'%'
+            and description like concat('%', #{description}, '%')
         </if>
     </select>
 
     <select id="getPageList" resultMap="authRolePermModel">
         select * from gambling.auth_role where 1=1
         <if test="name !=null and name != ''">
-            and role_name like '%'|| #{name} ||'%'
+            and role_name like concat('%', #{name}, '%')
         </if>
         <if test="description !=null and description != ''">
-             and description like '%'|| #{description} ||'%'
+             and description like concat('%', #{description}, '%')
         </if>
         <if test="service !=null and service != ''">
-            and service like '%'|| #{service} ||'%'
+            and service = #{service}
         </if>
         order by create_time limit #{pageStart},#{pageEnd}
     </select>

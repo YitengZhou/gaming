@@ -106,6 +106,7 @@ public class UserController extends BaseController {
     public UserInfoModel getUserInfo(@LoginToken String token){
         UserInfoModel ret = new UserInfoModel();
         ret.setName(redisService.getUsername(token));
+        ret.setAvatar("https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
         ret.setPermissions(redisService.getPermission(token));
         return ret;
     }
