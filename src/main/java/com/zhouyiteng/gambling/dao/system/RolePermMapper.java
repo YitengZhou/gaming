@@ -20,16 +20,16 @@ public interface RolePermMapper {
 
     /**
      * 删除角色的所有权限
-     * @param roleEid
+     * @param roleId
      */
-    void deletePermissionsForRole(@Param("roleEid") String roleEid);
+    void deletePermissionsForRole(@Param("roleId") String roleId);
 
     /**
      * 用户插入所有权限
-     * @param roleEid
+     * @param roleId
      * @param permissions
      */
-    void insertPermissionsForRole(@Param("roleEid") String roleEid, @Param("permissions") List<PermModel> permissions);
+    void insertPermissionsForRole(@Param("roleId") String roleId, @Param("permissions") List<PermModel> permissions);
 
     /**
      * 根据角色名获得权限

@@ -28,12 +28,6 @@ public interface UserMapper {
     long exist(@Param("userId") String userId);
 
     /**
-     * 插入测试
-     * @param model
-     */
-    void testInsert(@Param("model") UserModel model);
-
-    /**
      * 添加用户
      * @param model
      * @return

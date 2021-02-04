@@ -56,9 +56,9 @@
           <table width="100%">
             <tr>
               <td class="expand-title">创建时间</td>
-              <td class="expand-content" style="width:50%">{{ row.eiTime }}</td>
+              <td class="expand-content" style="width:50%">{{ row.createTime }}</td>
               <td class="expand-title">修改时间</td>
-              <td class="expand-content" style="width:50%">{{ row.euTime }}</td>
+              <td class="expand-content" style="width:50%">{{ row.updateTime }}</td>
             </tr>
           </table>
           <el-divider class="expand-divider" />
@@ -67,7 +67,7 @@
               <td class="expand-title">权限设置</td>
               <td class="expand-content" colspan="3" style="width:100%">
                 <div>
-                  {{ row.authPermList | permissionsFilter }}
+                  {{ row.permList | permissionsFilter }}
                 </div>
               </td> 
             </tr>
@@ -75,14 +75,14 @@
           <el-divider class="expand-divider" />
         </template>
       </el-table-column>
-      <el-table-column label="角色名称" prop="name" width="200px" align="center">
+      <el-table-column label="角色id" prop="name" width="200px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.roleName }}</span>
+          <span>{{ row.roleId }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="角色描述" prop="description" align="center" width="200px">
+      <el-table-column label="角色名称" prop="description" align="center" width="200px">
         <template slot-scope="{row}">
-          <el-tag>{{ row.description }}</el-tag>
+          <el-tag>{{ row.roleName }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="所属服务" prop="service" align="center">
@@ -201,7 +201,7 @@
                       this.tableData.dataList = response.dataList
                       // 从permission-define权限树tree中获取权限label
                       this.tableData.dataList.forEach(item => {
-                          item.authPermList.forEach(perm => {
+                          item.permList.forEach(perm => {
                             perm.description = getPermissionLabel(item.service, perm.permissionName)
                           })
                       })

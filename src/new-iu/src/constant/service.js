@@ -1,5 +1,6 @@
 const serviceType = [
-  { key: 'system', label: '后台服务' }
+  { key: 'system', label: '后台管理' },
+  { key: 'gambling', label: '休闲养生平台' }
 ]
 
 /**

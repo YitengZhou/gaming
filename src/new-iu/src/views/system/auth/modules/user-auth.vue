@@ -77,10 +77,10 @@ export default {
             this.userInfo = userInfo
             this.roleList = roleList
             let ret = ''
-            if (userInfo.authRoleList && userInfo.authRoleList.length>0) {
-                userInfo.authRoleList.forEach((item, index) => {
-                    this.checked.push(item.eid)
-                    ret += `【${item.description}】`
+            if (userInfo.roleList && userInfo.roleList.length>0) {
+                userInfo.roleList.forEach((item, index) => {
+                    this.checked.push(item.roleId)
+                    ret += `【${item.roleName}】`
                 })
             }
             this.perString = ret
@@ -93,10 +93,10 @@ export default {
             const setRole = []
             this.$refs.roleTree.getCheckedKeys().forEach(item => {
                 if(!isInServiceType(item)){
-                  setRole.push({ 'eid':item })
+                  setRole.push({ 'roleId':item })
                 }
             })
-            this.userInfo.authRoleList = setRole
+            this.userInfo.roleList = setRole
             this.visible = false
             this.$emit('confirm', this.type, this.userInfo)
         }

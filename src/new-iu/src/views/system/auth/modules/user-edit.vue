@@ -1,11 +1,11 @@
 <template>
   <el-dialog :title="title" :visible.sync="visible">
     <el-form ref="dataForm" :rules="rules" :model="userInfo" label-position="right" label-width="80px">
-      <el-form-item label="用户编号" prop="userId">
-        <el-input v-model="userInfo.userId" :disabled="userIdDisable" placeholder="请输入用户编号" />
+      <el-form-item label="用户Id" prop="userId">
+        <el-input v-model="userInfo.userId" :disabled="userIdDisable" placeholder="请输入用户Id" />
       </el-form-item>
-      <el-form-item label="用户名称" prop="username">
-        <el-input v-model="userInfo.username" :disabled="usernameDisable" placeholder="请输入用户名称" />
+      <el-form-item label="用户名称" prop="userName">
+        <el-input v-model="userInfo.userName" :disabled="usernameDisable" placeholder="请输入用户名称" />
       </el-form-item>
       <el-form-item v-if="passwordVisible" label="初始密码" prop="password">
         <el-input v-model="userInfo.password" type="password" placeholder="请输入初始密码" />
@@ -34,12 +34,12 @@
                 passwordVisible: false,
                 userInfo: {
                     userId: '',
-                    username: '',
+                    userName: '',
                     password: ''
                 },
                 rules: {
                     userId: [{ required: true, trigger: 'blur', message: '请输入用户编号' }],
-                    username: [{ required: true, trigger: 'blur', message: '请输入用户名称' }],
+                    userName: [{ required: true, trigger: 'blur', message: '请输入用户名称' }],
                     password: [{ required: true, trigger: 'blur', validator: (rule, value, callback) => {
                         if(this.passwordVisible){
                             if (!value || value.length <= 0) {
@@ -62,7 +62,7 @@
                 this.usernameDisable = false
                 this.passwordVisible = false
                 this.userInfo.userId = ''
-                this.userInfo.username = ''
+                this.userInfo.userName = ''
                 this.userInfo.password = ''
                 this.$nextTick(() => {
                     this.$refs.dataForm && this.$refs.dataForm.clearValidate()
@@ -82,7 +82,7 @@
                 this.visible = true
                 this.userIdDisable = true
                 this.userInfo.userId = userInfo.userId
-                this.userInfo.username = userInfo.username
+                this.userInfo.userName = userInfo.userName
                 this.userInfo.password = userInfo.password
             },
             resetPassword(userInfo){
@@ -94,7 +94,7 @@
                 this.usernameDisable = true
                 this.passwordVisible = true
                 this.userInfo.userId = userInfo.userId
-                this.userInfo.username = userInfo.username
+                this.userInfo.userName = userInfo.userName
                 this.userInfo.password = userInfo.password
             },
             handlerProcess(){

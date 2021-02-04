@@ -54,9 +54,9 @@ public interface RoleMapper {
 
     /**
      * 删除角色
-     * @param eid
+     * @param roleId
      */
-    void deleteRoleByRoleEid(@Param("eid") String eid);
+    void deleteRoleByRoleId(@Param("roleId") String roleId);
 
     /**
      * 根据用户名获得角色
@@ -81,6 +81,6 @@ public interface RoleMapper {
      * @return
      */
     List<RolePermModel> getPageList(@Param("name") String name, @Param("description") String description,
-                                        @Param("service") String service,
-                                        @Param("pageStart") Long pageStart, @Param("pageEnd") Long pageEnd);
+                                    @Param("service") String service,
+                                    @Param("pageStart") Long pageStart, @Param("pageEnd") Long pageEnd);
 }

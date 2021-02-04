@@ -1,6 +1,9 @@
 <template>
   <el-dialog title="设置角色权限" :visible.sync="visible" @close="dialogClose">
     <el-form ref="dataForm" :rules="rules" :model="roleInfo" label-position="left" label-width="100px">
+      <el-form-item label="角色ID" prop="roleId">
+        <el-input v-model="roleInfo.roleId" :disabled="true" />
+      </el-form-item>
       <el-form-item label="角色姓名" prop="roleName">
         <el-input v-model="roleInfo.roleName" :disabled="true" />
       </el-form-item>
@@ -45,10 +48,10 @@
                 visible: false,
                 type: 'SET_PERMISSION',
                 roleInfo: {
-                    name: '',
+                    roleId:'',
+                    roleName: '',
                     description: '',
-                    service:'',
-                    authPermList: []
+                    permList: []
                 },
                 treeExpandData: [],
                 perString: '',
@@ -72,7 +75,7 @@
                 this.roleInfo = Object.assign({}, row)
                 const permissions = []
                 let ret = ''
-                this.roleInfo.authPermList.forEach((item, index) => {
+                this.roleInfo.permList.forEach((item, index) => {
                     permissions.push(item.permissionName)
                     ret += `【${item.description}】`
                 })
@@ -97,7 +100,7 @@
                         setPerm.push({ 'permissionName':item })
                     }
                 })
-                this.roleInfo.authPermList = setPerm
+                this.roleInfo.permList = setPerm
                 this.visible = false
                 this.$emit('confirm', this.type, this.roleInfo)
             },

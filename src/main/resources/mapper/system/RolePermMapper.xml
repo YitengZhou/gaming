@@ -5,15 +5,15 @@
 <mapper namespace="com.zhouyiteng.gambling.dao.system.RolePermMapper">
 
     <delete id="deletePermissionsForRole">
-        delete from gambling.auth_role_perm where role_eid = #{roleEid}
+        delete from gambling.auth_role_perm where role_id = #{roleId}
     </delete>
 
     <insert id="insertPermissionsForRole">
         insert into gambling.auth_role_perm
-        (eid, create_time, update_time, role_eid, permission_name)
-        select gambling.seq_eid.nextval, sysdate, sysdate, t1.* from (
+        (create_time, update_time, role_id, permission_name)
+        select now(), now(), t1.* from (
         <foreach collection="permissions" item="permission" separator="UNION ALL">
-            select #{roleEid}, #{permission.permissionName} from dual
+            select #{roleId}, #{permission.permissionName} from dual
         </foreach>) t1
     </insert>
 

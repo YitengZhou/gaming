@@ -11,6 +11,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -51,6 +52,9 @@ public class UserService {
      * @return
      */
     public long addUser(UserModel model){
+        if (userMapper.exist(model.getUserId()) > 0) {
+            throw new IllegalArgumentException("数据库中已存在该用户");
+        }
         return userMapper.addUser(model);
     }
 
@@ -60,6 +64,9 @@ public class UserService {
      * @return
      */
     public long updateUser(UserModel model){
+        if (userMapper.exist(model.getUserId()) <= 0) {
+            throw new IllegalArgumentException("数据库中没有该用户");
+        }
         return userMapper.updateUser(model);
     }
 
@@ -68,9 +75,13 @@ public class UserService {
      * @param model
      * @return
      */
+    @Transactional
     public boolean deleteUser(UserModel model) {
-        userMapper.deleteUser(model);
+        if (userMapper.exist(model.getUserId()) <= 0) {
+            throw new IllegalArgumentException("数据库中没有该用户");
+        }
         userRoleMapper.deleteRolesForUser(model.getUserId());
+        userMapper.deleteUser(model);
         return true;
     }
 
@@ -80,6 +91,9 @@ public class UserService {
      * @return
      */
     public long enableUser(UserModel model){
+        if (userMapper.exist(model.getUserId()) <= 0) {
+            throw new IllegalArgumentException("数据库中没有该用户");
+        }
         return userMapper.enableUser(model);
     }
 
@@ -89,6 +103,9 @@ public class UserService {
      * @return
      */
     public long disableUser(UserModel model){
+        if (userMapper.exist(model.getUserId()) <= 0) {
+            throw new IllegalArgumentException("数据库中没有该用户");
+        }
         return userMapper.disableUser(model);
     }
 
@@ -98,6 +115,9 @@ public class UserService {
      * @return
      */
     public long resetPassword(UserModel model){
+        if (userMapper.exist(model.getUserId()) <= 0) {
+            throw new IllegalArgumentException("数据库中没有该用户");
+        }
         return userMapper.resetPassword(model);
     }
 
@@ -163,8 +183,9 @@ public class UserService {
      * @return
      */
     public List<RoleModel> getRoleListByUserId(String userId) {
-        long exist = userMapper.exist(userId);
-        if (exist<=0) throw new IllegalArgumentException("数据库中没有该用户");
+        if (userMapper.exist(userId) <= 0) {
+            throw new IllegalArgumentException("数据库中没有该用户");
+        }
         return roleMapper.getRoleListByUserId(userId);
     }
 
@@ -191,9 +212,11 @@ public class UserService {
         if (userMapper.exist(userId) <= 0) {
             throw new IllegalArgumentException("数据库中没有该用户");
         } else{
-            // 全删后逐一添加,本处的UserRole中role只有eid属性
+            // 全删后逐一添加
             userRoleMapper.deleteRolesForUser(userId);
-            userRoleMapper.insertRolesForUser(userId,UserRole.getRoleList());
+            if (CollectionUtils.isNotEmpty(UserRole.getRoleList())){
+                userRoleMapper.insertRolesForUser(userId, UserRole.getRoleList());
+            }
         }
         return true;
     }

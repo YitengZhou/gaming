@@ -16,29 +16,20 @@
         select count(1) from gambling.auth_user where user_id=#{userId}
     </select>
 
-    <insert id="testInsert" parameterType="com.zhouyiteng.gambling.model.system.UserModel">
-        insert into gambling.auth_user
-        (eid, user_id, user_name, password, status, login_fail, create_time, update_time)
-        values
-        (gambling.seq_eid.nextval, #{model.userId,jdbcType=NVARCHAR},
-         #{model.userName,jdbcType=NVARCHAR}, #{model.password,jdbcType=NVARCHAR},
-         #{model.status,jdbcType=NVARCHAR}, #{model.loginFail,jdbcType=INTEGER}, sysdate, sysdate)
-    </insert>
-
     <insert id="addUser" parameterType="com.zhouyiteng.gambling.model.system.UserModel">
         insert into gambling.auth_user
-        (eid, user_id, user_name, password, status, login_fail, create_time, update_time)
+        (user_id, user_name, password, status, login_fail, create_time, update_time)
         values
-        (gambling.seq_eid.nextval, #{model.userId,jdbcType=NVARCHAR},
+        (#{model.userId,jdbcType=NVARCHAR},
          #{model.userName,jdbcType=NVARCHAR}, #{model.password,jdbcType=NVARCHAR},
-         '1', '0', sysdate, sysdate)
+         '1', '0', now(), now())
     </insert>
 
     <update id="updateUser" parameterType="com.zhouyiteng.gambling.model.system.UserModel">
         update gambling.auth_user
         set
             user_name=#{model.userName,jdbcType=NVARCHAR},
-            update_time=sysdate
+            update_time=now()
         where user_id=#{model.userId,jdbcType=NVARCHAR}
     </update>
 
@@ -51,7 +42,7 @@
         update gambling.auth_user
         set
             status='1',
-            update_time=sysdate
+            update_time=now()
         where user_id=#{model.userId,jdbcType=NVARCHAR}
     </update>
 
@@ -59,7 +50,7 @@
         update gambling.auth_user
         set
             status='0',
-            update_time=sysdate
+            update_time=now()
         where user_id=#{model.userId,jdbcType=NVARCHAR}
     </update>
 
@@ -67,7 +58,7 @@
         update gambling.auth_user
         set
             password=#{model.password,jdbcType=NVARCHAR},
-            update_time=sysdate
+            update_time=now()
         where user_id=#{model.userId,jdbcType=NVARCHAR}
     </update>
 
@@ -75,7 +66,7 @@
         update gambling.auth_user
         set
             password=#{model.newPassword,jdbcType=NVARCHAR},
-            update_time=sysdate
+            update_time=now()
         where user_id=#{model.userId,jdbcType=NVARCHAR}
     </update>
 
@@ -101,7 +92,8 @@
     </select>
 
     <select id="getPageList" resultMap="authUserRoleModel">
-        select * from gambling.auth_user where 1=1
+        select eid, create_time, update_time, user_id, user_name, status, login_fail
+        from gambling.auth_user where 1=1
         <if test="userId != null and userId!=''">
             AND user_id like '%'||#{userId}||'%'
         </if>

@@ -10,10 +10,10 @@
 
     <insert id="insertRolesForUser">
         insert into gambling.auth_user_role
-        (eid, create_time, update_time, user_id, role_eid)
-        select gambling.seq_eid.nextval, sysdate, sysdate, t1.* from (
+        (create_time, update_time, user_id, role_id)
+        select now(), now(), t1.* from (
         <foreach collection="roles" item="role" separator="UNION ALL">
-            select #{userId}, #{role.eid} from dual
+            select #{userId}, #{role.roleId} from dual
         </foreach>) t1
     </insert>
 

@@ -9,6 +9,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -130,6 +131,7 @@ public class RoleService {
      * @param RoleModel
      * @return
      */
+    @Transactional
     public boolean deleteRole(RoleModel RoleModel) {
         if (RoleModel.getEid()==null) {
             throw new IllegalArgumentException("角色eid不能为空");
@@ -139,8 +141,8 @@ public class RoleService {
             throw new IllegalArgumentException("数据库中没有该角色id");
         } else {
             // 删除角色同时删除权限
-            roleMapper.deleteRoleByRoleEid(RoleModel.getEid());
-            rolePermMapper.deletePermissionsForRole(RoleModel.getEid());
+            rolePermMapper.deletePermissionsForRole(RoleModel.getRoleId());
+            roleMapper.deleteRoleByRoleId(RoleModel.getRoleId());
         }
         return true;
     }
@@ -150,6 +152,7 @@ public class RoleService {
      * @param roleWithPerm
      * @return
      */
+    @Transactional
     public boolean setPermission(RolePermModel roleWithPerm){
         if (roleWithPerm == null) {
             throw new IllegalArgumentException("角色对象不能为空");
@@ -166,8 +169,10 @@ public class RoleService {
             throw new IllegalArgumentException("数据库中没有该角色EID");
         } else {
             // 全删，逐一添加,需要改
-            rolePermMapper.deletePermissionsForRole(roleWithPerm.getEid());
-            rolePermMapper.insertPermissionsForRole(roleWithPerm.getEid(),roleWithPerm.getPermList());
+            rolePermMapper.deletePermissionsForRole(roleWithPerm.getRoleId());
+            if (CollectionUtils.isNotEmpty(roleWithPerm.getPermList())){
+                rolePermMapper.insertPermissionsForRole(roleWithPerm.getRoleId(),roleWithPerm.getPermList());
+            }
         }
         return true;
     }

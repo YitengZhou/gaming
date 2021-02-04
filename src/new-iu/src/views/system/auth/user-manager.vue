@@ -39,9 +39,9 @@
           <table width="100%">
             <tr>
               <td class="expand-title">创建时间:</td>
-              <td class="expand-content" style="width:50%">{{ row.eiTime }}</td>
+              <td class="expand-content" style="width:50%">{{ row.createTime }}</td>
               <td class="expand-title">修改时间:</td>
-              <td class="expand-content" style="width:50%">{{ row.euTime }}</td>
+              <td class="expand-content" style="width:50%">{{ row.updateTime }}</td>
             </tr>
           </table>
           <el-divider class="expand-divider" />
@@ -50,7 +50,7 @@
               <td class="expand-title">角色设置:</td>
               <td class="expand-content" colspan="3" style="width:100%">
                 <div>
-                  {{ row.authRoleList | roleListFilter }}
+                  {{ row.roleList | roleListFilter }}
                 </div>
               </td> 
             </tr>
@@ -183,7 +183,7 @@
               let ret=''
               if (roleList && roleList.length>0){
                 roleList.forEach((item, index) => {
-                  ret+=`【${item.description}】`
+                  ret+=`【${item.roleName}】`
                 })
               }
               return ret===''? '无角色设置':ret
@@ -210,7 +210,6 @@
         },
         mounted() {
             this.search()
-            this.initServiceRoleMap()
         },
         methods: {
             search() {
@@ -271,8 +270,8 @@
                                 if(serviceRoleArray && serviceRoleArray.length>0){
                                     serviceRoleArray.forEach(y => {
                                         x.children.push({
-                                            id: y.eid,
-                                            label: y.description
+                                            id: y.roleId,
+                                            label: y.roleName
                                         })
                                     })
                                 }

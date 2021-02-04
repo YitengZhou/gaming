@@ -5,15 +5,14 @@
 <mapper namespace="com.zhouyiteng.gambling.dao.system.RoleMapper">
 
     <resultMap id="authRolePermModel" type="com.zhouyiteng.gambling.model.system.RolePermModel">
-        <result column="eid" property="eid" jdbcType="VARCHAR" />
+        <result column="role_id" property="roleId" jdbcType="VARCHAR" />
         <collection property="permList" ofType="com.zhouyiteng.gambling.model.system.PermModel"
-                    column="eid" select="com.zhouyiteng.gambling.mapper.system.RolePermMapper.getPermissionsByRoleEid">
+                    column="role_id" select="com.zhouyiteng.gambling.dao.system.RolePermMapper.getPermissionsByRoleId">
         </collection>
     </resultMap>
 
     <select id="getTotalRoleList" resultType="com.zhouyiteng.gambling.model.system.RoleModel">
-        select eid, create_time, update_time, role_name, service, description
-        from gambling.auth_role
+        select * from gambling.auth_role
     </select>
 
     <select id="getRoleByRoleId" resultType="com.zhouyiteng.gambling.model.system.RoleModel">
@@ -29,17 +28,17 @@
     </select>
 
     <insert id="addRole" parameterType="com.zhouyiteng.gambling.model.system.RoleModel">
-        insert into gambling.auth_role(eid, create_time, update_time, role_name, service, description)
-        values(gambling.seq_eid.nextval, sysdate, sysdate, #{role.roleName,jdbcType=VARCHAR},#{role.service,jdbcType=VARCHAR}, #{role.description,jdbcType=VARCHAR})
+        insert into gambling.auth_role(create_time, update_time, role_id, role_name, service, description)
+        values(now(), now(), #{role.roleId}, #{role.roleName},#{role.service}, #{role.description})
     </insert>
 
     <update id="updateRole" parameterType="com.zhouyiteng.gambling.model.system.RoleModel">
-        update gambling.auth_role set update_time = sysdate, description = #{role.description}, service = #{role.service}
+        update gambling.auth_role set update_time = now(), description = #{role.description}, service = #{role.service}
         where eid = #{role.eid}
     </update>
 
-    <delete id="deleteRoleByRoleEid">
-        delete from gambling.auth_role where eid = #{eid}
+    <delete id="deleteRoleByRoleId">
+        delete from gambling.auth_role where role_id = #{roleId}
     </delete>
 
     <select id="getRoleListByUserId" resultType="com.zhouyiteng.gambling.model.system.RoleModel">
@@ -63,20 +62,17 @@
     </select>
 
     <select id="getPageList" resultMap="authRolePermModel">
-        select * from (
-            select eid, create_time, update_time, role_name, service, description, ROWNUM rn
-            from gambling.auth_role where 1=1
-            <if test="name !=null and name != ''">
-                and role_name like '%'|| #{name} ||'%'
-            </if>
-            <if test="description !=null and description != ''">
-                 and description like '%'|| #{description} ||'%'
-            </if>
-            <if test="service !=null and service != ''">
-                and service like '%'|| #{service} ||'%'
-            </if>
-        )
-        where rn between #{pageStart} and #{pageEnd}
+        select * from gambling.auth_role where 1=1
+        <if test="name !=null and name != ''">
+            and role_name like '%'|| #{name} ||'%'
+        </if>
+        <if test="description !=null and description != ''">
+             and description like '%'|| #{description} ||'%'
+        </if>
+        <if test="service !=null and service != ''">
+            and service like '%'|| #{service} ||'%'
+        </if>
+        order by create_time limit #{pageStart},#{pageEnd}
     </select>
 
 </mapper>

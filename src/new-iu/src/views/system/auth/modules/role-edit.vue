@@ -1,11 +1,11 @@
 <template>
   <el-dialog :title="textMap[type]" :visible.sync="visible">
     <el-form ref="dataForm" :rules="rules" :model="roleInfo" label-position="left" label-width="100px">
-      <el-form-item label="角色名称" prop="roleName">
-        <el-input v-model="roleInfo.roleName" :disabled="!rolenameEnable" placeholder="请输入角色名称" clearable />
+      <el-form-item label="角色ID" prop="roleId">
+        <el-input v-model="roleInfo.roleId" :disabled="!disabled" placeholder="请输入角色ID" clearable />
       </el-form-item>
-      <el-form-item label="角色描述" prop="description">
-        <el-input v-model="roleInfo.description" placeholder="请输入角色描述" clearable />
+      <el-form-item label="角色名称" prop="roleName">
+        <el-input v-model="roleInfo.roleName" placeholder="请输入角色名称" clearable />
       </el-form-item>
       <el-form-item label="所属服务" prop="service">
         <el-select v-model="roleInfo.service" placeholder="请选择所属服务" style="width: 100%" clearable>
@@ -33,12 +33,12 @@
                 type: '',
                 title: '',
                 visible: false,
-                rolenameEnable: true,
+                disabled: true,
                 roleInfo: {
                     roleName: '',
                     description: '',
                     service: '',
-                    authPermList: {}
+                    permList: {}
                 },
                 serviceType,
                 textMap: {
@@ -46,20 +46,20 @@
                     ADD: '新建角色'
                 },
                 rules: {
-                    roleName: [{ required: true, message: '请输入角色名称', trigger: 'change' }],
-                    description: [{ required: true, message: '请输入角色描述', trigger: 'change' }],
+                    roleId: [{ required: true, message: '请输入角色名称', trigger: 'change' }],
+                    roleName: [{ required: true, message: '请输入角色描述', trigger: 'change' }],
                     service: [{ required: true, message: '请选择所属服务', trigger: 'change' }]
                 }
             }
         },
         methods: {
             clear() {
-                this.rolenameEnable = true
+                this.disabled = true
                 this.roleInfo = {
                     roleName: '',
                     description: '',
                     service: '',
-                    authPermList: {}
+                    permList: {}
                 }
                 this.$nextTick(() => {
                     this.$refs.dataForm && this.$refs.dataForm.clearValidate()
@@ -74,7 +74,7 @@
                 this.clear()
                 this.type = 'UPDATE'
                 this.visible = true
-                this.rolenameEnable = false
+                this.disabled = false
                 this.roleInfo = Object.assign({}, row)
             },
             handlerProcess(){
