@@ -21,6 +21,16 @@
           {{ env }}
         </el-tag>  
       </div>
+      <div v-if="(env||'')!=''" class="right-menu-item">
+        <el-tag style="display: block;margin-top: 12px;" effect="dark">
+          {{ env }}
+        </el-tag>  
+      </div>
+      <div v-if="(env||'')!=''" class="right-menu-item">
+        <el-tag style="display: block;margin-top: 12px;" effect="dark">
+          {{ env }}
+        </el-tag>  
+      </div>
       <template v-if="device!=='mobile'">
         <error-log class="errLog-container right-menu-item hover-effect" />
         <screenfull id="screenfull" class="right-menu-item hover-effect" />

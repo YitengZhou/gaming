@@ -18,6 +18,10 @@ public class UserInfoModel {
 
     private String introduction;
 
+    private Double money;
+
+    private Double profit;
+
     private String[] permissions;
 
 }

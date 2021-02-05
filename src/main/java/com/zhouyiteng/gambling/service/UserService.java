@@ -47,6 +47,16 @@ public class UserService {
     private UserRoleMapper userRoleMapper;
 
     /**
+     * 获取用户金额
+     */
+    public Double getMoney(String userId){
+        if (userMapper.exist(userId) <= 0) {
+            throw new IllegalArgumentException("数据库中没有该用户");
+        }
+        return userMapper.getMoney(userId);
+    }
+
+    /**
      * 添加用户
      * @param model
      * @return

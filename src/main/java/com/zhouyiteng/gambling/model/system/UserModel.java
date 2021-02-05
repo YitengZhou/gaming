@@ -46,6 +46,11 @@ public class UserModel extends BaseEntity {
     public String remark;
 
     /**
+     * 金额
+     */
+    private String money;
+
+    /**
      * 返回加盐后的密码
      * @return
      */

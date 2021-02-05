@@ -21,6 +21,11 @@ import java.util.List;
 public interface UserMapper {
 
     /**
+     * 获取金额
+     */
+    double getMoney(@Param("userId") String userId);
+
+    /**
      * 是否存在对应Id的用户
      * @param userId
      * @return

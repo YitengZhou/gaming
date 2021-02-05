@@ -5,6 +5,7 @@ import { getToken, setToken, removeToken, getUserId, setUserId, removeUserId } f
 const state = {
   token: getToken(),
   userId: getUserId(),
+  money: 0,
   name: '',
   avatar: '',
   introduction: '',
@@ -21,6 +22,12 @@ const mutations = {
   },
   SET_NAME: (state, name) => {
     state.name = name
+  },
+  SET_MONEY: (state, money) => {
+    state.money = money
+  },
+  SET_PROFIT: (state, profit) => {
+    state.profit = profit
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
@@ -63,12 +70,14 @@ const actions = {
         if (!response) {
           reject('登录失败，请重试')
         }
-        let { name, avatar, introduction, permissions } = response
+        let { name, avatar, money, profit, introduction, permissions } = response
         // roles must be a non-empty array
         if (!permissions || permissions.length <= 0) {
           permissions = ['NONE']
         }
         commit('SET_NAME', name)
+        commit('SET_MONEY', money)
+        commit('SET_PROFIT', profit)
         commit('SET_AVATAR', avatar)
         commit('SET_PERMISSIONS', permissions)
         commit('SET_INTRODUCTION', introduction)

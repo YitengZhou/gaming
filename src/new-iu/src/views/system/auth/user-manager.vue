@@ -68,6 +68,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="loginFail" label="连续登录失败次数" />
+      <el-table-column prop="money" label="金额" />
       <el-table-column label="操作" align="center" width="300" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-popover

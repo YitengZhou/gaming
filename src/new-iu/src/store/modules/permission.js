@@ -1,5 +1,5 @@
 import adminConfig from '@/router/modules/adminConfig'
-// import gatewayConfig from '@/router/modules/gatewayConfig'
+import gamblingConfig from '@/router/modules/gamblingConfig'
 // import service1Config from '@/router/modules/choiceConfig'
 
 /**
@@ -103,7 +103,7 @@ const actions = {
     return new Promise(resolve => {
       const routesObject = { allRoutes: [], routesDic: {} }
       setAllRoutesAndDic(routesObject, permissions, adminConfig)
-      // setAllRoutesAndDic(routesObject, permissions, gatewayConfig)
+      setAllRoutesAndDic(routesObject, permissions, gamblingConfig)
       // setAllRoutesAndDic(routesObject, permissions, service1Config)
       commit('SET_ROUTESDIC', { allRoutes: routesObject.allRoutes, routesDic: routesObject.routesDic })
       resolve(routesObject.allRoutes)
