@@ -105,10 +105,12 @@ public class UserController extends BaseController {
     @GetMapping("user-info")
     public UserInfoModel getUserInfo(@LoginToken String token, @LoginUserId String userId){
         UserInfoModel ret = new UserInfoModel();
+        UserModel user = userService.getUserByUserId(userId);
         ret.setName(redisService.getUsername(token));
         ret.setAvatar("https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
         ret.setPermissions(redisService.getPermission(token));
-        ret.setMoney(userService.getMoney(userId));
+        ret.setMoney(user.getMoney());
+        ret.setProfit(user.getProfit());
         return ret;
     }
 

@@ -22,11 +22,11 @@
 
     <insert id="addUser" parameterType="com.zhouyiteng.gambling.model.system.UserModel">
         insert into gambling.auth_user
-        (user_id, user_name, password, status, login_fail, create_time, update_time, money)
+        (user_id, user_name, password, status, login_fail, create_time, update_time, money, profit)
         values
         (#{model.userId,jdbcType=NVARCHAR},
          #{model.userName,jdbcType=NVARCHAR}, #{model.password,jdbcType=NVARCHAR},
-         '1', '0', now(), now(), 0)
+         '1', '0', now(), now(), 0, 0)
     </insert>
 
     <update id="updateUser" parameterType="com.zhouyiteng.gambling.model.system.UserModel">
@@ -90,13 +90,13 @@
     </select>
 
     <select id="getUserByUserId" resultType="com.zhouyiteng.gambling.model.system.UserModel">
-        select eid, create_time, update_time, user_id, user_name, password, status, login_fail, money
+        select eid, create_time, update_time, user_id, user_name, password, status, login_fail, money, profit
         from gambling.auth_user
         where user_id = #{userId}
     </select>
 
     <select id="getPageList" resultMap="authUserRoleModel">
-        select eid, create_time, update_time, user_id, user_name, status, login_fail, money
+        select eid, create_time, update_time, user_id, user_name, status, login_fail, money, profit
         from gambling.auth_user where 1=1
         <if test="userId != null and userId!=''">
             AND user_id like concat('%', #{userId}, '%')
@@ -110,7 +110,7 @@
     <select id="getUserSuggest" resultType="com.zhouyiteng.gambling.model.system.UserModel">
         select * from (
             select A.*, rownum AS rn from (
-                select eid, create_time, update_time, user_id, user_name, status, login_fail
+                select eid, create_time, update_time, user_id, user_name, status, login_fail, profit
                 from gambling.auth_user where 1=1
                 <if test="value != null and value!=''">
                     AND (USER_ID like concat('%', #{ value }, '%') or USER_NAME like concat('%', #{ value }, '%')

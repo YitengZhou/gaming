@@ -56,6 +56,13 @@ public class UserService {
         return userMapper.getMoney(userId);
     }
 
+    public UserModel getUserByUserId(String userId){
+        if (userMapper.exist(userId) <= 0) {
+            throw new IllegalArgumentException("数据库中没有该用户");
+        }
+        return userMapper.getUserByUserId(userId);
+    }
+
     /**
      * 添加用户
      * @param model

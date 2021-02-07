@@ -5,7 +5,8 @@ import { getToken, setToken, removeToken, getUserId, setUserId, removeUserId } f
 const state = {
   token: getToken(),
   userId: getUserId(),
-  money: 0,
+  money: 0.00,
+  profit: 0.00,
   name: '',
   avatar: '',
   introduction: '',

@@ -21,14 +21,14 @@
           {{ env }}
         </el-tag>  
       </div>
-      <div v-if="(env||'')!=''" class="right-menu-item">
-        <el-tag style="display: block;margin-top: 12px;" effect="dark">
-          {{ env }}
+      <div class="right-menu-item">
+        <el-tag style="display: block;margin-top: 12px;" effect="light">
+          {{ money.toFixed(2) }}
         </el-tag>  
       </div>
-      <div v-if="(env||'')!=''" class="right-menu-item">
-        <el-tag style="display: block;margin-top: 12px;" effect="dark">
-          {{ env }}
+      <div class="right-menu-item">
+        <el-tag style="display: block;margin-top: 12px;" effect="light">
+          {{ profit.toFixed(2) }}
         </el-tag>  
       </div>
       <template v-if="device!=='mobile'">
@@ -83,6 +83,8 @@
         'name',
         'sidebar',
         'avatar',
+        'money',
+        'profit',
         'device',
         'routesDic',
         'currentRoutes'

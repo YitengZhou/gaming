@@ -48,7 +48,12 @@ public class UserModel extends BaseEntity {
     /**
      * 金额
      */
-    private String money;
+    private Double money;
+
+    /**
+     * 盈利
+     */
+    private Double profit;
 
     /**
      * 返回加盐后的密码
