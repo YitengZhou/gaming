@@ -1,4 +1,4 @@
-package com.zhouyiteng.gambling.service;
+package com.zhouyiteng.gambling.service.system;
 
 import com.zhouyiteng.gambling.dao.system.RoleMapper;
 import com.zhouyiteng.gambling.dao.system.RolePermMapper;

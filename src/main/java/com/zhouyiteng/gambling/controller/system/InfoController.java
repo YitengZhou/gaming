@@ -1,7 +1,7 @@
 package com.zhouyiteng.gambling.controller.system;
 
 import com.zhouyiteng.gambling.controller.BaseController;
-import com.zhouyiteng.gambling.service.InfoService;
+import com.zhouyiteng.gambling.service.system.InfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

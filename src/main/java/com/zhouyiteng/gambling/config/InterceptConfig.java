@@ -1,6 +1,6 @@
 package com.zhouyiteng.gambling.config;
 
-import com.zhouyiteng.gambling.service.RedisService;
+import com.zhouyiteng.gambling.service.system.RedisService;
 import com.zhouyiteng.gambling.authorize.AuthorizeInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

@@ -5,7 +5,7 @@ import com.zhouyiteng.gambling.controller.BaseController;
 import com.zhouyiteng.gambling.model.system.RoleModel;
 import com.zhouyiteng.gambling.model.system.RolePermModel;
 import com.zhouyiteng.gambling.model.web.PageDataModel;
-import com.zhouyiteng.gambling.service.RoleService;
+import com.zhouyiteng.gambling.service.system.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

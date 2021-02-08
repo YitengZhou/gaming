@@ -1,4 +1,4 @@
-package com.zhouyiteng.gambling.service;
+package com.zhouyiteng.gambling.service.system;
 
 import com.zhouyiteng.gambling.helper.ImageCodeHelper;
 import lombok.extern.slf4j.Slf4j;

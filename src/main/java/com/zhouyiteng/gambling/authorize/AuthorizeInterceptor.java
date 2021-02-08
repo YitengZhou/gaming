@@ -1,7 +1,7 @@
 package com.zhouyiteng.gambling.authorize;
 
 import com.zhouyiteng.gambling.helper.RequestHelper;
-import com.zhouyiteng.gambling.service.RedisService;
+import com.zhouyiteng.gambling.service.system.RedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.AnnotationUtils;
