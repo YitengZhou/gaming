@@ -20,10 +20,9 @@ public interface FastCarMapper {
 
     /**
      * 创建比赛
-     * @param model
      * @return
      */
-    boolean createNewRace(@Param("model") FastCarModel model);
+    boolean createNewRace();
 
     /**
      * 满足条件数量

@@ -1,6 +1,7 @@
 import { resetRouter } from '@/router'
 import { login, logout, userInfo } from '@/api/system/system'
 import { getToken, setToken, removeToken, getUserId, setUserId, removeUserId } from '@/utils/auth'
+import Vue from 'vue'
 
 const state = {
   token: getToken(),
@@ -25,10 +26,10 @@ const mutations = {
     state.name = name
   },
   SET_MONEY: (state, money) => {
-    state.money = money
+    Vue.set(state, 'money', money)
   },
   SET_PROFIT: (state, profit) => {
-    state.profit = profit
+    Vue.set(state, 'profit', profit)
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar

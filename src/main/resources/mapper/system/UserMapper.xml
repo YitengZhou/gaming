@@ -119,4 +119,12 @@
         ) where rn&lt;=#{count}
     </select>
 
+    <update id="updateMoneyByUserId">
+        update gambling.auth_user
+        set
+            update_time=now(),
+            money=#{money}
+        where user_id=#{userId}
+    </update>
+
 </mapper>

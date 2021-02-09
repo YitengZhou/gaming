@@ -9,20 +9,19 @@
     >
       <el-row>
         <el-col :xs="12" :sm="12" :lg="12">
-          <el-form-item label="比赛场次" prop="raceEid">
+          <el-form-item label="比赛场次" prop="raceId">
             <el-input
-              v-model="raceEid"
+              v-model="raceId"
               :disabled="true"
               placeholder="请输入比赛场次"
             />
           </el-form-item>
         </el-col>
         <el-col :xs="12" :sm="12" :lg="12">
-          <el-form-item label="投注总金额" label-width="100px" prop="money">
+          <el-form-item label="投注金额" prop="money">
             <el-input
-              v-model.number="dataInfo.money"
+              v-model="totalMoney"
               :disabled="true"
-              type="number"
               placeholder="请输入投注金额"
             />
           </el-form-item>
@@ -1227,26 +1226,42 @@ components: {},
 data() {
     return {
         visible: false,
-        raceEid: 0,
-        dataInfo: {
-            money: 0
-        },
+        raceId: 0,
+        money: 0,
+        dataInfo: {},
         activeName: 'bet-double',
-        rules: {
-            money: [{ required: true, trigger: 'blur', message: '请输入投注金额' }]
+        rules: {}
+    }
+},
+computed:{
+    totalMoney: function(){
+        let total = 0
+        for(const key in this.dataInfo){
+            if (this.dataInfo[key] && (this.dataInfo[key] !=='')){
+                total = total + parseFloat(this.dataInfo[key])
+            }
         }
+        return total
     }
 },
 methods: {
     bet(last) {
-        this.raceEid = parseInt(last.eid) + 1
+        this.raceId = parseInt(last.eid)
+        this.money = 0
         this.dataInfo = {}
-        this.dataInfo.money = 0
         this.visible = true
     },
     handlerProcess() {
-            this.visible = false
-            this.$emit('confirm', this.dataInfo)
+        this.$refs.dataForm.validate(valid => {
+            if(valid){
+                this.visible = false
+                this.dataInfo.totalMoney = this.totalMoney
+                this.dataInfo.raceId = this.raceId
+                this.$emit('confirm', this.dataInfo)
+            }else{
+                return false
+            }
+        })
         }
     }
 }

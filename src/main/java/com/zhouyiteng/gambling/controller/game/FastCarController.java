@@ -1,11 +1,13 @@
 package com.zhouyiteng.gambling.controller.game;
 
 import com.zhouyiteng.gambling.controller.BaseController;
+import com.zhouyiteng.gambling.model.game.BetRaceModel;
 import com.zhouyiteng.gambling.model.game.FastCarModel;
 import com.zhouyiteng.gambling.model.game.GenerateType;
 import com.zhouyiteng.gambling.model.web.PageDataModel;
 import com.zhouyiteng.gambling.service.game.FastCarService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,5 +43,22 @@ public class FastCarController extends BaseController {
     public PageDataModel<FastCarModel> getFastCarList(@RequestParam(required = false) Long pageSize,
                                                       @RequestParam(required = false) Long pageIndex){
         return fastCarService.getFastCarList(pageSize, pageIndex);
+    }
+
+    /**
+     * 添加投注
+     */
+    @PostMapping("addBetRace")
+    public Double addBetRace(@RequestBody BetRaceModel betRaceModel){
+        if (StringUtils.isEmpty(betRaceModel.getRaceId())){
+            throw new IllegalArgumentException("比赛场次标识不能为空");
+        }
+        if (StringUtils.isEmpty(betRaceModel.getUserId())){
+            throw new IllegalArgumentException("比赛场次标识不能为空");
+        }
+        if (betRaceModel.getTotalMoney()<0){
+            throw new IllegalArgumentException("投注金额不能为负");
+        }
+        return fastCarService.addBetRace(betRaceModel);
     }
 }

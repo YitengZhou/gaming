@@ -8,7 +8,8 @@ import request from '@/utils/request'
  */
 const api = {
     testCreate: '/game/fastcar/test-create',
-    getFastCarList: '/game/fastcar/get-fastcar-list'
+    getFastCarList: '/game/fastcar/get-fastcar-list',
+    betRace: '/game/fastcar/addBetRace'
   }
 
 /**
@@ -30,5 +31,17 @@ export function getFastCarList(parameter) {
       url: api.getFastCarList,
       method: 'get',
       params: parameter
+  })
+}
+
+/**
+ * 添加竞猜
+ * @param {*} parameter 
+ */
+export function betRace(parameter) {
+  return request({
+    url: api.betRace,
+    method: 'post',
+    data: parameter
   })
 }

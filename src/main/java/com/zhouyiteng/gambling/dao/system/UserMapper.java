@@ -124,4 +124,11 @@ public interface UserMapper {
      * @return
      */
     List<UserModel> getUserSuggest(@Param("value") String value, @Param("count") int count);
+
+    /**
+     * 更新价格
+     * @param money
+     * @return
+     */
+    long updateMoneyByUserId(@Param("userId") String userId, @Param("money") Double money);
 }

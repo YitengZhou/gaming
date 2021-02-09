@@ -98,10 +98,11 @@
 </style>
 
 <script>
+    import { mapGetters } from 'vuex'
     import Pagination from '@/components/Pagination'
     import EditForm from './modules/fastcar-edit'
-    import { testCreate, getFastCarList } from '@/api/game/fastcar'
     import { getFastCarColor } from '@/constant/game/fastcar'
+    import { testCreate, getFastCarList, betRace } from '@/api/game/fastcar'
 
     export default {
         components: {
@@ -129,6 +130,12 @@
                     dataList: []
                 }
             }
+        },
+        computed:{
+            ...mapGetters([
+                'userId',
+                'money'
+            ])
         },
         mounted() {
             this.search()
@@ -178,6 +185,34 @@
                         this.cardLoadingText = ''
                     })
                 }
+            },
+            handlerEditConfirm(dataInfo){
+                // if (dataInfo.totalMoney > this.money || dataInfo.totalMoney < 0){
+                //       this.$notify({
+                //         type: 'warning',
+                //         duration: 5000,
+                //         title: '提示信息',
+                //         message: '投注金额大于账户余额,请重新投注'
+                //     })
+                //     return
+                // }
+                dataInfo.userId = this.userId
+                this.cardLoading = true
+                this.cardLoadingText = '正在提交，请稍候'
+                betRace(dataInfo).then(res => {
+                    this.$store.commit('user/SET_MONEY', res)
+                    this.$notify({
+                        type: 'success',
+                        duration: 5000,
+                        title: '提示信息',
+                        message: '投注成功,请关注开奖结果'
+                    })
+                })
+                .finally(() => {
+                    this.cardLoading = false
+                    this.cardLoadingText = ''
+                    this.search()
+                })
             }
         }
     }

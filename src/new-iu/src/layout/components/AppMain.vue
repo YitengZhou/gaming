@@ -7,7 +7,7 @@
     </transition>
     <div class="footer">
       <div class="copyright">
-        Copyright &copy; 2021 东方财富证券
+        Copyright &copy; 2021 Eden养生平台
       </div>
     </div>
   </div>
