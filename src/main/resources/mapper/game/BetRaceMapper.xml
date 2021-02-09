@@ -5,8 +5,22 @@
 <mapper namespace="com.zhouyiteng.gambling.dao.game.BetRaceMapper">
     <insert id="addBetRace">
         insert into gambling.bet_race
-        (create_time, race_id, user_id, total_money, sum3)
+        (create_time, race_id, user_id, total_money, status,
+         sum3, sum4, sum5, sum6, sum7, sum8, sum9, sum10, sum11, sum12, sum13, sum14, sum15, sum16, sum17, sum18, sum19)
         values
-        (now(), #{model.raceId}, #{model.userId}, #{model.totalMoney}, #{model.sum3})
+        (now(), #{model.raceId}, #{model.userId}, #{model.totalMoney}, #{model.status},
+         #{model.sum3}, #{model.sum4}, #{model.sum5}, #{model.sum6}, #{model.sum7}, #{model.sum8}, #{model.sum9},
+         #{model.sum10}, #{model.sum11}, #{model.sum12}, #{model.sum13}, #{model.sum14}, #{model.sum15}, #{model.sum16},
+         #{model.sum17}, #{model.sum18}, #{model.sum19})
     </insert>
+
+    <update id="updateBetRace">
+        UPDATE gambling.bet_race SET update_time=now(), profit=#{model.profit}, status=#{model.status}
+        where eid = #{model.eid}
+    </update>
+
+    <select id="getTotalRaceBet" resultType="com.zhouyiteng.gambling.model.game.BetRaceModel">
+        select * from gambling.bet_race
+        where race_id = #{raceId}
+    </select>
 </mapper>

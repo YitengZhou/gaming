@@ -7,7 +7,7 @@ import request from '@/utils/request'
  * 接口地址定义
  */
 const api = {
-    testCreate: '/game/fastcar/test-create',
+    raceDoneManual: '/game/fastcar/race-done-manual',
     getFastCarList: '/game/fastcar/get-fastcar-list',
     betRace: '/game/fastcar/addBetRace'
   }
@@ -15,9 +15,9 @@ const api = {
 /**
  * 急速赛车手动生成
  */
-export function testCreate() {
+export function raceDoneManual() {
     return request({
-      url: api.testCreate,
+      url: api.raceDoneManual,
       method: 'post'
     })
 }

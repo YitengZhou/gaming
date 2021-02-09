@@ -102,7 +102,7 @@
     import Pagination from '@/components/Pagination'
     import EditForm from './modules/fastcar-edit'
     import { getFastCarColor } from '@/constant/game/fastcar'
-    import { testCreate, getFastCarList, betRace } from '@/api/game/fastcar'
+    import { raceDoneManual, getFastCarList, betRace } from '@/api/game/fastcar'
 
     export default {
         components: {
@@ -167,11 +167,13 @@
                 })
             },
             handleSubmit () {
-                const promise = testCreate()
+                const promise = raceDoneManual()
                 if (promise) {
                     this.cardLoading = true
                     this.cardLoadingText = '正在提交，请稍候'
                     promise.then(res => {
+                        this.$store.commit('user/SET_MONEY', res.money)
+                        this.$store.commit('user/SET_PROFIT', res.profit)
                         this.search()
                         this.$notify({
                           title: 'Success',
@@ -187,20 +189,21 @@
                 }
             },
             handlerEditConfirm(dataInfo){
-                // if (dataInfo.totalMoney > this.money || dataInfo.totalMoney < 0){
-                //       this.$notify({
-                //         type: 'warning',
-                //         duration: 5000,
-                //         title: '提示信息',
-                //         message: '投注金额大于账户余额,请重新投注'
-                //     })
-                //     return
-                // }
+                if (dataInfo.totalMoney > this.money || dataInfo.totalMoney < 0){
+                      this.$notify({
+                        type: 'warning',
+                        duration: 5000,
+                        title: '提示信息',
+                        message: '投注金额大于账户余额,请重新投注'
+                    })
+                    return
+                }
                 dataInfo.userId = this.userId
                 this.cardLoading = true
                 this.cardLoadingText = '正在提交，请稍候'
                 betRace(dataInfo).then(res => {
-                    this.$store.commit('user/SET_MONEY', res)
+                    this.$store.commit('user/SET_MONEY', res.money)
+                    this.$store.commit('user/SET_PROFIT', res.profit)
                     this.$notify({
                         type: 'success',
                         duration: 5000,

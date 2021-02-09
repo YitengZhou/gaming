@@ -1,11 +1,18 @@
 package com.zhouyiteng.gambling.controller.game;
 
+import com.zhouyiteng.gambling.authorize.LoginToken;
+import com.zhouyiteng.gambling.authorize.LoginUserId;
+import com.zhouyiteng.gambling.authorize.RequireLogin;
 import com.zhouyiteng.gambling.controller.BaseController;
 import com.zhouyiteng.gambling.model.game.BetRaceModel;
 import com.zhouyiteng.gambling.model.game.FastCarModel;
 import com.zhouyiteng.gambling.model.game.GenerateType;
+import com.zhouyiteng.gambling.model.system.UserModel;
 import com.zhouyiteng.gambling.model.web.PageDataModel;
+import com.zhouyiteng.gambling.model.web.RaceResult;
+import com.zhouyiteng.gambling.model.web.UserInfoModel;
 import com.zhouyiteng.gambling.service.game.FastCarService;
+import com.zhouyiteng.gambling.service.system.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +33,19 @@ public class FastCarController extends BaseController {
     @Autowired
     FastCarService fastCarService;
 
+    @Autowired
+    UserService userService;
+
     /**
      * 手动添加随机生成的结果
      * @return
      */
-    @PostMapping("/test-create")
-    public boolean testCreate(){
-        return fastCarService.createNewRace(GenerateType.MANUAL);
+    @RequireLogin
+    @PostMapping("/race-done-manual")
+    public RaceResult raceDone(@LoginUserId String userId){
+        fastCarService.raceDone(GenerateType.MANUAL);
+        UserModel user = userService.getUserByUserId(userId);
+        return new RaceResult(user.getMoney(), user.getProfit());
     }
 
     /**
@@ -48,8 +61,9 @@ public class FastCarController extends BaseController {
     /**
      * 添加投注
      */
+    @RequireLogin
     @PostMapping("addBetRace")
-    public Double addBetRace(@RequestBody BetRaceModel betRaceModel){
+    public RaceResult addBetRace(@LoginUserId String userId, @RequestBody BetRaceModel betRaceModel){
         if (StringUtils.isEmpty(betRaceModel.getRaceId())){
             throw new IllegalArgumentException("比赛场次标识不能为空");
         }
@@ -59,6 +73,8 @@ public class FastCarController extends BaseController {
         if (betRaceModel.getTotalMoney()<0){
             throw new IllegalArgumentException("投注金额不能为负");
         }
-        return fastCarService.addBetRace(betRaceModel);
+        fastCarService.addBetRace(betRaceModel);
+        UserModel user = userService.getUserByUserId(userId);
+        return new RaceResult(user.getMoney(), user.getProfit());
     }
 }

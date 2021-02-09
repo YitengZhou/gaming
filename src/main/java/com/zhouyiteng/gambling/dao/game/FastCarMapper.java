@@ -25,6 +25,16 @@ public interface FastCarMapper {
     boolean createNewRace();
 
     /**
+     * 获得最新的比赛
+     */
+    FastCarModel getLastRace();
+
+    /**
+     * 更新比赛
+     */
+    long updateLastRace(@Param("model") FastCarModel model);
+
+    /**
      * 满足条件数量
      */
     long getTotalCount();

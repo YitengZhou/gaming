@@ -130,5 +130,11 @@ public interface UserMapper {
      * @param money
      * @return
      */
-    long updateMoneyByUserId(@Param("userId") String userId, @Param("money") Double money);
+    long updateMoneyByUserId(@Param("userId") String userId, @Param("money") Double money,
+                             @Param("profit") Double profit);
+
+    /**
+     * 更新利润
+     */
+    long updateProfitMoneyByUserId(@Param("userId") String userId, @Param("profit") Double profit);
 }

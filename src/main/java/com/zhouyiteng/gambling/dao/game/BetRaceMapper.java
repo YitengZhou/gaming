@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * 竞猜投注表
  *
@@ -21,4 +23,18 @@ public interface BetRaceMapper {
      * @return
      */
     long addBetRace(@Param("model") BetRaceModel model);
+
+    /**
+     * 更新竞猜结果
+     * @param model
+     * @return
+     */
+    long updateBetRace(@Param("model") BetRaceModel model);
+
+    /**
+     * 根据比赛Id获得所有投注
+     * @param raceId
+     * @return
+     */
+    List<BetRaceModel> getTotalRaceBet(@Param("raceId") String raceId);
 }

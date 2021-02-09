@@ -1,30 +1,31 @@
 package com.zhouyiteng.gambling.model.game;
 
 /**
- * 模型生成种类
+ * 状态种类
  *
  * @author zhouyiteng@gambling.com
  *
- * Created by zhouyiteng on 2021/2/7.
+ * Created by zhouyiteng on 2021/2/9.
  */
-public enum GenerateType {
+public enum StatusType {
     /**
-     * 自动生成
+     * 等待开奖
      */
-    AUTO("自动生成"),
+    WAIT("等待比赛"),
 
     /**
-     * 手动生成
+     * 等待开奖
      */
-    MANUAL("手动生成");
+    DONE("比赛完成");
 
     private String name;
 
-    GenerateType(String name){
+    StatusType(String name){
         this.name = name;
     }
 
     public String getName(){
         return name;
     }
+
 }

@@ -123,8 +123,17 @@
         update gambling.auth_user
         set
             update_time=now(),
-            money=#{money}
+            money=#{money},
+            profit=#{profit}
         where user_id=#{userId}
     </update>
 
+    <update id="updateProfitMoneyByUserId">
+        update gambling.auth_user
+        set
+            update_time=now(),
+            money= money + #{profit},
+            profit= profit + #{profit}
+        where user_id=#{userId}
+    </update>
 </mapper>

@@ -6,6 +6,7 @@ import com.zhouyiteng.gambling.dao.system.UserMapper;
 import com.zhouyiteng.gambling.dao.system.UserRoleMapper;
 import com.zhouyiteng.gambling.model.system.*;
 import com.zhouyiteng.gambling.model.web.PageDataModel;
+import com.zhouyiteng.gambling.model.web.UserInfoModel;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -170,6 +171,20 @@ public class UserService {
             UserModel UserModel = userMapper.getUserByUserId(model.getUserId());
             return redisService.savePermission(model.getUserId(), UserModel.getUserName(), permissionSet, expirySeconds);
         }
+    }
+
+    /**
+     * 用户信息查询接口
+     */
+    public UserInfoModel getUserInfo(String token, String userId){
+        UserInfoModel ret = new UserInfoModel();
+        UserModel user = userMapper.getUserByUserId(userId);
+        ret.setName(redisService.getUsername(token));
+        ret.setAvatar("https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+        ret.setPermissions(redisService.getPermission(token));
+        ret.setMoney(user.getMoney());
+        ret.setProfit(user.getProfit());
+        return ret;
     }
 
     /**

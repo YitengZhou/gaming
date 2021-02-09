@@ -8,15 +8,17 @@
         values (now())
     </insert>
 
-<!--    <update id="updateLastRace">-->
-<!--        insert into gambling.fast_car-->
-<!--        (first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, generate_type, remark,-->
-<!--         create_time, update_time)-->
-<!--        values-->
-<!--        (#{model.first}, #{model.second}, #{model.third}, #{model.fourth}, #{model.fifth}, #{model.sixth},-->
-<!--         #{model.seventh}, #{model.eighth}, #{model.ninth}, #{model.tenth}, #{model.generateType}, #{model.remark},-->
-<!--         now(), now())-->
-<!--    </update>-->
+    <select id="getLastRace" resultType="com.zhouyiteng.gambling.model.game.FastCarModel">
+        select * from gambling.fast_car order by create_time desc limit 1
+    </select>
+
+    <update id="updateLastRace">
+        update gambling.fast_car set
+        first=#{model.first}, second=#{model.second}, third=#{model.third}, fourth=#{model.fourth}, fifth=#{model.fifth},
+        sixth=#{model.sixth}, seventh=#{model.seventh}, eighth=#{model.eighth}, ninth=#{model.ninth}, tenth=#{model.tenth},
+        generate_type=#{model.generateType}, remark=#{model.remark},update_time=now()
+        where eid = #{model.eid}
+    </update>
 
     <select id="getTotalCount" resultType="java.lang.Long">
         select count(1) from gambling.fast_car where 1=1

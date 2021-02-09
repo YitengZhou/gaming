@@ -17,23 +17,22 @@ import java.util.List;
 @Data
 public class FastCarModel extends BaseEntity {
 
-    private String first;
-    private String second;
-    private String third;
-    private String fourth;
-    private String fifth;
-    private String sixth;
-    private String seventh;
-    private String eighth;
-    private String ninth;
-    private String tenth;
+    private Integer first;
+    private Integer second;
+    private Integer third;
+    private Integer fourth;
+    private Integer fifth;
+    private Integer sixth;
+    private Integer seventh;
+    private Integer eighth;
+    private Integer ninth;
+    private Integer tenth;
     private GenerateType generateType;
     private String remark;
 
-    public static FastCarModel getRandomRace(GenerateType generateType){
-        List<String> cars = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+    public static FastCarModel getRandomRace(FastCarModel ret, GenerateType generateType){
+        List<Integer> cars = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         Collections.shuffle(cars);
-        FastCarModel ret = new FastCarModel();
         ret.setFirst(cars.get(0));
         ret.setSecond(cars.get(1));
         ret.setThird(cars.get(2));
