@@ -6,12 +6,53 @@
     <insert id="addBetRace">
         insert into gambling.bet_race
         (create_time, race_id, user_id, total_money, status,
-         sum3, sum4, sum5, sum6, sum7, sum8, sum9, sum10, sum11, sum12, sum13, sum14, sum15, sum16, sum17, sum18, sum19)
+         sum3, sum4, sum5, sum6, sum7, sum8, sum9, sum10, sum11, sum12, sum13, sum14, sum15, sum16, sum17, sum18, sum19,
+         first_first, first_second, first_third, first_fourth, first_fifth, first_sixth, first_seventh, first_eighth, first_ninth, first_tenth,
+         second_first, second_second, second_third, second_fourth, second_fifth, second_sixth, second_seventh, second_eighth, second_ninth, second_tenth,
+         third_first, third_second, third_third, third_fourth, third_fifth, third_sixth, third_seventh, third_eighth, third_ninth, third_tenth,
+         fourth_first, fourth_second, fourth_third, fourth_fourth, fourth_fifth, fourth_sixth, fourth_seventh, fourth_eighth, fourth_ninth, fourth_tenth,
+         fifth_first, fifth_second, fifth_third, fifth_fourth, fifth_fifth, fifth_sixth, fifth_seventh, fifth_eighth, fifth_ninth, fifth_tenth,
+         sixth_first, sixth_second, sixth_third, sixth_fourth, sixth_fifth, sixth_sixth, sixth_seventh, sixth_eighth, sixth_ninth, sixth_tenth,
+         seventh_first, seventh_second, seventh_third, seventh_fourth, seventh_fifth, seventh_sixth, seventh_seventh, seventh_eighth, seventh_ninth, seventh_tenth,
+         eighth_first, eighth_second, eighth_third, eighth_fourth, eighth_fifth, eighth_sixth, eighth_seventh, eighth_eighth, eighth_ninth, eighth_tenth,
+         ninth_first, ninth_second, ninth_third, ninth_fourth, ninth_fifth, ninth_sixth, ninth_seventh, ninth_eighth, ninth_ninth, ninth_tenth,
+         tenth_first, tenth_second, tenth_third, tenth_fourth, tenth_fifth, tenth_sixth, tenth_seventh, tenth_eighth, tenth_ninth, tenth_tenth
+         )
         values
         (now(), #{model.raceId}, #{model.userId}, #{model.totalMoney}, #{model.status},
          #{model.sum3}, #{model.sum4}, #{model.sum5}, #{model.sum6}, #{model.sum7}, #{model.sum8}, #{model.sum9},
          #{model.sum10}, #{model.sum11}, #{model.sum12}, #{model.sum13}, #{model.sum14}, #{model.sum15}, #{model.sum16},
-         #{model.sum17}, #{model.sum18}, #{model.sum19})
+         #{model.sum17}, #{model.sum18}, #{model.sum19},
+         #{model.firstFirst}, #{model.firstSecond}, #{model.firstThird}, #{model.firstFourth}, #{model.firstFifth},
+         #{model.firstSixth}, #{model.firstSeventh}, #{model.firstEighth}, #{model.firstNinth}, #{model.firstTenth},
+
+         #{model.secondFirst}, #{model.secondSecond}, #{model.secondThird}, #{model.secondFourth}, #{model.secondFifth},
+         #{model.secondSixth}, #{model.secondSeventh}, #{model.secondEighth}, #{model.secondNinth}, #{model.secondTenth},
+
+         #{model.thirdFirst}, #{model.thirdSecond}, #{model.thirdThird}, #{model.thirdFourth}, #{model.thirdFifth},
+         #{model.thirdSixth}, #{model.thirdSeventh}, #{model.thirdEighth}, #{model.thirdNinth}, #{model.thirdTenth},
+
+         #{model.fourthFirst}, #{model.fourthSecond}, #{model.fourthThird}, #{model.fourthFourth}, #{model.fourthFifth},
+         #{model.fourthSixth}, #{model.fourthSeventh}, #{model.fourthEighth}, #{model.fourthNinth}, #{model.fourthTenth},
+
+         #{model.fifthFirst}, #{model.fifthSecond}, #{model.fifthThird}, #{model.fifthFourth}, #{model.fifthFifth},
+         #{model.fifthSixth}, #{model.fifthSeventh}, #{model.fifthEighth}, #{model.fifthNinth}, #{model.fifthTenth},
+
+         #{model.sixthFirst}, #{model.sixthSecond}, #{model.sixthThird}, #{model.sixthFourth}, #{model.sixthFifth},
+         #{model.sixthSixth}, #{model.sixthSeventh}, #{model.sixthEighth}, #{model.sixthNinth}, #{model.sixthTenth},
+
+         #{model.seventhFirst}, #{model.seventhSecond}, #{model.seventhThird}, #{model.seventhFourth}, #{model.seventhFifth},
+         #{model.seventhSixth}, #{model.seventhSeventh}, #{model.seventhEighth}, #{model.seventhNinth}, #{model.seventhTenth},
+
+         #{model.eighthFirst}, #{model.eighthSecond}, #{model.eighthThird}, #{model.eighthFourth}, #{model.eighthFifth},
+         #{model.eighthSixth}, #{model.eighthSeventh}, #{model.eighthEighth}, #{model.eighthNinth}, #{model.eighthTenth},
+
+         #{model.ninthFirst}, #{model.ninthSecond}, #{model.ninthThird}, #{model.ninthFourth}, #{model.ninthFifth},
+         #{model.ninthSixth}, #{model.ninthSeventh}, #{model.ninthEighth}, #{model.ninthNinth}, #{model.ninthTenth},
+
+         #{model.tenthFirst}, #{model.tenthSecond}, #{model.tenthThird}, #{model.tenthFourth}, #{model.tenthFifth},
+         #{model.tenthSixth}, #{model.tenthSeventh}, #{model.tenthEighth}, #{model.tenthNinth}, #{model.tenthTenth}
+         )
     </insert>
 
     <update id="updateBetRace">

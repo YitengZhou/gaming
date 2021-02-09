@@ -31,3 +31,113 @@ CREATE TABLE `bet_race`  (
    CONSTRAINT `bet_race_id_FK` FOREIGN KEY (`race_id`) REFERENCES `fast_car` (`eid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
    CONSTRAINT `bet_race_user_id_FK` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+alter table `bet_race` add `first_first` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `first_second` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `first_third` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `first_fourth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `first_fifth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `first_sixth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `first_seventh` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `first_eighth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `first_ninth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `first_tenth` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `second_first` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `second_second` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `second_third` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `second_fourth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `second_fifth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `second_sixth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `second_seventh` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `second_eighth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `second_ninth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `second_tenth` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `third_first` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `third_second` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `third_third` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `third_fourth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `third_fifth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `third_sixth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `third_seventh` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `third_eighth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `third_ninth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `third_tenth` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `fourth_first` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fourth_second` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fourth_third` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fourth_fourth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fourth_fifth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fourth_sixth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fourth_seventh` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fourth_eighth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fourth_ninth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fourth_tenth` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `fifth_first` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fifth_second` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fifth_third` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fifth_fourth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fifth_fifth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fifth_sixth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fifth_seventh` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fifth_eighth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fifth_ninth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fifth_tenth` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `sixth_first` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `sixth_second` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `sixth_third` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `sixth_fourth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `sixth_fifth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `sixth_sixth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `sixth_seventh` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `sixth_eighth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `sixth_ninth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `sixth_tenth` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `seventh_first` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `seventh_second` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `seventh_third` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `seventh_fourth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `seventh_fifth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `seventh_sixth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `seventh_seventh` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `seventh_eighth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `seventh_ninth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `seventh_tenth` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `eighth_first` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `eighth_second` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `eighth_third` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `eighth_fourth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `eighth_fifth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `eighth_sixth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `eighth_seventh` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `eighth_eighth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `eighth_ninth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `eighth_tenth` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `ninth_first` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `ninth_second` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `ninth_third` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `ninth_fourth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `ninth_fifth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `ninth_sixth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `ninth_seventh` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `ninth_eighth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `ninth_ninth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `ninth_tenth` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `tenth_first` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `tenth_second` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `tenth_third` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `tenth_fourth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `tenth_fifth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `tenth_sixth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `tenth_seventh` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `tenth_eighth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `tenth_ninth` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `tenth_tenth` decimal(10, 2) NULL DEFAULT NULL;

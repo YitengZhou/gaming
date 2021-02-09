@@ -1,6 +1,5 @@
 package com.zhouyiteng.gambling.controller.game;
 
-import com.zhouyiteng.gambling.authorize.LoginToken;
 import com.zhouyiteng.gambling.authorize.LoginUserId;
 import com.zhouyiteng.gambling.authorize.RequireLogin;
 import com.zhouyiteng.gambling.controller.BaseController;
@@ -10,7 +9,6 @@ import com.zhouyiteng.gambling.model.game.GenerateType;
 import com.zhouyiteng.gambling.model.system.UserModel;
 import com.zhouyiteng.gambling.model.web.PageDataModel;
 import com.zhouyiteng.gambling.model.web.RaceResult;
-import com.zhouyiteng.gambling.model.web.UserInfoModel;
 import com.zhouyiteng.gambling.service.game.FastCarService;
 import com.zhouyiteng.gambling.service.system.UserService;
 import lombok.extern.slf4j.Slf4j;
