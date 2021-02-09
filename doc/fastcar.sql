@@ -141,3 +141,68 @@ alter table `bet_race` add `tenth_seventh` decimal(10, 2) NULL DEFAULT NULL;
 alter table `bet_race` add `tenth_eighth` decimal(10, 2) NULL DEFAULT NULL;
 alter table `bet_race` add `tenth_ninth` decimal(10, 2) NULL DEFAULT NULL;
 alter table `bet_race` add `tenth_tenth` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `first_big` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `first_small` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `first_odd` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `first_even` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `first_dragon` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `first_tiger` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `second_big` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `second_small` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `second_odd` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `second_even` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `second_dragon` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `second_tiger` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `third_big` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `third_small` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `third_odd` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `third_even` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `third_dragon` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `third_tiger` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `fourth_big` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fourth_small` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fourth_odd` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fourth_even` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fourth_dragon` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fourth_tiger` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `fifth_big` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fifth_small` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fifth_odd` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fifth_even` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fifth_dragon` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `fifth_tiger` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `sixth_big` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `sixth_small` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `sixth_odd` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `sixth_even` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `seventh_big` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `seventh_small` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `seventh_odd` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `seventh_even` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `eighth_big` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `eighth_small` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `eighth_odd` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `eighth_even` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `ninth_big` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `ninth_small` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `ninth_odd` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `ninth_even` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `tenth_big` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `tenth_small` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `tenth_odd` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `tenth_even` decimal(10, 2) NULL DEFAULT NULL;
+
+alter table `bet_race` add `top_big` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `top_small` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `top_odd` decimal(10, 2) NULL DEFAULT NULL;
+alter table `bet_race` add `top_even` decimal(10, 2) NULL DEFAULT NULL;

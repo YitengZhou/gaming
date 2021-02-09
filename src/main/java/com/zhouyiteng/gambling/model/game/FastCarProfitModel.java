@@ -14,6 +14,156 @@ public class FastCarProfitModel {
 
     public static void raceResult(FastCarModel race, BetRaceModel bet){
         double profit = 0.0;
+        // 两面盘
+        double double_ratio1 = 1.985;
+        double double_ratio2 = 2.233;
+        double double_ratio3 = 1.786;
+        if (race.getFirst()==6||race.getFirst()==7||race.getFirst()==8||race.getFirst()==9||race.getFirst()==10){
+            profit += double_ratio1 * bet.getFirstBig();
+        } else {
+            profit += double_ratio1 * bet.getFirstSmall();
+        }
+        if (race.getFirst()==1||race.getFirst()==3||race.getFirst()==5||race.getFirst()==7||race.getFirst()==9){
+            profit += double_ratio1 * bet.getFirstOdd();
+        } else {
+            profit += double_ratio1 * bet.getFirstEven();
+        }
+        if (race.getFirst() > race.getTenth()){
+            profit += double_ratio1 * bet.getFirstDragon();
+        } else {
+            profit += double_ratio1 * bet.getFirstTiger();
+        }
+
+        if (race.getSecond()==6||race.getSecond()==7||race.getSecond()==8||race.getSecond()==9||race.getSecond()==10){
+            profit += double_ratio1 * bet.getSecondBig();
+        } else {
+            profit += double_ratio1 * bet.getSecondSmall();
+        }
+        if (race.getSecond()==1||race.getSecond()==3||race.getSecond()==5||race.getSecond()==7||race.getSecond()==9){
+            profit += double_ratio1 * bet.getSecondOdd();
+        } else {
+            profit += double_ratio1 * bet.getSecondEven();
+        }
+        if (race.getSecond() > race.getNinth()){
+            profit += double_ratio1 * bet.getSecondDragon();
+        } else {
+            profit += double_ratio1 * bet.getSecondTiger();
+        }
+
+        if (race.getThird()==6||race.getThird()==7||race.getThird()==8||race.getThird()==9||race.getThird()==10){
+            profit += double_ratio1 * bet.getThirdBig();
+        } else {
+            profit += double_ratio1 * bet.getThirdSmall();
+        }
+        if (race.getThird()==1||race.getThird()==3||race.getThird()==5||race.getThird()==7||race.getThird()==9){
+            profit += double_ratio1 * bet.getThirdOdd();
+        } else {
+            profit += double_ratio1 * bet.getThirdEven();
+        }
+        if (race.getThird() > race.getEighth()){
+            profit += double_ratio1 * bet.getThirdDragon();
+        } else {
+            profit += double_ratio1 * bet.getThirdTiger();
+        }
+
+        if (race.getFourth()==6||race.getFourth()==7||race.getFourth()==8||race.getFourth()==9||race.getFourth()==10){
+            profit += double_ratio1 * bet.getFourthBig();
+        } else {
+            profit += double_ratio1 * bet.getFourthSmall();
+        }
+        if (race.getFourth()==1||race.getFourth()==3||race.getFourth()==5||race.getFourth()==7||race.getFourth()==9){
+            profit += double_ratio1 * bet.getFourthOdd();
+        } else {
+            profit += double_ratio1 * bet.getFourthEven();
+        }
+        if (race.getFourth() > race.getSeventh()){
+            profit += double_ratio1 * bet.getFourthDragon();
+        } else {
+            profit += double_ratio1 * bet.getFourthTiger();
+        }
+
+        if (race.getFifth()==6||race.getFifth()==7||race.getFifth()==8||race.getFifth()==9||race.getFifth()==10){
+            profit += double_ratio1 * bet.getFifthBig();
+        } else {
+            profit += double_ratio1 * bet.getFifthSmall();
+        }
+        if (race.getFifth()==1||race.getFifth()==3||race.getFifth()==5||race.getFifth()==7||race.getFifth()==9){
+            profit += double_ratio1 * bet.getFifthOdd();
+        } else {
+            profit += double_ratio1 * bet.getFifthEven();
+        }
+        if (race.getFifth() > race.getSixth()){
+            profit += double_ratio1 * bet.getFifthDragon();
+        } else {
+            profit += double_ratio1 * bet.getFifthTiger();
+        }
+
+        if (race.getSixth()==6||race.getSixth()==7||race.getSixth()==8||race.getSixth()==9||race.getSixth()==10){
+            profit += double_ratio1 * bet.getSixthBig();
+        } else {
+            profit += double_ratio1 * bet.getSixthSmall();
+        }
+        if (race.getSixth()==1||race.getSixth()==3||race.getSixth()==5||race.getSixth()==7||race.getSixth()==9){
+            profit += double_ratio1 * bet.getSixthOdd();
+        } else {
+            profit += double_ratio1 * bet.getSixthEven();
+        }
+
+        if (race.getSeventh()==6||race.getSeventh()==7||race.getSeventh()==8||race.getSeventh()==9||race.getSeventh()==10){
+            profit += double_ratio1 * bet.getSeventhBig();
+        } else {
+            profit += double_ratio1 * bet.getSeventhSmall();
+        }
+        if (race.getSeventh()==1||race.getSeventh()==3||race.getSeventh()==5||race.getSeventh()==7||race.getSeventh()==9){
+            profit += double_ratio1 * bet.getSeventhOdd();
+        } else {
+            profit += double_ratio1 * bet.getSeventhEven();
+        }
+
+        if (race.getEighth()==6||race.getEighth()==7||race.getEighth()==8||race.getEighth()==9||race.getEighth()==10){
+            profit += double_ratio1 * bet.getEighthBig();
+        } else {
+            profit += double_ratio1 * bet.getEighthSmall();
+        }
+        if (race.getEighth()==1||race.getEighth()==3||race.getEighth()==5||race.getEighth()==7||race.getEighth()==9){
+            profit += double_ratio1 * bet.getEighthOdd();
+        } else {
+            profit += double_ratio1 * bet.getEighthEven();
+        }
+
+        if (race.getNinth()==6||race.getNinth()==7||race.getNinth()==8||race.getNinth()==9||race.getNinth()==10){
+            profit += double_ratio1 * bet.getNinthBig();
+        } else {
+            profit += double_ratio1 * bet.getNinthSmall();
+        }
+        if (race.getNinth()==1||race.getNinth()==3||race.getNinth()==5||race.getNinth()==7||race.getNinth()==9){
+            profit += double_ratio1 * bet.getNinthOdd();
+        } else {
+            profit += double_ratio1 * bet.getNinthEven();
+        }
+
+        if (race.getTenth()==6||race.getTenth()==7||race.getTenth()==8||race.getTenth()==9||race.getTenth()==10){
+            profit += double_ratio1 * bet.getTenthBig();
+        } else {
+            profit += double_ratio1 * bet.getTenthSmall();
+        }
+        if (race.getTenth()==1||race.getTenth()==3||race.getTenth()==5||race.getTenth()==7||race.getTenth()==9){
+            profit += double_ratio1 * bet.getTenthOdd();
+        } else {
+            profit += double_ratio1 * bet.getTenthEven();
+        }
+
+        if (race.getFirst() + race.getSecond() > 11){
+            profit += double_ratio2 * bet.getTopBig();
+        } else {
+            profit += double_ratio3 * bet.getTopSmall();
+        }
+        if ((race.getFirst() + race.getSecond())%2 ==0){
+            profit += double_ratio2 * bet.getTopEven();
+        } else {
+            profit += double_ratio3 * bet.getTopOdd();
+        }
+
 
         // 冠亚和
         double sum_ratio1 = 42.00;

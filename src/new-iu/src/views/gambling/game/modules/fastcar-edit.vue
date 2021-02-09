@@ -35,23 +35,23 @@
               <el-form-item label="冠亚军和" />
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
-              <el-form-item label="大" prop="TopBig">
-                <el-input v-model="dataInfo.TopBig" type="number" placeholder="2.233" />
+              <el-form-item label="大" prop="topBig">
+                <el-input v-model="dataInfo.topBig" type="number" placeholder="2.233" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
-              <el-form-item label="小" prop="TopSmall">
-                <el-input v-model="dataInfo.TopSmall" type="number" placeholder="1.786" />
+              <el-form-item label="小" prop="topSmall">
+                <el-input v-model="dataInfo.topSmall" type="number" placeholder="1.786" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
-              <el-form-item label="单" prop="TopOdd">
-                <el-input v-model="dataInfo.ToptOdd" type="number" placeholder="1.786" />
+              <el-form-item label="单" prop="topOdd">
+                <el-input v-model="dataInfo.topOdd" type="number" placeholder="1.786" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
-              <el-form-item label="双" prop="TopEven">
-                <el-input v-model="dataInfo.TopEven" type="number" placeholder="2.233" />
+              <el-form-item label="双" prop="topEven">
+                <el-input v-model="dataInfo.topEven" type="number" placeholder="2.233" />
               </el-form-item>
             </el-col>
           </el-row>
@@ -211,7 +211,7 @@
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
               <el-form-item label="单" prop="fourthOdd">
-                <el-input v-model="dataInfo.fourthdOdd" type="number" placeholder="1.985" />
+                <el-input v-model="dataInfo.fourthOdd" type="number" placeholder="1.985" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
@@ -256,7 +256,7 @@
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
               <el-form-item label="单" prop="fifthOdd">
-                <el-input v-model="dataInfo.fifthdOdd" type="number" placeholder="1.985" />
+                <el-input v-model="dataInfo.fifthOdd" type="number" placeholder="1.985" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
@@ -301,7 +301,7 @@
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
               <el-form-item label="单" prop="sixthOdd">
-                <el-input v-model="dataInfo.sixthdOdd" type="number" placeholder="1.985" />
+                <el-input v-model="dataInfo.sixthOdd" type="number" placeholder="1.985" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
@@ -330,7 +330,7 @@
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
               <el-form-item label="单" prop="seventhOdd">
-                <el-input v-model="dataInfo.seventhdOdd" type="number" placeholder="1.985" />
+                <el-input v-model="dataInfo.seventhOdd" type="number" placeholder="1.985" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
@@ -359,7 +359,7 @@
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
               <el-form-item label="单" prop="eighthOdd">
-                <el-input v-model="dataInfo.eighthdOdd" type="number" placeholder="1.985" />
+                <el-input v-model="dataInfo.eighthOdd" type="number" placeholder="1.985" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
@@ -388,7 +388,7 @@
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
               <el-form-item label="单" prop="ninthOdd">
-                <el-input v-model="dataInfo.ninthdOdd" type="number" placeholder="1.985" />
+                <el-input v-model="dataInfo.ninthOdd" type="number" placeholder="1.985" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
@@ -417,7 +417,7 @@
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
               <el-form-item label="单" prop="tenthOdd">
-                <el-input v-model="dataInfo.tenthdOdd" type="number" placeholder="1.985" />
+                <el-input v-model="dataInfo.tenthOdd" type="number" placeholder="1.985" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="5">
@@ -486,67 +486,6 @@
             <el-col :xs="12" :sm="12" :lg="4">
               <el-form-item label="10" prop="firstTenth">
                 <el-input v-model="dataInfo.firstTenth" type="number" placeholder="9.85" />
-              </el-form-item>
-            </el-col>
-          </el-row>
-
-          <el-row>
-            <el-col :xs="12" :sm="12" :lg="2">
-              <el-form-item label="亚军" />
-            </el-col>
-            <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="1" prop="secondFirst">
-                <el-input v-model="dataInfo.secondFirst" type="number" placeholder="9.85" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="2" prop="secondSecond">
-                <el-input v-model="dataInfo.secondSecond" type="number" placeholder="9.85" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="3" prop="secondThird">
-                <el-input v-model="dataInfo.secondThird" type="number" placeholder="9.85" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="4" prop="secondFourth">
-                <el-input v-model="dataInfo.secondFourth" type="number" placeholder="9.85" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="5" prop="secondFifth">
-                <el-input v-model="dataInfo.secondFifth" type="number" placeholder="9.85" />
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :xs="12" :sm="12" :lg="2">
-              <el-form-item />
-            </el-col>
-            <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="6" prop="secondSixth">
-                <el-input v-model="dataInfo.secondSixth" type="number" placeholder="9.85" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="7" prop="secondSeventh">
-                <el-input v-model="dataInfo.secondSeventh" type="number" placeholder="9.85" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="8" prop="secondEighth">
-                <el-input v-model="dataInfo.secondEighth" type="number" placeholder="9.85" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="9" prop="secondNinth">
-                <el-input v-model="dataInfo.secondNinth" type="number" placeholder="9.85" />
-              </el-form-item>
-            </el-col>
-            <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="10" prop="secondTenth">
-                <el-input v-model="dataInfo.secondTenth" type="number" placeholder="9.85" />
               </el-form-item>
             </el-col>
           </el-row>
@@ -983,28 +922,28 @@
               <el-form-item label="第九名" />
             </el-col>
             <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="1" prop="nighthFirst">
-                <el-input v-model="dataInfo.nighthFirst" type="number" placeholder="9.85" />
+              <el-form-item label="1" prop="ninthFirst">
+                <el-input v-model="dataInfo.ninthFirst" type="number" placeholder="9.85" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="2" prop="nighthSecond">
-                <el-input v-model="dataInfo.nighthSecond" type="number" placeholder="9.85" />
+              <el-form-item label="2" prop="ninthSecond">
+                <el-input v-model="dataInfo.ninthSecond" type="number" placeholder="9.85" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="3" prop="nighthThird">
-                <el-input v-model="dataInfo.nighthThird" type="number" placeholder="9.85" />
+              <el-form-item label="3" prop="ninthThird">
+                <el-input v-model="dataInfo.ninthThird" type="number" placeholder="9.85" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="4" prop="nighthFourth">
-                <el-input v-model="dataInfo.nighthFourth" type="number" placeholder="9.85" />
+              <el-form-item label="4" prop="ninthFourth">
+                <el-input v-model="dataInfo.ninthFourth" type="number" placeholder="9.85" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="5" prop="nighthFifth">
-                <el-input v-model="dataInfo.nighthFifth" type="number" placeholder="9.85" />
+              <el-form-item label="5" prop="ninthFifth">
+                <el-input v-model="dataInfo.ninthFifth" type="number" placeholder="9.85" />
               </el-form-item>
             </el-col>
           </el-row>
@@ -1013,28 +952,28 @@
               <el-form-item />
             </el-col>
             <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="6" prop="nighthSixth">
-                <el-input v-model="dataInfo.nighthSixth" type="number" placeholder="9.85" />
+              <el-form-item label="6" prop="ninthSixth">
+                <el-input v-model="dataInfo.ninthSixth" type="number" placeholder="9.85" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="7" prop="nighthSeventh">
-                <el-input v-model="dataInfo.nighthSeventh" type="number" placeholder="9.85" />
+              <el-form-item label="7" prop="ninthSeventh">
+                <el-input v-model="dataInfo.ninthSeventh" type="number" placeholder="9.85" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="8" prop="nighthEighth">
-                <el-input v-model="dataInfo.nighthEighth" type="number" placeholder="9.85" />
+              <el-form-item label="8" prop="ninthEighth">
+                <el-input v-model="dataInfo.ninthEighth" type="number" placeholder="9.85" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="9" prop="nighthNinth">
-                <el-input v-model="dataInfo.nighthNinth" type="number" placeholder="9.85" />
+              <el-form-item label="9" prop="ninthNinth">
+                <el-input v-model="dataInfo.ninthNinth" type="number" placeholder="9.85" />
               </el-form-item>
             </el-col>
             <el-col :xs="12" :sm="12" :lg="4">
-              <el-form-item label="10" prop="nighthTenth">
-                <el-input v-model="dataInfo.nighthTenth" type="number" placeholder="9.85" />
+              <el-form-item label="10" prop="ninthTenth">
+                <el-input v-model="dataInfo.ninthTenth" type="number" placeholder="9.85" />
               </el-form-item>
             </el-col>
           </el-row>

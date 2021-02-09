@@ -17,6 +17,72 @@ public class BetRaceModel extends BaseEntity {
     private Double totalMoney;
     private Double profit;
     private StatusType status = StatusType.WAIT;
+    // 两面盘
+    private Double topBig = 0.0;
+    private Double topSmall = 0.0;
+    private Double topOdd = 0.0;
+    private Double topEven = 0.0;
+
+    private Double firstBig = 0.0;
+    private Double firstSmall = 0.0;
+    private Double firstOdd = 0.0;
+    private Double firstEven = 0.0;
+    private Double firstDragon = 0.0;
+    private Double firstTiger = 0.0;
+
+    private Double secondBig = 0.0;
+    private Double secondSmall = 0.0;
+    private Double secondOdd = 0.0;
+    private Double secondEven = 0.0;
+    private Double secondDragon = 0.0;
+    private Double secondTiger = 0.0;
+
+    private Double thirdBig = 0.0;
+    private Double thirdSmall = 0.0;
+    private Double thirdOdd = 0.0;
+    private Double thirdEven = 0.0;
+    private Double thirdDragon = 0.0;
+    private Double thirdTiger = 0.0;
+
+    private Double fourthBig = 0.0;
+    private Double fourthSmall = 0.0;
+    private Double fourthOdd = 0.0;
+    private Double fourthEven = 0.0;
+    private Double fourthDragon = 0.0;
+    private Double fourthTiger = 0.0;
+
+    private Double fifthBig = 0.0;
+    private Double fifthSmall = 0.0;
+    private Double fifthOdd = 0.0;
+    private Double fifthEven = 0.0;
+    private Double fifthDragon = 0.0;
+    private Double fifthTiger = 0.0;
+
+    private Double sixthBig = 0.0;
+    private Double sixthSmall = 0.0;
+    private Double sixthOdd = 0.0;
+    private Double sixthEven = 0.0;
+
+    private Double seventhBig = 0.0;
+    private Double seventhSmall = 0.0;
+    private Double seventhOdd = 0.0;
+    private Double seventhEven = 0.0;
+
+    private Double eighthBig = 0.0;
+    private Double eighthSmall = 0.0;
+    private Double eighthOdd = 0.0;
+    private Double eighthEven = 0.0;
+
+    private Double ninthBig = 0.0;
+    private Double ninthSmall = 0.0;
+    private Double ninthOdd = 0.0;
+    private Double ninthEven = 0.0;
+
+    private Double tenthBig = 0.0;
+    private Double tenthSmall = 0.0;
+    private Double tenthOdd = 0.0;
+    private Double tenthEven = 0.0;
+
     // 冠亚和
     private Double sum3 = 0.0;
     private Double sum4 = 0.0;
