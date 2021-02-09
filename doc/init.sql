@@ -8,18 +8,21 @@ DROP TABLE IF EXISTS `auth_user`;
 
 -- `gambling`.auth_role definition
 
-CREATE TABLE `auth_role`  (
+CREATE TABLE `auth_user`  (
   `eid` int NOT NULL AUTO_INCREMENT COMMENT '自增键',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `role_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '角色id',
-  `role_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '角色名称',
-  `service` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '所属服务',
-  `description` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注信息',
+  `user_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户Id',
+  `user_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户名称',
+  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '登录密码',
+  `status` tinyint(1) NOT NULL COMMENT '账户状态',
+  `login_fail` int NOT NULL DEFAULT 0 COMMENT '连续登录失败次数',
   `remark` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注信息',
+  `money` decimal(10, 2) NULL DEFAULT NULL COMMENT '金额',
+  `profit` decimal(10, 2) NULL DEFAULT NULL COMMENT '盈利',
   PRIMARY KEY (`eid`) USING BTREE,
-  UNIQUE INDEX `auth_role_role_id_unique`(`role_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+  UNIQUE INDEX `auth_user_user_id_unique`(`user_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 
 -- `gambling`.auth_role_perm definition

@@ -2,11 +2,9 @@ package com.zhouyiteng.gambling.service.game;
 
 import com.zhouyiteng.gambling.dao.game.BetRaceMapper;
 import com.zhouyiteng.gambling.dao.game.FastCarMapper;
+import com.zhouyiteng.gambling.dao.game.LongDragonMapper;
 import com.zhouyiteng.gambling.dao.system.UserMapper;
-import com.zhouyiteng.gambling.model.game.BetRaceModel;
-import com.zhouyiteng.gambling.model.game.FastCarModel;
-import com.zhouyiteng.gambling.model.game.FastCarProfitModel;
-import com.zhouyiteng.gambling.model.game.GenerateType;
+import com.zhouyiteng.gambling.model.game.*;
 import com.zhouyiteng.gambling.model.system.UserModel;
 import com.zhouyiteng.gambling.model.web.PageDataModel;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +35,9 @@ public class FastCarService {
     @Autowired
     BetRaceMapper betRaceMapper;
 
+    @Autowired
+    LongDragonMapper longDragonMapper;
+
     /**
      * 手动添加随机生成的结果
      * @param generateType
@@ -44,12 +45,21 @@ public class FastCarService {
      */
     @Transactional
     public void raceDone(GenerateType generateType){
+        // 更新比赛
         FastCarModel model = fastCarMapper.getLastRace();
         FastCarModel race = FastCarModel.getRandomRace(model, generateType);
         fastCarMapper.updateLastRace(race);
+        // 设置长龙
+        LongDragonModel newLongDragon = FastCarAnalysisModel.LongDragonResult(race);
+        Integer oldRaceId = Integer.parseInt(race.getEid())-1;
+        LongDragonModel oldLongDragon = longDragonMapper.getLongDragon(oldRaceId);
+        LongDragonModel resultLongDragon = FastCarAnalysisModel.compareLongDragon(newLongDragon, oldLongDragon);
+        resultLongDragon.setRaceId(race.getEid());
+        longDragonMapper.addLongDragon(resultLongDragon);
+        // 计算收益
         List<BetRaceModel> raceBets = betRaceMapper.getTotalRaceBet(model.getEid());
         for (BetRaceModel bet: raceBets){
-            FastCarProfitModel.raceResult(race, bet);
+            FastCarAnalysisModel.raceResult(race, bet);
             betRaceMapper.updateBetRace(bet);
             userMapper.updateProfitMoneyByUserId(bet.getUserId(), bet.getProfit());
         }
