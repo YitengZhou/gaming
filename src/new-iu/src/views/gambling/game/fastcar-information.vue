@@ -1,24 +1,26 @@
 <template>
   <el-card v-loading="cardLoading" :element-loading-text="cardLoadingText" class="body-card">
     <el-card class="box-card">
-      <div slot="header">
-        <span>长龙榜</span>
-      </div>
-      <div v-for="o in 5" :key="o" class="text item">
-        {{ '列表内容 ' + o }}
-      </div>
-      
+      <span>长龙榜</span>
+      <el-table
+        ref="longDragonTable"
+        v-loading="listLoading"
+        title="长龙榜"
+        :data="longDragon"
+        style="width=30%;"
+      >
+        <el-table-column prop="name">
+          <template slot-scope="{row}">
+            {{ row.name | getLongDragonLabel }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="number" />
+      </el-table>
     </el-card>
   </el-card>
 </template>
 
 <style lang="scss" scoped>
-    .text {
-    font-size: 14px;
-    }
-    .item {
-        margin-bottom: 18px;
-    }
     .box-card {
         width: 300px;
     }
@@ -26,14 +28,21 @@
 
 <script>
     import { raceDoneManual, getFastCarList, betRace, getLastLongDragon } from '@/api/game/fastcar'
+    import { getLongDragonLabel } from '@/constant/game/longdragon'
     export default {
         components: {
+        },
+        filters: {
+            getLongDragonLabel(value){
+                return getLongDragonLabel(value)
+            }
         },
         data() {
             return {
                 cardLoading: false,
                 cardLoadingText: '',
-                longDragon: {},
+                listLoading: false,
+                longDragon: [],
                 tableData: {
                     pageSize: 20,
                     pageIndex: 0,
@@ -68,8 +77,22 @@
                 })
             },
             getLastLongDragon(){
+                this.listLoading = true
                 getLastLongDragon().then(res => {
-                    this.longDragon = res
+                    const result = []
+                    for (const key of Object.keys(res)) {
+                        if (key.indexOf('Even') !== -1 || key.indexOf('Odd') !== -1 ||
+                        key.indexOf('Big') !== -1 || key.indexOf('Small') !== -1 ||
+                        key.indexOf('Tiger') !== -1 || key.indexOf('Dragon') !== -1){
+                            if (res[key] >= 5){
+                                result.push({name: key, number: res[key]})
+                            }
+                        }
+                    }
+                    this.longDragon = result
+                    console.log(this.longDragon)
+                }).finally(() => {
+                    this.listLoading = false
                 })
             }
         }

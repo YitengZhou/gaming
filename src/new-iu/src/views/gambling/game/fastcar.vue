@@ -144,7 +144,6 @@
             search() {
                 this.tableData.pageIndex = 1
                 this.getFastCarList()
-                this.getLastLongDragon()
             },
             resetSearch(){
                 // this.options.srcsvrid = ''
