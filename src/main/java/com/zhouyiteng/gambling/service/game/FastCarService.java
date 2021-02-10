@@ -8,6 +8,7 @@ import com.zhouyiteng.gambling.model.game.*;
 import com.zhouyiteng.gambling.model.system.UserModel;
 import com.zhouyiteng.gambling.model.web.PageDataModel;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,10 +59,12 @@ public class FastCarService {
         longDragonMapper.addLongDragon(resultLongDragon);
         // 计算收益
         List<BetRaceModel> raceBets = betRaceMapper.getTotalRaceBet(model.getEid());
-        for (BetRaceModel bet: raceBets){
-            FastCarAnalysisModel.raceResult(race, bet);
-            betRaceMapper.updateBetRace(bet);
-            userMapper.updateProfitMoneyByUserId(bet.getUserId(), bet.getProfit());
+        if (CollectionUtils.isNotEmpty(raceBets)){
+            for (BetRaceModel bet: raceBets){
+                FastCarAnalysisModel.raceResult(race, bet);
+                betRaceMapper.updateBetRace(bet);
+                userMapper.updateProfitMoneyByUserId(bet.getUserId(), bet.getProfit());
+            }
         }
         fastCarMapper.createNewRace();
     }

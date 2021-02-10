@@ -9,7 +9,7 @@
     </insert>
 
     <select id="getLastRace" resultType="com.zhouyiteng.gambling.model.game.FastCarModel">
-        select * from gambling.fast_car order by create_time desc limit 1
+        select * from gambling.fast_car order by eid desc limit 1
     </select>
 
     <update id="updateLastRace">
@@ -26,6 +26,6 @@
 
     <select id="getPageList" resultType="com.zhouyiteng.gambling.model.game.FastCarModel">
         select * from gambling.fast_car where 1=1
-        order by create_time desc limit #{pageStart},#{pageEnd}
+        order by eid desc limit #{pageStart},#{pageEnd}
     </select>
 </mapper>

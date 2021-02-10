@@ -119,10 +119,10 @@
                 cardLoading: false,
                 cardLoadingText: '',
                 tableLoading: false,
-                options: {
-                    srcsvrid: '',
-                    targetsvrid: ''
-                },
+                // options: {
+                //     srcsvrid: '',
+                //     targetsvrid: ''
+                // },
                 tableData: {
                     pageSize: 10,
                     pageIndex: 0,
