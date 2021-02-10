@@ -32,8 +32,14 @@ const gamblingConfig = {
         {
           path: 'fastcar',
           name: 'gambling-game-fastcar',
-          meta: { title: '急速快车' },
+          meta: { title: '急速赛车' },
           component: () => import('@/views/gambling/game/fastcar')
+        },
+        {
+          path: 'fastcar-information',
+          name: 'gambling-game-fastcar-information',
+          meta: { title: '急速赛车资讯' },
+          component: () => import('@/views/gambling/game/fastcar-information')
         },
         {
           path: 'baccarat',

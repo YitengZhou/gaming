@@ -94,4 +94,11 @@ public class FastCarService {
         betRaceMapper.addBetRace(betRaceModel);
         return remain;
     }
+
+    /**
+     * 获取最新长龙
+     */
+    public LongDragonModel getLastLongDragon(){
+        return longDragonMapper.getLastLongDragon();
+    }
 }

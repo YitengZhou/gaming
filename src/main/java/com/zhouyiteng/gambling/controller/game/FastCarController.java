@@ -6,6 +6,7 @@ import com.zhouyiteng.gambling.controller.BaseController;
 import com.zhouyiteng.gambling.model.game.BetRaceModel;
 import com.zhouyiteng.gambling.model.game.FastCarModel;
 import com.zhouyiteng.gambling.model.game.GenerateType;
+import com.zhouyiteng.gambling.model.game.LongDragonModel;
 import com.zhouyiteng.gambling.model.system.UserModel;
 import com.zhouyiteng.gambling.model.web.PageDataModel;
 import com.zhouyiteng.gambling.model.web.RaceResult;
@@ -74,5 +75,14 @@ public class FastCarController extends BaseController {
         fastCarService.addBetRace(betRaceModel);
         UserModel user = userService.getUserByUserId(userId);
         return new RaceResult(user.getMoney(), user.getProfit());
+    }
+
+    /**
+     * 获取最新长龙
+     * @return
+     */
+    @GetMapping("last-long-dragon")
+    public LongDragonModel getLastLongDragon(){
+        return fastCarService.getLastLongDragon();
     }
 }

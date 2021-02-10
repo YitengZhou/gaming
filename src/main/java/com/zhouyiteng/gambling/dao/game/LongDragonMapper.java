@@ -27,4 +27,9 @@ public interface LongDragonMapper {
      * 根据raceId获得长龙
      */
     LongDragonModel getLongDragon(@Param("raceId") Integer raceId);
+
+    /**
+     * 获取最新长龙
+     */
+    LongDragonModel getLastLongDragon();
 }

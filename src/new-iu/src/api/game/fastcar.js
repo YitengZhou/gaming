@@ -1,5 +1,5 @@
 /**
- * 急速快车的接口访问配置
+ * 急速赛车的接口访问配置
  */
 import request from '@/utils/request'
 
@@ -9,7 +9,8 @@ import request from '@/utils/request'
 const api = {
     raceDoneManual: '/game/fastcar/race-done-manual',
     getFastCarList: '/game/fastcar/get-fastcar-list',
-    betRace: '/game/fastcar/addBetRace'
+    betRace: '/game/fastcar/addBetRace',
+    getLastLongDragon: '/game/fastcar/last-long-dragon'
   }
 
 /**
@@ -43,5 +44,17 @@ export function betRace(parameter) {
     url: api.betRace,
     method: 'post',
     data: parameter
+  })
+}
+
+
+/**
+ * 长龙查询
+ * @param {*} parameter
+ */
+export function getLastLongDragon() {
+  return request({
+      url: api.getLastLongDragon,
+      method: 'get'
   })
 }
