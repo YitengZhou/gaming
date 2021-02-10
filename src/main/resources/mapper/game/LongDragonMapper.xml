@@ -69,12 +69,12 @@
         )
     </insert>
 
-    <select id="getLongDragon" resultType="com.zhouyiteng.gambling.model.game.LongDragonModel">
+    <select id="getLongDragon" resultType="com.zhouyiteng.gambling.model.game.FastCarResultModel">
         select * from gambling.long_dragon
         where race_id = #{raceId}
     </select>
 
-    <select id="getLastLongDragon" resultType="com.zhouyiteng.gambling.model.game.LongDragonModel">
+    <select id="getLastLongDragon" resultType="com.zhouyiteng.gambling.model.game.FastCarResultModel">
      select * from gambling.long_dragon
      order by eid desc limit 1
     </select>

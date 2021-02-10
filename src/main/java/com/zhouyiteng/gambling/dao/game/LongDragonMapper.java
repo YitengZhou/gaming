@@ -1,6 +1,6 @@
 package com.zhouyiteng.gambling.dao.game;
 
-import com.zhouyiteng.gambling.model.game.LongDragonModel;
+import com.zhouyiteng.gambling.model.game.FastCarResultModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -21,15 +21,15 @@ public interface LongDragonMapper {
      * @param model
      * @return
      */
-    long addLongDragon(@Param("model") LongDragonModel model);
+    long addLongDragon(@Param("model") FastCarResultModel model);
 
     /**
      * 根据raceId获得长龙
      */
-    LongDragonModel getLongDragon(@Param("raceId") Integer raceId);
+    FastCarResultModel getLongDragon(@Param("raceId") Integer raceId);
 
     /**
      * 获取最新长龙
      */
-    LongDragonModel getLastLongDragon();
+    FastCarResultModel getLastLongDragon();
 }

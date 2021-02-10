@@ -11,7 +11,7 @@ import lombok.Data;
  * Created by zhouyiteng on 2021/2/9.
  */
 @Data
-public class LongDragonModel extends BaseEntity {
+public class FastCarResultModel extends BaseEntity {
     private String raceId;
 
     // 两面盘

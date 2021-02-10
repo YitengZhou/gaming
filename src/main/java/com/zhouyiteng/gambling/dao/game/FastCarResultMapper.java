@@ -1,9 +1,12 @@
 package com.zhouyiteng.gambling.dao.game;
 
-import com.zhouyiteng.gambling.model.game.LongDragonModel;
+import com.zhouyiteng.gambling.model.game.FastCarModel;
+import com.zhouyiteng.gambling.model.game.FastCarResultModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * 急速快车表
@@ -21,5 +24,19 @@ public interface FastCarResultMapper {
      * @param model
      * @return
      */
-    long addResult(@Param("model") LongDragonModel model);
+    long addResult(@Param("model") FastCarResultModel model);
+
+    /**
+     * 满足条件数量
+     */
+    long getTotalCount();
+
+    /**
+     * 满足条件记录
+     * @param pageStart
+     * @param pageEnd
+     * @return
+     */
+    List<FastCarResultModel> getPageList(@Param("pageStart") Long pageStart,
+                                   @Param("pageEnd") Long pageEnd);
 }

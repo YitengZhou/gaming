@@ -10,7 +10,8 @@ const api = {
     raceDoneManual: '/game/fastcar/race-done-manual',
     getFastCarList: '/game/fastcar/get-fastcar-list',
     betRace: '/game/fastcar/addBetRace',
-    getLastLongDragon: '/game/fastcar/last-long-dragon'
+    getLastLongDragon: '/game/fastcar/last-long-dragon',
+    getFastCarResultList: '/game/fastcar/get-fastcar-result-list'
   }
 
 /**
@@ -56,5 +57,17 @@ export function getLastLongDragon() {
   return request({
       url: api.getLastLongDragon,
       method: 'get'
+  })
+}
+
+/**
+ * 急速赛车结果列表查询
+ * @param {*} parameter
+ */
+export function getFastCarResultList(parameter) {
+  return request({
+      url: api.getFastCarResultList,
+      method: 'get',
+      params: parameter
   })
 }

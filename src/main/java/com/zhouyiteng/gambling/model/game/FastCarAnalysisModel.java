@@ -453,8 +453,8 @@ public class FastCarAnalysisModel {
         bet.setStatus(StatusType.DONE);
     }
 
-    public static LongDragonModel LongDragonResult(FastCarModel race){
-        LongDragonModel longDragon = new LongDragonModel();
+    public static FastCarResultModel LongDragonResult(FastCarModel race){
+        FastCarResultModel longDragon = new FastCarResultModel();
         if (race.getFirst()==6||race.getFirst()==7||race.getFirst()==8||race.getFirst()==9||race.getFirst()==10){
             longDragon.setFirstBig(1);
         } else {
@@ -882,8 +882,8 @@ public class FastCarAnalysisModel {
         return longDragon;
     }
 
-    public static LongDragonModel compareLongDragon(LongDragonModel newLongDragon, LongDragonModel oldLongDragon){
-        LongDragonModel resultLongDragon = new LongDragonModel();
+    public static FastCarResultModel compareLongDragon(FastCarResultModel newLongDragon, FastCarResultModel oldLongDragon){
+        FastCarResultModel resultLongDragon = new FastCarResultModel();
 
         if (newLongDragon.getFirstBig() == 1 ){
             resultLongDragon.setFirstBig(oldLongDragon.getFirstBig() + 1);

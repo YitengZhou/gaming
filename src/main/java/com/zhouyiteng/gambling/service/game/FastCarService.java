@@ -55,12 +55,12 @@ public class FastCarService {
         FastCarModel race = FastCarModel.getRandomRace(model, generateType);
         fastCarMapper.updateLastRace(race);
         // 设置长龙
-        LongDragonModel newLongDragon = FastCarAnalysisModel.LongDragonResult(race);
+        FastCarResultModel newLongDragon = FastCarAnalysisModel.LongDragonResult(race);
         newLongDragon.setRaceId(race.getEid());
         fastCarResultMapper.addResult(newLongDragon);
         Integer oldRaceId = Integer.parseInt(race.getEid())-1;
-        LongDragonModel oldLongDragon = longDragonMapper.getLongDragon(oldRaceId);
-        LongDragonModel resultLongDragon = FastCarAnalysisModel.compareLongDragon(newLongDragon, oldLongDragon);
+        FastCarResultModel oldLongDragon = longDragonMapper.getLongDragon(oldRaceId);
+        FastCarResultModel resultLongDragon = FastCarAnalysisModel.compareLongDragon(newLongDragon, oldLongDragon);
         resultLongDragon.setRaceId(race.getEid());
         longDragonMapper.addLongDragon(resultLongDragon);
         // 计算收益
@@ -88,23 +88,36 @@ public class FastCarService {
     }
 
     /**
+     * 获得极速赛车比赛结果标志分页
+     * @param pageSize
+     * @param pageIndex
+     * @return
+     */
+    public PageDataModel<FastCarResultModel> getFastCarResultList(@RequestParam(required = false) Long pageSize,
+                                                                  @RequestParam(required = false) Long pageIndex){
+        PageDataModel<FastCarResultModel> ret = new PageDataModel<>(pageSize, pageIndex);
+        ret.setTotalCount(fastCarResultMapper.getTotalCount());
+        ret.setDataList(fastCarResultMapper.getPageList(ret.getPageStart(), ret.getPageEnd()));
+        return ret;
+    }
+
+    /**
      * 添加投注
      * @param betRaceModel
      */
     @Transactional
-    public Double addBetRace(BetRaceModel betRaceModel){
+    public void addBetRace(BetRaceModel betRaceModel){
         UserModel user = userMapper.getUserByUserId(betRaceModel.getUserId());
         Double remain = user.getMoney() - betRaceModel.getTotalMoney();
         Double profit = user.getProfit() - betRaceModel.getTotalMoney();
         userMapper.updateMoneyByUserId(user.getUserId(), remain, profit);
         betRaceMapper.addBetRace(betRaceModel);
-        return remain;
     }
 
     /**
      * 获取最新长龙
      */
-    public LongDragonModel getLastLongDragon(){
+    public FastCarResultModel getLastLongDragon(){
         return longDragonMapper.getLastLongDragon();
     }
 }

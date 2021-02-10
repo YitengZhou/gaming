@@ -68,4 +68,13 @@
          #{model.topBig}, #{model.topSmall}, #{model.topOdd}, #{model.topEven}
         )
     </insert>
+
+    <select id="getTotalCount" resultType="java.lang.Long">
+        select count(1) from gambling.fast_car_result where 1=1
+    </select>
+
+    <select id="getPageList" resultType="com.zhouyiteng.gambling.model.game.FastCarResultModel">
+        select * from gambling.fast_car_result where 1=1
+        order by eid desc limit #{pageStart},#{pageEnd}
+    </select>
 </mapper>

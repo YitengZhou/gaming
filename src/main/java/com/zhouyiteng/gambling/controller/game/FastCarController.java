@@ -6,7 +6,7 @@ import com.zhouyiteng.gambling.controller.BaseController;
 import com.zhouyiteng.gambling.model.game.BetRaceModel;
 import com.zhouyiteng.gambling.model.game.FastCarModel;
 import com.zhouyiteng.gambling.model.game.GenerateType;
-import com.zhouyiteng.gambling.model.game.LongDragonModel;
+import com.zhouyiteng.gambling.model.game.FastCarResultModel;
 import com.zhouyiteng.gambling.model.system.UserModel;
 import com.zhouyiteng.gambling.model.web.PageDataModel;
 import com.zhouyiteng.gambling.model.web.RaceResult;
@@ -58,6 +58,16 @@ public class FastCarController extends BaseController {
     }
 
     /**
+     * 获得极速赛车比赛结果
+     * @return
+     */
+    @GetMapping("get-fastcar-result-list")
+    public PageDataModel<FastCarResultModel> getFastCarResultList(@RequestParam(required = false) Long pageSize,
+                                                            @RequestParam(required = false) Long pageIndex){
+        return fastCarService.getFastCarResultList(pageSize, pageIndex);
+    }
+
+    /**
      * 添加投注
      */
     @RequireLogin
@@ -82,7 +92,7 @@ public class FastCarController extends BaseController {
      * @return
      */
     @GetMapping("last-long-dragon")
-    public LongDragonModel getLastLongDragon(){
+    public FastCarResultModel getLastLongDragon(){
         return fastCarService.getLastLongDragon();
     }
 }
