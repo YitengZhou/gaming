@@ -2,6 +2,7 @@ package com.zhouyiteng.gambling.service.game;
 
 import com.zhouyiteng.gambling.dao.game.BetRaceMapper;
 import com.zhouyiteng.gambling.dao.game.FastCarMapper;
+import com.zhouyiteng.gambling.dao.game.FastCarResultMapper;
 import com.zhouyiteng.gambling.dao.game.LongDragonMapper;
 import com.zhouyiteng.gambling.dao.system.UserMapper;
 import com.zhouyiteng.gambling.model.game.*;
@@ -34,6 +35,9 @@ public class FastCarService {
     FastCarMapper fastCarMapper;
 
     @Autowired
+    FastCarResultMapper fastCarResultMapper;
+
+    @Autowired
     BetRaceMapper betRaceMapper;
 
     @Autowired
@@ -52,6 +56,8 @@ public class FastCarService {
         fastCarMapper.updateLastRace(race);
         // 设置长龙
         LongDragonModel newLongDragon = FastCarAnalysisModel.LongDragonResult(race);
+        newLongDragon.setRaceId(race.getEid());
+        fastCarResultMapper.addResult(newLongDragon);
         Integer oldRaceId = Integer.parseInt(race.getEid())-1;
         LongDragonModel oldLongDragon = longDragonMapper.getLongDragon(oldRaceId);
         LongDragonModel resultLongDragon = FastCarAnalysisModel.compareLongDragon(newLongDragon, oldLongDragon);

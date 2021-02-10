@@ -30,6 +30,11 @@ public interface FastCarMapper {
     FastCarModel getLastRace();
 
     /**
+     * 获得比赛根据eid
+     */
+    FastCarModel getRaceByEid(@Param("eid") int eid);
+
+    /**
      * 更新比赛
      */
     long updateLastRace(@Param("model") FastCarModel model);

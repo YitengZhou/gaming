@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhouyiteng.gambling.dao.game.FastCarResultMapper">
+    <insert id="addResult">
+        insert into gambling.fast_car_result
+        (create_time, update_time, race_id,
+         sum3, sum4, sum5, sum6, sum7, sum8, sum9, sum10, sum11, sum12, sum13, sum14, sum15, sum16, sum17, sum18, sum19,
+
+         first_first, first_second, first_third, first_fourth, first_fifth, first_sixth, first_seventh, first_eighth, first_ninth, first_tenth,
+         second_first, second_second, second_third, second_fourth, second_fifth, second_sixth, second_seventh, second_eighth, second_ninth, second_tenth,
+         third_first, third_second, third_third, third_fourth, third_fifth, third_sixth, third_seventh, third_eighth, third_ninth, third_tenth,
+         fourth_first, fourth_second, fourth_third, fourth_fourth, fourth_fifth, fourth_sixth, fourth_seventh, fourth_eighth, fourth_ninth, fourth_tenth,
+         fifth_first, fifth_second, fifth_third, fifth_fourth, fifth_fifth, fifth_sixth, fifth_seventh, fifth_eighth, fifth_ninth, fifth_tenth,
+         sixth_first, sixth_second, sixth_third, sixth_fourth, sixth_fifth, sixth_sixth, sixth_seventh, sixth_eighth, sixth_ninth, sixth_tenth,
+         seventh_first, seventh_second, seventh_third, seventh_fourth, seventh_fifth, seventh_sixth, seventh_seventh, seventh_eighth, seventh_ninth, seventh_tenth,
+         eighth_first, eighth_second, eighth_third, eighth_fourth, eighth_fifth, eighth_sixth, eighth_seventh, eighth_eighth, eighth_ninth, eighth_tenth,
+         ninth_first, ninth_second, ninth_third, ninth_fourth, ninth_fifth, ninth_sixth, ninth_seventh, ninth_eighth, ninth_ninth, ninth_tenth,
+         tenth_first, tenth_second, tenth_third, tenth_fourth, tenth_fifth, tenth_sixth, tenth_seventh, tenth_eighth, tenth_ninth, tenth_tenth,
+
+         first_big, first_small, first_odd, first_even, first_dragon, first_tiger,
+         second_big, second_small, second_odd, second_even, second_dragon, second_tiger,
+         third_big, third_small, third_odd, third_even, third_dragon, third_tiger,
+         fourth_big, fourth_small, fourth_odd, fourth_even, fourth_dragon, fourth_tiger,
+         fifth_big, fifth_small, fifth_odd, fifth_even, fifth_dragon, fifth_tiger,
+         sixth_big, sixth_small, sixth_odd, sixth_even, seventh_big, seventh_small, seventh_odd, seventh_even,
+         eighth_big, eighth_small, eighth_odd, eighth_even, ninth_big, ninth_small, ninth_odd, ninth_even,
+         tenth_big, tenth_small, tenth_odd, tenth_even, top_big, top_small, top_odd, top_even
+        )
+        values
+        (now(), now(), #{model.raceId},
+         #{model.sum3}, #{model.sum4}, #{model.sum5}, #{model.sum6}, #{model.sum7}, #{model.sum8}, #{model.sum9},
+         #{model.sum10}, #{model.sum11}, #{model.sum12}, #{model.sum13}, #{model.sum14}, #{model.sum15}, #{model.sum16},
+         #{model.sum17}, #{model.sum18}, #{model.sum19},
+
+         #{model.firstFirst}, #{model.firstSecond}, #{model.firstThird}, #{model.firstFourth}, #{model.firstFifth},
+         #{model.firstSixth}, #{model.firstSeventh}, #{model.firstEighth}, #{model.firstNinth}, #{model.firstTenth},
+         #{model.secondFirst}, #{model.secondSecond}, #{model.secondThird}, #{model.secondFourth}, #{model.secondFifth},
+         #{model.secondSixth}, #{model.secondSeventh}, #{model.secondEighth}, #{model.secondNinth}, #{model.secondTenth},
+         #{model.thirdFirst}, #{model.thirdSecond}, #{model.thirdThird}, #{model.thirdFourth}, #{model.thirdFifth},
+         #{model.thirdSixth}, #{model.thirdSeventh}, #{model.thirdEighth}, #{model.thirdNinth}, #{model.thirdTenth},
+         #{model.fourthFirst}, #{model.fourthSecond}, #{model.fourthThird}, #{model.fourthFourth}, #{model.fourthFifth},
+         #{model.fourthSixth}, #{model.fourthSeventh}, #{model.fourthEighth}, #{model.fourthNinth}, #{model.fourthTenth},
+         #{model.fifthFirst}, #{model.fifthSecond}, #{model.fifthThird}, #{model.fifthFourth}, #{model.fifthFifth},
+         #{model.fifthSixth}, #{model.fifthSeventh}, #{model.fifthEighth}, #{model.fifthNinth}, #{model.fifthTenth},
+         #{model.sixthFirst}, #{model.sixthSecond}, #{model.sixthThird}, #{model.sixthFourth}, #{model.sixthFifth},
+         #{model.sixthSixth}, #{model.sixthSeventh}, #{model.sixthEighth}, #{model.sixthNinth}, #{model.sixthTenth},
+         #{model.seventhFirst}, #{model.seventhSecond}, #{model.seventhThird}, #{model.seventhFourth}, #{model.seventhFifth},
+         #{model.seventhSixth}, #{model.seventhSeventh}, #{model.seventhEighth}, #{model.seventhNinth}, #{model.seventhTenth},
+         #{model.eighthFirst}, #{model.eighthSecond}, #{model.eighthThird}, #{model.eighthFourth}, #{model.eighthFifth},
+         #{model.eighthSixth}, #{model.eighthSeventh}, #{model.eighthEighth}, #{model.eighthNinth}, #{model.eighthTenth},
+         #{model.ninthFirst}, #{model.ninthSecond}, #{model.ninthThird}, #{model.ninthFourth}, #{model.ninthFifth},
+         #{model.ninthSixth}, #{model.ninthSeventh}, #{model.ninthEighth}, #{model.ninthNinth}, #{model.ninthTenth},
+         #{model.tenthFirst}, #{model.tenthSecond}, #{model.tenthThird}, #{model.tenthFourth}, #{model.tenthFifth},
+         #{model.tenthSixth}, #{model.tenthSeventh}, #{model.tenthEighth}, #{model.tenthNinth}, #{model.tenthTenth},
+
+         #{model.firstBig}, #{model.firstSmall}, #{model.firstOdd}, #{model.firstEven}, #{model.firstDragon}, #{model.firstTiger},
+         #{model.secondBig}, #{model.secondSmall}, #{model.secondOdd}, #{model.secondEven}, #{model.secondDragon}, #{model.secondTiger},
+         #{model.thirdBig}, #{model.thirdSmall}, #{model.thirdOdd}, #{model.thirdEven}, #{model.thirdDragon}, #{model.thirdTiger},
+         #{model.fourthBig}, #{model.fourthSmall}, #{model.fourthOdd}, #{model.fourthEven}, #{model.fourthDragon}, #{model.fourthTiger},
+         #{model.fifthBig}, #{model.fifthSmall}, #{model.fifthOdd}, #{model.fifthEven}, #{model.fifthDragon}, #{model.fifthTiger},
+         #{model.sixthBig}, #{model.sixthSmall}, #{model.sixthOdd}, #{model.sixthEven},
+         #{model.seventhBig}, #{model.seventhSmall}, #{model.seventhOdd}, #{model.seventhEven},
+         #{model.eighthBig}, #{model.eighthSmall}, #{model.eighthOdd}, #{model.eighthEven},
+         #{model.ninthBig}, #{model.ninthSmall}, #{model.ninthOdd}, #{model.ninthEven},
+         #{model.tenthBig}, #{model.tenthSmall}, #{model.tenthOdd}, #{model.tenthEven},
+         #{model.topBig}, #{model.topSmall}, #{model.topOdd}, #{model.topEven}
+        )
+    </insert>
+</mapper>

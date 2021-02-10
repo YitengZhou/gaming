@@ -12,6 +12,10 @@
         select * from gambling.fast_car order by eid desc limit 1
     </select>
 
+    <select id="getRaceByEid" resultType="com.zhouyiteng.gambling.model.game.FastCarModel">
+        select * from gambling.fast_car where eid = #{eid}
+    </select>
+
     <update id="updateLastRace">
         update gambling.fast_car set
         first=#{model.first}, second=#{model.second}, third=#{model.third}, fourth=#{model.fourth}, fifth=#{model.fifth},
