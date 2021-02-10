@@ -102,7 +102,7 @@
     import Pagination from '@/components/Pagination'
     import EditForm from './modules/fastcar-edit'
     import { getFastCarColor } from '@/constant/game/fastcar'
-    import { raceDoneManual, getFastCarList, betRace, getLastLongDragon } from '@/api/game/fastcar'
+    import { raceDoneManual, getFastCarList, betRace } from '@/api/game/fastcar'
 
     export default {
         components: {
@@ -123,7 +123,6 @@
                 //     srcsvrid: '',
                 //     targetsvrid: ''
                 // },
-                longDragon: {},
                 tableData: {
                     pageSize: 20,
                     pageIndex: 0,
@@ -166,11 +165,6 @@
                     }
                 }).finally(() => {
                     this.tableLoading = false
-                })
-            },
-            getLastLongDragon(){
-                getLastLongDragon().then(res => {
-                    this.longDragon = res
                 })
             },
             handleSubmit () {
