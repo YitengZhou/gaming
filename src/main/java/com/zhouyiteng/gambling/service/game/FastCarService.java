@@ -60,9 +60,13 @@ public class FastCarService {
         fastCarResultMapper.addResult(newLongDragon);
         Integer oldRaceId = Integer.parseInt(race.getEid())-1;
         FastCarResultModel oldLongDragon = longDragonMapper.getLongDragon(oldRaceId);
-        FastCarResultModel resultLongDragon = FastCarAnalysisModel.compareLongDragon(newLongDragon, oldLongDragon);
-        resultLongDragon.setRaceId(race.getEid());
-        longDragonMapper.addLongDragon(resultLongDragon);
+        if (oldLongDragon!=null){
+            FastCarResultModel resultLongDragon = FastCarAnalysisModel.compareLongDragon(newLongDragon, oldLongDragon);
+            resultLongDragon.setRaceId(race.getEid());
+            longDragonMapper.addLongDragon(resultLongDragon);
+        } else {
+            longDragonMapper.addLongDragon(newLongDragon);
+        }
         // 计算收益
         List<BetRaceModel> raceBets = betRaceMapper.getTotalRaceBet(model.getEid());
         if (CollectionUtils.isNotEmpty(raceBets)){

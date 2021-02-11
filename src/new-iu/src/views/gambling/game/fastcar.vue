@@ -35,7 +35,7 @@
         </el-row>
         <el-row :gutter="48">
           <el-col class="table-operator">
-            <el-button type="primary" @click="$refs.editForm.bet(tableData.dataList[0])">投注</el-button>
+            <el-button type="primary" @click="$refs.editForm.bet(tableData.dataList[0].eid)">投注</el-button>
           </el-col>
         </el-row>
       </el-form>
@@ -45,8 +45,8 @@
         <el-table-column prop="createTime" min-width="100px" label="生成时间" />
         <el-table-column prop="updateTime" min-width="100px" label="开奖时间" />
         <el-table-column prop="result" min-width="350px" label="比赛结果">
-          <!-- <template slot-scope="{row}"> -->
-          <!-- <el-tag :color="row.first | getFastCarColor" effect="dark" class="car">
+          <template slot-scope="{row}">
+            <el-tag :color="row.first | getFastCarColor" effect="dark" class="car">
               {{ row.first }}
             </el-tag>
             <el-tag :color="row.second | getFastCarColor" effect="dark" class="car">
@@ -75,8 +75,8 @@
             </el-tag>
             <el-tag :color="row.tenth | getFastCarColor" effect="dark" class="car">
               {{ row.tenth }}
-            </el-tag> -->
-          <!-- </template> -->
+            </el-tag>
+          </template>
         </el-table-column>
         <el-table-column prop="generateType" min-width="100px" label="生成方式" />
         <el-table-column prop="remark" min-width="100px" label="备注信息" />

@@ -1184,8 +1184,8 @@ computed:{
     }
 },
 methods: {
-    bet(last) {
-        this.raceId = parseInt(last.eid)
+    bet(eid) {
+        this.raceId = parseInt(eid)
         this.money = 0
         this.dataInfo = {}
         this.visible = true

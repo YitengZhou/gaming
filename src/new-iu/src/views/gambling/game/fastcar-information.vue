@@ -17,6 +17,18 @@
         <el-table-column prop="number" />
       </el-table>
     </el-card>
+    <div class="table-search-wrapper">
+      <el-row :gutter="48">
+        <el-col class="table-operator">
+          <el-button type="primary" @click="handleSubmit">公布比赛结果</el-button>
+        </el-col>
+      </el-row>
+      <el-row :gutter="48">
+        <el-col class="table-operator">
+          <el-button type="primary" @click="$refs.editForm.bet(parseInt(tableData.dataList[0].raceId)+1)">投注</el-button>
+        </el-col>
+      </el-row>
+    </div>
     <el-table
       ref="detailTable"
       v-loading="tableLoading"
@@ -265,7 +277,7 @@
         </el-table-column>
         <el-table-column label="单双" prop="eighthOdd">
           <template slot-scope="{row}">
-            <el-tag v-if="row.eighthhOdd === 1" type="danger">
+            <el-tag v-if="row.eighthOdd === 1" type="danger">
               单
             </el-tag>
             <el-tag v-else>
@@ -319,6 +331,7 @@
         </el-table-column>
       </el-table-column>
     </el-table>
+    <edit-Form ref="editForm" @confirm="handlerEditConfirm" />
   </el-card>
 </template>
 
@@ -331,9 +344,12 @@
 <script>
     import { raceDoneManual, getFastCarResultList, betRace, getLastLongDragon } from '@/api/game/fastcar'
     import { getLongDragonLabel } from '@/constant/game/longdragon'
+    import EditForm from './modules/fastcar-edit'
+    import { mapGetters } from 'vuex'
 
     export default {
         components: {
+            EditForm
         },
         filters: {
             getLongDragonLabel(value){
@@ -354,6 +370,12 @@
                     dataList: []
                 }
             }
+        },
+        computed:{
+            ...mapGetters([
+                'userId',
+                'money'
+            ])
         },
         mounted() {
             this.search()
@@ -396,6 +418,57 @@
                     this.longDragon = result
                 }).finally(() => {
                     this.listLoading = false
+                })
+            },
+            handleSubmit () {
+                const promise = raceDoneManual()
+                if (promise) {
+                    this.cardLoading = true
+                    this.cardLoadingText = '正在提交，请稍候'
+                    promise.then(res => {
+                        this.$store.commit('user/SET_MONEY', res.money)
+                        this.$store.commit('user/SET_PROFIT', res.profit)
+                        this.search()
+                        this.$notify({
+                          title: 'Success',
+                          message: '操作成功',
+                          type: 'success',
+                          duration: 3000
+                        })
+                    })
+                    .finally(() => {
+                        this.cardLoading = false
+                        this.cardLoadingText = ''
+                    })
+                }
+            },
+            handlerEditConfirm(dataInfo){
+                if (dataInfo.totalMoney > this.money || dataInfo.totalMoney < 0){
+                      this.$notify({
+                        type: 'warning',
+                        duration: 5000,
+                        title: '提示信息',
+                        message: '投注金额大于账户余额,请重新投注'
+                    })
+                    return
+                }
+                dataInfo.userId = this.userId
+                this.cardLoading = true
+                this.cardLoadingText = '正在提交，请稍候'
+                betRace(dataInfo).then(res => {
+                    this.$store.commit('user/SET_MONEY', res.money)
+                    this.$store.commit('user/SET_PROFIT', res.profit)
+                    this.$notify({
+                        type: 'success',
+                        duration: 5000,
+                        title: '提示信息',
+                        message: '投注成功,请关注开奖结果'
+                    })
+                })
+                .finally(() => {
+                    this.cardLoading = false
+                    this.cardLoadingText = ''
+                    this.search()
                 })
             }
         }

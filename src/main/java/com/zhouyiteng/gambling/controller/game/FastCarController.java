@@ -77,7 +77,7 @@ public class FastCarController extends BaseController {
             throw new IllegalArgumentException("比赛场次标识不能为空");
         }
         if (StringUtils.isEmpty(betRaceModel.getUserId())){
-            throw new IllegalArgumentException("比赛场次标识不能为空");
+            throw new IllegalArgumentException("用户名不能为空");
         }
         if (betRaceModel.getTotalMoney()<0){
             throw new IllegalArgumentException("投注金额不能为负");

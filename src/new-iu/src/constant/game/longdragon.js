@@ -121,99 +121,99 @@ const longDragonMap = {
     },
     sixthBig: {
         value: 'sixthBig',
-        label: '第一名大'
+        label: '第六名大'
     },
     sixthSmall: {
         value: 'sixthSmall',
-        label: '第一名小'
+        label: '第六名小'
     },
     sixthOdd: {
         value: 'sixthOdd',
-        label: '第一名单'
+        label: '第六名单'
     },
     sixthEven: {
         value: 'sixthEven',
-        label: '第一名双'
+        label: '第六名双'
     },
     seventhBig: {
         value: 'seventhBig',
-        label: '第一名大'
+        label: '第七名大'
     },
     seventhSmall: {
         value: 'seventhSmall',
-        label: '第一名小'
+        label: '第七名小'
     },
     seventhOdd: {
         value: 'seventhOdd',
-        label: '第一名单'
+        label: '第七名单'
     },
     seventhEven: {
         value: 'seventhEven',
-        label: '第一名双'
+        label: '第七名双'
     },
     eighthBig: {
         value: 'eighthBig',
-        label: '第一名大'
+        label: '第八名大'
     },
     eighthSmall: {
         value: 'eighthSmall',
-        label: '第一名小'
+        label: '第八名小'
     },
     eighthOdd: {
         value: 'eighthOdd',
-        label: '第一名单'
+        label: '第八名单'
     },
     eighthEven: {
         value: 'eighthEven',
-        label: '第一名双'
+        label: '第八名双'
     },
     ninthBig: {
         value: 'ninthBig',
-        label: '第一名大'
+        label: '第九名大'
     },
     ninthSmall: {
         value: 'ninthSmall',
-        label: '第一名小'
+        label: '第九名小'
     },
     ninthOdd: {
         value: 'ninthOdd',
-        label: '第一名单'
+        label: '第九名单'
     },
     ninthEven: {
         value: 'ninthEven',
-        label: '第一名双'
+        label: '第九名双'
     },
     tenthBig: {
         value: 'tenthBig',
-        label: '第一名大'
+        label: '第十名大'
     },
     tenthSmall: {
         value: 'tenthSmall',
-        label: '第一名小'
+        label: '第十名小'
     },
     tenthOdd: {
         value: 'tenthOdd',
-        label: '第一名单'
+        label: '第十名单'
     },
     tenthEven: {
         value: 'tenthEven',
-        label: '第一名双'
+        label: '第十名双'
     },
     topBig: {
         value: 'topBig',
-        label: '第一名大'
+        label: '冠亚和大'
     },
     topSmall: {
         value: 'topSmall',
-        label: '第一名小'
+        label: '冠亚和小'
     },
     topOdd: {
         value: 'topOdd',
-        label: '第一名单'
+        label: '冠亚和单'
     },
     topEven: {
         value: 'topEven',
-        label: '第一名双'
+        label: '冠亚和双'
     }
 }
 
